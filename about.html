@@ -1,80 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>关于 LoginLab - AI驱动的登录页实验室 | 项目介绍与技术详情</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="了解LoginLab项目详情：AI驱动的登录页实验室，提供39种精美移动端登录页面模板的技术实现、设计理念和开源贡献指南。" />
-    <meta name="keywords" content="LoginLab项目介绍,AI登录页面技术,移动端UI设计,前端开源项目,登录界面开发,HTML5 CSS3 JavaScript" />
+    <meta
+      name="description"
+      content="了解LoginLab项目详情：AI驱动的登录页实验室，提供39种精美移动端登录页面模板的技术实现、设计理念和开源贡献指南。"
+    />
+    <meta
+      name="keywords"
+      content="LoginLab项目介绍,AI登录页面技术,移动端UI设计,前端开源项目,登录界面开发,HTML5 CSS3 JavaScript"
+    />
     <meta name="author" content="LoginLab Team" />
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="关于 LoginLab - AI驱动的登录页实验室" />
-    <meta property="og:description" content="了解LoginLab项目的技术实现、设计理念和开源贡献指南，探索AI在前端UI设计中的无限可能。" />
+    <meta
+      property="og:description"
+      content="了解LoginLab项目的技术实现、设计理念和开源贡献指南，探索AI在前端UI设计中的无限可能。"
+    />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://loginlab.520ai.xin/about.html" />
     <meta property="og:image" content="https://loginlab.520ai.xin/logo.png" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://loginlab.520ai.xin/about.html" />
-   
-    <!-- Material Icons with fallback -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" onerror="this.onerror=null;this.href='src/assets/fonts/material-icons.css';">
-    <!-- Inter Font with fallback -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" onerror="this.onerror=null;this.remove();">
-    <!-- Local fallbacks -->
-    <link href="src/assets/fonts/material-icons.css" rel="stylesheet">
-    <link href="src/assets/fonts/inter-fallback.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="src/assets/styles/about.css">
-</head>
-<body>
+    <!-- Material Icons with fallback -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+      onerror="this.onerror=null;this.href='src/assets/fonts/material-icons.css';"
+    />
+    <!-- Inter Font with fallback -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+      onerror="this.onerror=null;this.remove();"
+    />
+    <!-- Local fallbacks -->
+    <link href="src/assets/fonts/material-icons.css" rel="stylesheet" />
+    <link href="src/assets/fonts/inter-fallback.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="src/assets/styles/about.css" />
+  </head>
+  <body>
     <!-- 页面加载动画 -->
     <div id="pageLoader" class="page-loader">
-        <div class="loader-content">
-            <div class="ai-brain-loader">
-                <div class="brain-core"></div>
-                <div class="neural-network">
-                    <div class="neuron"></div>
-                    <div class="neuron"></div>
-                    <div class="neuron"></div>
-                    <div class="neuron"></div>
-                </div>
-            </div>
-            <p class="loader-text">AI 正在构建页面...</p>
+      <div class="loader-content">
+        <div class="ai-brain-loader">
+          <div class="brain-core"></div>
+          <div class="neural-network">
+            <div class="neuron"></div>
+            <div class="neuron"></div>
+            <div class="neuron"></div>
+            <div class="neuron"></div>
+          </div>
         </div>
+        <p class="loader-text">AI 正在构建页面...</p>
+      </div>
     </div>
 
     <!-- 返回首页按钮 -->
     <a href="index.html" class="back-home-btn" aria-label="返回首页">
-        <span class="material-icons">arrow_back</span>
-        <span class="back-text">返回首页</span>
+      <span class="material-icons">arrow_back</span>
+      <span class="back-text">返回首页</span>
     </a>
 
     <!-- 浮动目录导航 -->
     <nav class="floating-nav" id="floatingNav">
-        <button class="nav-toggle" id="navToggle" aria-label="切换目录">
-            <span class="material-icons">menu</span>
-        </button>
-        <div class="nav-menu" id="navMenu">
-            <div class="nav-header">
-                <span class="material-icons">list</span>
-                <span>目录导航</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#intro" data-section="intro">项目简介</a></li>
-                <li><a href="#highlights" data-section="highlights">项目亮点</a></li>
-                <li><a href="#value" data-section="value">项目价值</a></li>
-                <li><a href="#tech" data-section="tech">技术特色</a></li>
-                <li><a href="#contribute" data-section="contribute">参与贡献</a></li>
-                <li><a href="#statement" data-section="statement">诚恳说明</a></li>
-                <li><a href="#start" data-section="start">如何开始</a></li>
-                <li><a href="#contact" data-section="contact">联系我们</a></li>
-            </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="切换目录">
+        <span class="material-icons">menu</span>
+      </button>
+      <div class="nav-menu" id="navMenu">
+        <div class="nav-header">
+          <span class="material-icons">list</span>
+          <span>目录导航</span>
         </div>
+        <ul class="nav-links">
+          <li><a href="#intro" data-section="intro">项目简介</a></li>
+          <li><a href="#highlights" data-section="highlights">项目亮点</a></li>
+          <li><a href="#value" data-section="value">项目价值</a></li>
+          <li><a href="#tech" data-section="tech">技术特色</a></li>
+          <li><a href="#contribute" data-section="contribute">参与贡献</a></li>
+          <li><a href="#statement" data-section="statement">诚恳说明</a></li>
+          <li><a href="#start" data-section="start">如何开始</a></li>
+          <li><a href="#contact" data-section="contact">联系我们</a></li>
+        </ul>
+      </div>
     </nav>
 
     <!-- 进度指示器 -->
@@ -82,453 +99,528 @@
 
     <!-- 主要内容 -->
     <main class="main-content">
-        <!-- Hero 区域 -->
-        <section class="hero-section">
-            <div class="hero-background">
-                <div class="floating-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                </div>
+      <!-- Hero 区域 -->
+      <section class="hero-section">
+        <div class="hero-background">
+          <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+          </div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-icon">
+            <img class="logo-img" src="logo.png" alt="LoginLab Logo" />
+          </div>
+          <h1 class="hero-title">
+            <!-- <span class="title-line">LoginLab</span> -->
+            <span class="title-subtitle">AI驱动的登录页实验室</span>
+          </h1>
+          <p class="hero-description">
+            探索AI在前端UI设计中的无限可能，为开发者提供丰富的创意灵感和实用资源
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-count="39">0</span>
+              <span class="stat-label">种风格</span>
             </div>
-            <div class="hero-content">
-                <div class="hero-icon">
-                    <img class="logo-img" src="logo.png" alt="LoginLab Logo" />
+            <div class="stat-item">
+              <span class="stat-number" data-count="100">0</span>
+              <span class="stat-label">% AI生成</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="0">0</span>
+              <span class="stat-label">框架依赖</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目简介 -->
+      <section id="intro" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">rocket_launch</span>
+            <h2>项目简介</h2>
+          </div>
+          <div class="intro-grid">
+            <div class="intro-text">
+              <p>
+                欢迎来到LoginLab！这是一个充满实验精神的开源项目，致力于探索AI在前端UI设计中的无限可能。
+              </p>
+              <p>
+                每一个登录页面都是AI创意的结晶，从设计理念到代码实现，全程展现人工智能在创意设计领域的强大潜力。
+              </p>
+            </div>
+            <div class="intro-visual">
+              <div class="code-animation">
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目亮点 -->
+      <section id="highlights" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">auto_awesome</span>
+            <h2>项目亮点</h2>
+          </div>
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <div class="card-icon">
+                <span class="material-icons">psychology</span>
+              </div>
+              <h3>AI原生创作</h3>
+              <ul>
+                <li>所有页面100%由AI自动生成</li>
+                <li>从设计理念到代码实现，全程AI参与</li>
+                <li>展现AI在创意设计领域的潜力</li>
+              </ul>
+            </div>
+            <div class="highlight-card">
+              <div class="card-icon">
+                <span class="material-icons">code</span>
+              </div>
+              <h3>纯前端技术栈</h3>
+              <ul>
+                <li>HTML5 + CSS3 + JavaScript</li>
+                <li>零框架依赖，轻量级实现</li>
+                <li>兼容现代浏览器，易于集成</li>
+              </ul>
+            </div>
+            <div class="highlight-card">
+              <div class="card-icon">
+                <span class="material-icons">palette</span>
+              </div>
+              <h3>丰富的视觉风格</h3>
+              <ul>
+                <li>39种独特登录页风格</li>
+                <li>涵盖科技、商务、艺术、游戏等领域</li>
+                <li>每种风格都有完整的交互动效</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目价值 -->
+      <section id="value" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">diamond</span>
+            <h2>项目价值</h2>
+          </div>
+          <div class="value-tabs">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="developers">
+                开发者
+              </button>
+              <button class="tab-btn" data-tab="designers">设计师</button>
+              <button class="tab-btn" data-tab="community">开源社区</button>
+            </div>
+            <div class="tab-content">
+              <div class="tab-panel active" id="developers">
+                <div class="value-grid">
+                  <div class="value-item">
+                    <span class="material-icons">lightbulb</span>
+                    <h4>灵感宝库</h4>
+                    <p>丰富的UI设计思路和配色方案</p>
+                  </div>
+                  <div class="value-item">
+                    <span class="material-icons">school</span>
+                    <h4>学习资源</h4>
+                    <p>纯前端实现，代码结构清晰</p>
+                  </div>
+                  <div class="value-item">
+                    <span class="material-icons">speed</span>
+                    <h4>快速原型</h4>
+                    <p>可直接使用或二次开发</p>
+                  </div>
                 </div>
-                <h1 class="hero-title">
-                    <!-- <span class="title-line">LoginLab</span> -->
-                    <span class="title-subtitle">AI驱动的登录页实验室</span>
-                </h1>
-                <p class="hero-description">
-                    探索AI在前端UI设计中的无限可能，为开发者提供丰富的创意灵感和实用资源
+              </div>
+              <div class="tab-panel" id="designers">
+                <div class="value-grid">
+                  <div class="value-item">
+                    <span class="material-icons">brush</span>
+                    <h4>创意参考</h4>
+                    <p>多样化的视觉风格和交互设计</p>
+                  </div>
+                  <div class="value-item">
+                    <span class="material-icons">color_lens</span>
+                    <h4>色彩搭配</h4>
+                    <p>精心调配的配色方案</p>
+                  </div>
+                  <div class="value-item">
+                    <span class="material-icons">animation</span>
+                    <h4>动效灵感</h4>
+                    <p>CSS3动画和过渡效果</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-panel" id="community">
+                <div class="value-grid">
+                  <div class="value-item">
+                    <span class="material-icons">groups</span>
+                    <h4>协作平台</h4>
+                    <p>欢迎贡献代码和创意</p>
+                  </div>
+                  <div class="value-item">
+                    <span class="material-icons">forum</span>
+                    <h4>技术交流</h4>
+                    <p>分享前端开发经验</p>
+                  </div>
+                  <div class="value-item">
+                    <span class="material-icons">science</span>
+                    <h4>创新实验</h4>
+                    <p>探索AI辅助开发的新模式</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 技术特色 -->
+      <section id="tech" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">settings</span>
+            <h2>技术特色</h2>
+          </div>
+          <div class="tech-showcase">
+            <div class="tech-visual">
+              <div class="tech-stack">
+                <div class="tech-layer" data-tech="html">
+                  <span class="tech-icon">🌐</span>
+                  <span class="tech-name">HTML5</span>
+                </div>
+                <div class="tech-layer" data-tech="css">
+                  <span class="tech-icon">🎨</span>
+                  <span class="tech-name">CSS3</span>
+                </div>
+                <div class="tech-layer" data-tech="js">
+                  <span class="tech-icon">⚡</span>
+                  <span class="tech-name">JavaScript</span>
+                </div>
+              </div>
+            </div>
+            <div class="tech-features">
+              <div class="feature-item">
+                <span class="material-icons">devices</span>
+                <div>
+                  <h4>响应式设计</h4>
+                  <p>完美适配桌面和移动端</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="material-icons">auto_fix_high</span>
+                <div>
+                  <h4>现代CSS</h4>
+                  <p>使用最新的CSS特性和动画</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="material-icons">accessibility</span>
+                <div>
+                  <h4>无障碍支持</h4>
+                  <p>考虑可访问性设计</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="material-icons">speed</span>
+                <div>
+                  <h4>性能优化</h4>
+                  <p>轻量级实现，快速加载</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 参与贡献 -->
+      <section id="contribute" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">group_work</span>
+            <h2>参与贡献</h2>
+          </div>
+          <div class="contribute-intro">
+            <h3>我们需要你的帮助！</h3>
+            <p>
+              LoginLab
+              是一个开放的社区项目，欢迎所有对前端开发、UI设计和AI技术感兴趣的朋友参与贡献。
+            </p>
+          </div>
+          <div class="contributor-types">
+            <div class="contributor-card">
+              <div class="contributor-icon">
+                <span class="material-icons">brush</span>
+              </div>
+              <h4>设计贡献者</h4>
+              <ul>
+                <li>提供新的视觉风格创意</li>
+                <li>优化现有页面的设计细节</li>
+                <li>改进用户体验和交互设计</li>
+              </ul>
+              <div class="contribute-actions">
+                <a
+                  href="https://github.com/yuanyang749/loginlab/issues"
+                  target="_blank"
+                  class="contribute-btn"
+                  >提交设计建议</a
+                >
+              </div>
+            </div>
+            <div class="contributor-card">
+              <div class="contributor-icon">
+                <span class="material-icons">code</span>
+              </div>
+              <h4>开发贡献者</h4>
+              <ul>
+                <li>修复页面兼容性问题</li>
+                <li>优化代码结构和性能</li>
+                <li>添加新功能和交互效果</li>
+              </ul>
+              <div class="contribute-actions">
+                <a
+                  href="https://github.com/yuanyang749/loginlab/pulls"
+                  target="_blank"
+                  class="contribute-btn"
+                  >提交代码</a
+                >
+              </div>
+            </div>
+            <div class="contributor-card">
+              <div class="contributor-icon">
+                <span class="material-icons">description</span>
+              </div>
+              <h4>文档贡献者</h4>
+              <ul>
+                <li>完善项目文档和使用说明</li>
+                <li>翻译多语言版本</li>
+                <li>编写最佳实践指南</li>
+              </ul>
+              <div class="contribute-actions">
+                <a
+                  href="https://github.com/yuanyang749/loginlab/wiki"
+                  target="_blank"
+                  class="contribute-btn"
+                  >完善文档</a
+                >
+              </div>
+            </div>
+            <div class="contributor-card">
+              <div class="contributor-icon">
+                <span class="material-icons">bug_report</span>
+              </div>
+              <h4>测试贡献者</h4>
+              <ul>
+                <li>在不同设备浏览器上测试</li>
+                <li>报告bug和改进建议</li>
+                <li>提供用户反馈</li>
+              </ul>
+              <div class="contribute-actions">
+                <a
+                  href="https://github.com/yuanyang749/loginlab/issues/new"
+                  target="_blank"
+                  class="contribute-btn"
+                  >报告问题</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 诚恳说明 -->
+      <section id="statement" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">favorite</span>
+            <h2>诚恳说明</h2>
+          </div>
+          <div class="statement-content">
+            <div class="statement-card">
+              <h3>关于代码质量</h3>
+              <p>
+                这是一个实验性项目，代码可能不够完美。部分页面需要根据实际需求调整，我们正在持续改进，也欢迎你的帮助。
+              </p>
+            </div>
+            <div class="statement-card">
+              <h3>关于维护</h3>
+              <p>
+                由于风格众多，我们的维护精力有限。非常欢迎社区朋友参与优化，每一个贡献都会被认真对待和感谢。
+              </p>
+            </div>
+            <div class="statement-card">
+              <h3>关于使用</h3>
+              <p>
+                页面可能需要根据具体项目调整，建议作为学习参考和灵感来源。商业使用请遵循开源协议。
+              </p>
+            </div>
+          </div>
+          <div class="transparency-note">
+            <p><strong>我们相信透明和诚恳是开源项目的基石</strong></p>
+            <p>
+              虽然页面不是很专业，但能提供一些 idea、UI
+              配色和学习价值。我们希望通过社区的力量，让这个项目变得更好。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 如何开始 -->
+      <section id="start" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">play_arrow</span>
+            <h2>如何开始</h2>
+          </div>
+          <div class="start-steps">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>浏览和体验</h4>
+                <p>
+                  在首页浏览所有风格，下载感兴趣的页面代码，在本地环境中测试和调试。
                 </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="39">0</span>
-                        <span class="stat-label">种风格</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="100">0</span>
-                        <span class="stat-label">% AI生成</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="0">0</span>
-                        <span class="stat-label">框架依赖</span>
-                    </div>
-                </div>
+                <a href="/index.html" class="step-link">开始浏览</a>
+              </div>
             </div>
-        </section>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>参与讨论</h4>
+                <p>
+                  在 GitHub Issues
+                  中提出建议，分享你的创意和想法，与其他贡献者交流。
+                </p>
+                <a
+                  href="https://github.com/yuanyang749/loginlab/discussions"
+                  target="_blank"
+                  class="step-link"
+                  >加入讨论</a
+                >
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>提交贡献</h4>
+                <p>
+                  Fork 项目仓库，创建新的风格或优化现有代码，提交 Pull Request。
+                </p>
+                <a
+                  href="https://github.com/yuanyang749/loginlab/fork"
+                  target="_blank"
+                  class="step-link"
+                  >Fork 项目</a
+                >
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>传播项目</h4>
+                <p>给项目点个 Star ⭐，分享给更多朋友，在社交媒体上推荐。</p>
+                <a
+                  href="https://github.com/yuanyang749/loginlab"
+                  target="_blank"
+                  class="step-link"
+                  >GitHub 仓库</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- 项目简介 -->
-        <section id="intro" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">rocket_launch</span>
-                    <h2>项目简介</h2>
-                </div>
-                <div class="intro-grid">
-                    <div class="intro-text">
-                        <p>欢迎来到LoginLab！这是一个充满实验精神的开源项目，致力于探索AI在前端UI设计中的无限可能。</p>
-                        <p>每一个登录页面都是AI创意的结晶，从设计理念到代码实现，全程展现人工智能在创意设计领域的强大潜力。</p>
-                    </div>
-                    <div class="intro-visual">
-                        <div class="code-animation">
-                            <div class="code-line"></div>
-                            <div class="code-line"></div>
-                            <div class="code-line"></div>
-                            <div class="code-line"></div>
-                        </div>
-                    </div>
-                </div>
+      <!-- 联系我们 -->
+      <section id="contact" class="content-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="material-icons section-icon">contact_mail</span>
+            <h2>联系我们</h2>
+          </div>
+          <div class="contact-content">
+            <div class="contact-main">
+              <h3>让我们一起探索 AI 与前端开发结合的无限可能！</h3>
+              <p>
+                感谢每一位关注、使用和贡献这个项目的朋友！正是因为有了你们的支持，LoginLab
+                才能不断成长和进步。
+              </p>
             </div>
-        </section>
-
-        <!-- 项目亮点 -->
-        <section id="highlights" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">auto_awesome</span>
-                    <h2>项目亮点</h2>
+            <div class="contact-links">
+              <a
+                href="https://github.com/yuanyang749/loginlab"
+                target="_blank"
+                class="contact-link"
+              >
+                <span class="material-icons">code</span>
+                <div>
+                  <h4>GitHub 仓库</h4>
+                  <p>查看源码、提交问题、参与贡献</p>
                 </div>
-                <div class="highlights-grid">
-                    <div class="highlight-card">
-                        <div class="card-icon">
-                            <span class="material-icons">psychology</span>
-                        </div>
-                        <h3>AI原生创作</h3>
-                        <ul>
-                            <li>所有页面100%由AI自动生成</li>
-                            <li>从设计理念到代码实现，全程AI参与</li>
-                            <li>展现AI在创意设计领域的潜力</li>
-                        </ul>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="card-icon">
-                            <span class="material-icons">code</span>
-                        </div>
-                        <h3>纯前端技术栈</h3>
-                        <ul>
-                            <li>HTML5 + CSS3 + JavaScript</li>
-                            <li>零框架依赖，轻量级实现</li>
-                            <li>兼容现代浏览器，易于集成</li>
-                        </ul>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="card-icon">
-                            <span class="material-icons">palette</span>
-                        </div>
-                        <h3>丰富的视觉风格</h3>
-                        <ul>
-                            <li>39种独特登录页风格</li>
-                            <li>涵盖科技、商务、艺术、游戏等领域</li>
-                            <li>每种风格都有完整的交互动效</li>
-                        </ul>
-                    </div>
+              </a>
+              <a
+                href="https://github.com/yuanyang749/loginlab/issues"
+                target="_blank"
+                class="contact-link"
+              >
+                <span class="material-icons">bug_report</span>
+                <div>
+                  <h4>问题反馈</h4>
+                  <p>报告 bug、提出建议、功能请求</p>
                 </div>
+              </a>
+              <a
+                href="https://github.com/yuanyang749/loginlab/discussions"
+                target="_blank"
+                class="contact-link"
+              >
+                <span class="material-icons">forum</span>
+                <div>
+                  <h4>技术讨论</h4>
+                  <p>技术交流、创意分享、经验讨论</p>
+                </div>
+              </a>
             </div>
-        </section>
-
-        <!-- 项目价值 -->
-        <section id="value" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">diamond</span>
-                    <h2>项目价值</h2>
-                </div>
-                <div class="value-tabs">
-                    <div class="tab-buttons">
-                        <button class="tab-btn active" data-tab="developers">开发者</button>
-                        <button class="tab-btn" data-tab="designers">设计师</button>
-                        <button class="tab-btn" data-tab="community">开源社区</button>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-panel active" id="developers">
-                            <div class="value-grid">
-                                <div class="value-item">
-                                    <span class="material-icons">lightbulb</span>
-                                    <h4>灵感宝库</h4>
-                                    <p>丰富的UI设计思路和配色方案</p>
-                                </div>
-                                <div class="value-item">
-                                    <span class="material-icons">school</span>
-                                    <h4>学习资源</h4>
-                                    <p>纯前端实现，代码结构清晰</p>
-                                </div>
-                                <div class="value-item">
-                                    <span class="material-icons">speed</span>
-                                    <h4>快速原型</h4>
-                                    <p>可直接使用或二次开发</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-panel" id="designers">
-                            <div class="value-grid">
-                                <div class="value-item">
-                                    <span class="material-icons">brush</span>
-                                    <h4>创意参考</h4>
-                                    <p>多样化的视觉风格和交互设计</p>
-                                </div>
-                                <div class="value-item">
-                                    <span class="material-icons">color_lens</span>
-                                    <h4>色彩搭配</h4>
-                                    <p>精心调配的配色方案</p>
-                                </div>
-                                <div class="value-item">
-                                    <span class="material-icons">animation</span>
-                                    <h4>动效灵感</h4>
-                                    <p>CSS3动画和过渡效果</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-panel" id="community">
-                            <div class="value-grid">
-                                <div class="value-item">
-                                    <span class="material-icons">groups</span>
-                                    <h4>协作平台</h4>
-                                    <p>欢迎贡献代码和创意</p>
-                                </div>
-                                <div class="value-item">
-                                    <span class="material-icons">forum</span>
-                                    <h4>技术交流</h4>
-                                    <p>分享前端开发经验</p>
-                                </div>
-                                <div class="value-item">
-                                    <span class="material-icons">science</span>
-                                    <h4>创新实验</h4>
-                                    <p>探索AI辅助开发的新模式</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="thank-you">
+              <h3>🙏 致谢</h3>
+              <p><strong>让创意无界，让代码有温度</strong> ❤️</p>
             </div>
-        </section>
-
-        <!-- 技术特色 -->
-        <section id="tech" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">settings</span>
-                    <h2>技术特色</h2>
-                </div>
-                <div class="tech-showcase">
-                    <div class="tech-visual">
-                        <div class="tech-stack">
-                            <div class="tech-layer" data-tech="html">
-                                <span class="tech-icon">🌐</span>
-                                <span class="tech-name">HTML5</span>
-                            </div>
-                            <div class="tech-layer" data-tech="css">
-                                <span class="tech-icon">🎨</span>
-                                <span class="tech-name">CSS3</span>
-                            </div>
-                            <div class="tech-layer" data-tech="js">
-                                <span class="tech-icon">⚡</span>
-                                <span class="tech-name">JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tech-features">
-                        <div class="feature-item">
-                            <span class="material-icons">devices</span>
-                            <div>
-                                <h4>响应式设计</h4>
-                                <p>完美适配桌面和移动端</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="material-icons">auto_fix_high</span>
-                            <div>
-                                <h4>现代CSS</h4>
-                                <p>使用最新的CSS特性和动画</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="material-icons">accessibility</span>
-                            <div>
-                                <h4>无障碍支持</h4>
-                                <p>考虑可访问性设计</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="material-icons">speed</span>
-                            <div>
-                                <h4>性能优化</h4>
-                                <p>轻量级实现，快速加载</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 参与贡献 -->
-        <section id="contribute" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">group_work</span>
-                    <h2>参与贡献</h2>
-                </div>
-                <div class="contribute-intro">
-                    <h3>我们需要你的帮助！</h3>
-                    <p>LoginLab 是一个开放的社区项目，欢迎所有对前端开发、UI设计和AI技术感兴趣的朋友参与贡献。</p>
-                </div>
-                <div class="contributor-types">
-                    <div class="contributor-card">
-                        <div class="contributor-icon">
-                            <span class="material-icons">brush</span>
-                        </div>
-                        <h4>设计贡献者</h4>
-                        <ul>
-                            <li>提供新的视觉风格创意</li>
-                            <li>优化现有页面的设计细节</li>
-                            <li>改进用户体验和交互设计</li>
-                        </ul>
-                        <div class="contribute-actions">
-                            <a href="https://github.com/yuanyang749/beautiful-login/issues" target="_blank" class="contribute-btn">提交设计建议</a>
-                        </div>
-                    </div>
-                    <div class="contributor-card">
-                        <div class="contributor-icon">
-                            <span class="material-icons">code</span>
-                        </div>
-                        <h4>开发贡献者</h4>
-                        <ul>
-                            <li>修复页面兼容性问题</li>
-                            <li>优化代码结构和性能</li>
-                            <li>添加新功能和交互效果</li>
-                        </ul>
-                        <div class="contribute-actions">
-                            <a href="https://github.com/yuanyang749/beautiful-login/pulls" target="_blank" class="contribute-btn">提交代码</a>
-                        </div>
-                    </div>
-                    <div class="contributor-card">
-                        <div class="contributor-icon">
-                            <span class="material-icons">description</span>
-                        </div>
-                        <h4>文档贡献者</h4>
-                        <ul>
-                            <li>完善项目文档和使用说明</li>
-                            <li>翻译多语言版本</li>
-                            <li>编写最佳实践指南</li>
-                        </ul>
-                        <div class="contribute-actions">
-                            <a href="https://github.com/yuanyang749/beautiful-login/wiki" target="_blank" class="contribute-btn">完善文档</a>
-                        </div>
-                    </div>
-                    <div class="contributor-card">
-                        <div class="contributor-icon">
-                            <span class="material-icons">bug_report</span>
-                        </div>
-                        <h4>测试贡献者</h4>
-                        <ul>
-                            <li>在不同设备浏览器上测试</li>
-                            <li>报告bug和改进建议</li>
-                            <li>提供用户反馈</li>
-                        </ul>
-                        <div class="contribute-actions">
-                            <a href="https://github.com/yuanyang749/beautiful-login/issues/new" target="_blank" class="contribute-btn">报告问题</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 诚恳说明 -->
-        <section id="statement" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">favorite</span>
-                    <h2>诚恳说明</h2>
-                </div>
-                <div class="statement-content">
-                    <div class="statement-card">
-                        <h3>关于代码质量</h3>
-                        <p>这是一个实验性项目，代码可能不够完美。部分页面需要根据实际需求调整，我们正在持续改进，也欢迎你的帮助。</p>
-                    </div>
-                    <div class="statement-card">
-                        <h3>关于维护</h3>
-                        <p>由于风格众多，我们的维护精力有限。非常欢迎社区朋友参与优化，每一个贡献都会被认真对待和感谢。</p>
-                    </div>
-                    <div class="statement-card">
-                        <h3>关于使用</h3>
-                        <p>页面可能需要根据具体项目调整，建议作为学习参考和灵感来源。商业使用请遵循开源协议。</p>
-                    </div>
-                </div>
-                <div class="transparency-note">
-                    <p><strong>我们相信透明和诚恳是开源项目的基石</strong></p>
-                    <p>虽然页面不是很专业，但能提供一些 idea、UI 配色和学习价值。我们希望通过社区的力量，让这个项目变得更好。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 如何开始 -->
-        <section id="start" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">play_arrow</span>
-                    <h2>如何开始</h2>
-                </div>
-                <div class="start-steps">
-                    <div class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>浏览和体验</h4>
-                            <p>在首页浏览所有风格，下载感兴趣的页面代码，在本地环境中测试和调试。</p>
-                            <a href="/index.html" class="step-link">开始浏览</a>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>参与讨论</h4>
-                            <p>在 GitHub Issues 中提出建议，分享你的创意和想法，与其他贡献者交流。</p>
-                            <a href="https://github.com/yuanyang749/beautiful-login/discussions" target="_blank" class="step-link">加入讨论</a>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>提交贡献</h4>
-                            <p>Fork 项目仓库，创建新的风格或优化现有代码，提交 Pull Request。</p>
-                            <a href="https://github.com/yuanyang749/beautiful-login/fork" target="_blank" class="step-link">Fork 项目</a>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h4>传播项目</h4>
-                            <p>给项目点个 Star ⭐，分享给更多朋友，在社交媒体上推荐。</p>
-                            <a href="https://github.com/yuanyang749/beautiful-login" target="_blank" class="step-link">GitHub 仓库</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 联系我们 -->
-        <section id="contact" class="content-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="material-icons section-icon">contact_mail</span>
-                    <h2>联系我们</h2>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-main">
-                        <h3>让我们一起探索 AI 与前端开发结合的无限可能！</h3>
-                        <p>感谢每一位关注、使用和贡献这个项目的朋友！正是因为有了你们的支持，LoginLab 才能不断成长和进步。</p>
-                    </div>
-                    <div class="contact-links">
-                        <a href="https://github.com/yuanyang749/beautiful-login" target="_blank" class="contact-link">
-                            <span class="material-icons">code</span>
-                            <div>
-                                <h4>GitHub 仓库</h4>
-                                <p>查看源码、提交问题、参与贡献</p>
-                            </div>
-                        </a>
-                        <a href="https://github.com/yuanyang749/beautiful-login/issues" target="_blank" class="contact-link">
-                            <span class="material-icons">bug_report</span>
-                            <div>
-                                <h4>问题反馈</h4>
-                                <p>报告 bug、提出建议、功能请求</p>
-                            </div>
-                        </a>
-                        <a href="https://github.com/yuanyang749/beautiful-login/discussions" target="_blank" class="contact-link">
-                            <span class="material-icons">forum</span>
-                            <div>
-                                <h4>技术讨论</h4>
-                                <p>技术交流、创意分享、经验讨论</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="thank-you">
-                        <h3>🙏 致谢</h3>
-                        <p><strong>让创意无界，让代码有温度</strong> ❤️</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- 魔法传送门返回顶部 -->
     <div class="magic-portal" id="magicPortal">
-        <div class="portal-ring">
-            <div class="portal-inner">
-                <div class="portal-core">🌟</div>
-            </div>
+      <div class="portal-ring">
+        <div class="portal-inner">
+          <div class="portal-core">🌟</div>
         </div>
-        <div class="portal-particles">
-            <div class="particle">✨</div>
-            <div class="particle">⭐</div>
-            <div class="particle">💫</div>
-            <div class="particle">🌟</div>
-            <div class="particle">✨</div>
-            <div class="particle">⭐</div>
-        </div>
-        <div class="portal-tooltip">魔法传送到顶部</div>
+      </div>
+      <div class="portal-particles">
+        <div class="particle">✨</div>
+        <div class="particle">⭐</div>
+        <div class="particle">💫</div>
+        <div class="particle">🌟</div>
+        <div class="particle">✨</div>
+        <div class="particle">⭐</div>
+      </div>
+      <div class="portal-tooltip">魔法传送到顶部</div>
     </div>
 
     <script src="src/js/about.js"></script>
     <script src="src/js/resource-fallback.js"></script>
-</body>
+  </body>
 </html>

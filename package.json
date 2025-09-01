@@ -1,5 +1,5 @@
 {
-  "name": "beautiful-login",
+  "name": "loginlab",
   "version": "1.0.0",
   "description": "Beautiful Login - 精美移动端登录页面集合",
   "main": "index.html",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yuanyang749/beautiful-login.git"
+    "url": "https://github.com/yuanyang749/loginlab.git"
   },
-  "homepage": "https://beautiful-login.vercel.app"
+  "homepage": "https://loginlab.vercel.app"
 }

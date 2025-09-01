@@ -457,8 +457,8 @@ AI 驱动的登录页实验室，适配不同应用场景。
 
 ### 本地部署
 
-1. 克隆仓库：`git clone https://github.com/yuanyang749/beautiful-login.git`
-2. 进入项目目录：`cd beautiful-login`
+1. 克隆仓库：`git clone https://github.com/yuanyang749/loginlab.git`
+2. 进入项目目录：`cd loginlab`
 3. 打开 `index.html` 文件即可预览
 4. 或者执行 `npm run dev` 命令在本地启动服务器
 
@@ -765,7 +765,7 @@ src/
 
 - 📧 **邮箱**: loginlab@520ai.xin
 - 💬 **QQ**: 317147055
-- 🐛 **GitHub Issue**: <a href="https://github.com/yuanyang749/beautiful-login/issues" target="_blank">https://github.com/yuanyang749/beautiful-login/issues</a>
+- 🐛 **GitHub Issue**: <a href="https://github.com/yuanyang749/loginlab/issues" target="_blank">https://github.com/yuanyang749/loginlab/issues</a>
 - 🌐 **官方网站**: <a href="https://loginlab.520ai.xin" target="_blank">https://loginlab.520ai.xin</a>
 
 ## 📄 许可证
