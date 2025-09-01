@@ -1,0 +1,633 @@
+/* Windows 98 复古风格样式 */
+
+/* 基础设置 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+    font-size: 11px;
+    background: #008080;
+    overflow: hidden;
+    height: 100vh;
+    user-select: none;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    padding: 4px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #000;
+    font-weight: normal;
+}
+
+.back-button:hover {
+    background: #d4d0c8;
+}
+
+.back-button:active {
+    border: 2px inset #c0c0c0;
+}
+
+.back-button svg {
+    width: 12px;
+    height: 12px;
+}
+
+/* 桌面 */
+.desktop {
+    width: 100vw;
+    height: 100vh;
+    background: #008080;
+    position: relative;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,0.03) 1px, rgba(255,255,255,0.03) 2px),
+        repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.03) 1px, rgba(255,255,255,0.03) 2px);
+}
+
+/* 桌面图标 */
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 64px;
+    cursor: pointer;
+    color: white;
+    text-shadow: 1px 1px 0px #000;
+    font-size: 11px;
+}
+
+.desktop-icon:hover {
+    background: rgba(0,0,255,0.3);
+    border: 1px dotted white;
+}
+
+.desktop-icon .icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 4px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon.my-computer {
+    background: linear-gradient(45deg, #808080, #c0c0c0);
+    border: 1px solid #000;
+    position: relative;
+}
+
+.icon.my-computer::before {
+    content: "💻";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+
+.icon.recycle-bin {
+    background: linear-gradient(45deg, #404040, #808080);
+    border: 1px solid #000;
+    position: relative;
+}
+
+.icon.recycle-bin::before {
+    content: "🗑️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+
+.icon.network {
+    background: linear-gradient(45deg, #606060, #a0a0a0);
+    border: 1px solid #000;
+    position: relative;
+}
+
+.icon.network::before {
+    content: "🌐";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+
+/* 任务栏 */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: #c0c0c0;
+    border-top: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    z-index: 100;
+}
+
+.start-button {
+    background: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    padding: 2px 8px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.start-button:hover {
+    background: #d4d0c8;
+}
+
+.start-button:active {
+    border: 2px inset #c0c0c0;
+}
+
+.start-icon {
+    font-size: 14px;
+}
+
+.taskbar-separator {
+    width: 2px;
+    height: 20px;
+    background: #808080;
+    margin: 0 4px;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #dfdfdf;
+}
+
+.taskbar-time {
+    margin-left: auto;
+    margin-right: 8px;
+    padding: 2px 8px;
+    border: 1px inset #c0c0c0;
+    font-size: 11px;
+    background: #c0c0c0;
+}
+
+/* 窗口样式 */
+.window {
+    position: absolute;
+    background: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+    font-size: 11px;
+}
+
+.login-window {
+    width: 380px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.register-window,
+.forgot-password-window {
+    width: 420px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.error-window,
+.success-window {
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+}
+
+.window-header {
+    background: linear-gradient(90deg, #0058b6 0%, #40a0ff 50%, #0058b6 100%);
+    color: white;
+    padding: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 18px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.window-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-left: 4px;
+}
+
+.window-icon {
+    font-size: 12px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 1px;
+}
+
+.window-button {
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px outset #c0c0c0;
+    font-size: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+
+.window-button:hover {
+    background: #d4d0c8;
+}
+
+.window-button:active {
+    border: 1px inset #c0c0c0;
+}
+
+.window-content {
+    padding: 8px 12px 12px 12px;
+    background: #c0c0c0;
+}
+
+/* 登录表单样式 */
+.login-header,
+.register-header,
+.forgot-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #f0f0f0;
+    border: 1px inset #c0c0c0;
+}
+
+.user-icon {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e0e0;
+    border: 1px inset #c0c0c0;
+}
+
+.welcome-text h3 {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #000080;
+}
+
+.welcome-text p {
+    font-size: 11px;
+    color: #404040;
+}
+
+/* 表单元素 */
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #000;
+    font-weight: normal;
+}
+
+.win98-input {
+    width: 100%;
+    padding: 2px 4px;
+    border: 2px inset #c0c0c0;
+    background: white;
+    font-size: 11px;
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+    height: 20px;
+}
+
+.win98-input:focus {
+    outline: none;
+    background: #fff;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.win98-checkbox {
+    width: 13px;
+    height: 13px;
+    border: 2px inset #c0c0c0;
+    background: white;
+    cursor: pointer;
+}
+
+.win98-checkbox:checked {
+    background: white;
+    position: relative;
+}
+
+.win98-checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    font-size: 10px;
+    color: #000;
+    font-weight: bold;
+}
+
+.verification-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.verification-group .win98-input {
+    flex: 1;
+}
+
+/* 按钮样式 */
+.button-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.win98-button {
+    background: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    padding: 4px 16px;
+    font-size: 11px;
+    font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+    cursor: pointer;
+    color: #000;
+    font-weight: normal;
+    min-width: 75px;
+    height: 24px;
+}
+
+.win98-button:hover {
+    background: #d4d0c8;
+}
+
+.win98-button:active {
+    border: 2px inset #c0c0c0;
+}
+
+.win98-button.primary {
+    font-weight: bold;
+    border: 3px outset #c0c0c0;
+}
+
+.win98-button.small {
+    min-width: auto;
+    padding: 2px 8px;
+    height: 20px;
+    font-size: 10px;
+}
+
+/* 对话框样式 */
+.error-dialog,
+.success-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-content,
+.success-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 16px;
+}
+
+.error-icon,
+.success-icon {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message,
+.success-message {
+    font-size: 11px;
+    color: #000;
+    line-height: 1.4;
+}
+
+/* 隐藏元素 */
+.hidden {
+    display: none !important;
+}
+
+/* 窗口拖拽效果 */
+.window:hover {
+    cursor: move;
+}
+
+.window-header:hover {
+    cursor: move;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .login-window,
+    .register-window,
+    .forgot-password-window {
+        width: 90%;
+        max-width: 360px;
+    }
+    
+    .desktop-icons {
+        left: 10px;
+        top: 40px;
+    }
+    
+    .back-button {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .taskbar {
+        height: 32px;
+    }
+    
+    .start-button {
+        height: 28px;
+        font-size: 10px;
+    }
+}
+
+/* 经典Windows 98 系统颜色 */
+:root {
+    --win98-face: #c0c0c0;
+    --win98-hilight: #dfdfdf;
+    --win98-shadow: #808080;
+    --win98-dark-shadow: #404040;
+    --win98-active-caption: #0058b6;
+    --win98-inactive-caption: #808080;
+    --win98-window-text: #000000;
+    --win98-window-bg: #ffffff;
+    --win98-desktop: #008080;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border: 1px inset #c0c0c0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 2px outset #c0c0c0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d4d0c8;
+}
+
+::-webkit-scrollbar-corner {
+    background: #c0c0c0;
+}
+
+/* 键盘导航 */
+.win98-button:focus,
+.win98-input:focus,
+.win98-checkbox:focus {
+    outline: 1px dotted #000;
+    outline-offset: -2px;
+}
+
+/* 动画效果 */
+.window {
+    animation: windowOpen 0.2s ease-out;
+}
+
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.desktop-icon {
+    transition: background 0.1s ease;
+}
+
+.win98-button {
+    transition: background 0.1s ease;
+}
+
+/* 经典Windows 98 字体渲染 */
+body, .window, .win98-button, .win98-input {
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: optimizeSpeed;
+}
+
+/* 状态栏样式 */
+.status-bar {
+    background: #c0c0c0;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #808080;
+    padding: 2px 8px;
+    font-size: 11px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+}
+
+/* 菜单样式 */
+.context-menu {
+    background: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 2px;
+    font-size: 11px;
+    position: absolute;
+    z-index: 1000;
+}
+
+.context-menu-item {
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #000;
+}
+
+.context-menu-item:hover {
+    background: #0058b6;
+    color: white;
+}
+
+.context-menu-separator {
+    height: 1px;
+    background: #808080;
+    margin: 2px 4px;
+    border-bottom: 1px solid #dfdfdf;
+}

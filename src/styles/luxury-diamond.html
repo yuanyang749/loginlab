@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奢华钻石风格 - 登录</title>
+    <link rel="stylesheet" href="../assets/styles/luxury-diamond.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <div class="container">
+        <!-- 背景动画 -->
+        <div class="background">
+            <div class="diamond diamond1">💎</div>
+            <div class="diamond diamond2">💎</div>
+            <div class="diamond diamond3">💎</div>
+            <div class="sparkle sparkle1">✨</div>
+            <div class="sparkle sparkle2">✨</div>
+            <div class="sparkle sparkle3">✨</div>
+            <div class="sparkle sparkle4">✨</div>
+            <div class="gold-line line1"></div>
+            <div class="gold-line line2"></div>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="login-container form-container" id="loginForm">
+            <div class="luxury-badge">
+                <span>💎</span>
+            </div>
+            <h2 class="form-title">
+                尊贵登录
+            </h2>
+            <p class="form-subtitle">Welcome to Luxury</p>
+            
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" placeholder=" " required>
+                    <label for="username">用户名 / 手机号</label>
+                    <div class="input-line"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" placeholder=" " required>
+                    <label for="password">密码</label>
+                    <div class="input-line"></div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span>记住我</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="toForgotPassword">忘记密码？</a>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">尊享登录</span>
+                    <div class="btn-shimmer"></div>
+                </button>
+                
+                <div class="divider">
+                    <div class="divider-line"></div>
+                    <span>VIP</span>
+                    <div class="divider-line"></div>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn gold-btn">
+                        <span>👑</span>
+                        贵宾通道
+                    </button>
+                    <button type="button" class="social-btn silver-btn">
+                        <span>💳</span>
+                        会员登录
+                    </button>
+                </div>
+                
+                <p class="switch-form">
+                    尚未成为会员？
+                    <a href="#" id="toRegister">立即加入</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- 注册表单 -->
+        <div class="register-container form-container hidden" id="registerForm">
+            <div class="luxury-badge">
+                <span>👑</span>
+            </div>
+            <h2 class="form-title">
+                尊贵注册
+            </h2>
+            <p class="form-subtitle">Join the Elite</p>
+            
+            <form class="register-form">
+                <div class="form-group">
+                    <input type="text" id="regUsername" placeholder=" " required>
+                    <label for="regUsername">用户名</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="regPhone" placeholder=" " required>
+                    <label for="regPhone">手机号</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" placeholder=" " required>
+                    <label for="regVerificationCode">验证码</label>
+                    <div class="input-line"></div>
+                    <button type="button" class="send-code-btn" id="regSendCodeBtn">发送验证码</button>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="regPassword" placeholder=" " required>
+                    <label for="regPassword">密码</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" placeholder=" " required>
+                    <label for="regConfirmPassword">确认密码</label>
+                    <div class="input-line"></div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">成为会员</span>
+                    <div class="btn-shimmer"></div>
+                </button>
+                
+                <p class="switch-form">
+                    已是尊贵会员？
+                    <a href="#" id="backToLogin">直接登录</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- 忘记密码表单 -->
+        <div class="forgot-container form-container hidden" id="forgotPasswordForm">
+            <div class="luxury-badge">
+                <span>🔐</span>
+            </div>
+            <h2 class="form-title">
+                密码重置
+            </h2>
+            <p class="form-subtitle">VIP Security Service</p>
+            
+            <form class="forgot-form">
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" placeholder=" " required>
+                    <label for="resetPhone">手机号</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" placeholder=" " required>
+                    <label for="verificationCode">验证码</label>
+                    <div class="input-line"></div>
+                    <button type="button" class="send-code-btn" id="sendCodeBtn">发送验证码</button>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="newPassword" placeholder=" " required>
+                    <label for="newPassword">新密码</label>
+                    <div class="input-line"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" placeholder=" " required>
+                    <label for="confirmNewPassword">确认新密码</label>
+                    <div class="input-line"></div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">重置密码</span>
+                    <div class="btn-shimmer"></div>
+                </button>
+                
+                <p class="switch-form">
+                    记起密码？
+                    <a href="#" id="backToLoginFromReset">返回登录</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/luxury-diamond.js"></script>
+</body>
+</html>

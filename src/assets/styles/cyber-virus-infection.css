@@ -1,0 +1,1250 @@
+/* 🦠 网络朋克病毒感染风格样式 */
+
+/* 导入字体 */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap');
+
+/* 基础设置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Code Pro', monospace;
+    background: #000;
+    color: #00ff41;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+    cursor: crosshair;
+}
+
+/* 网络朋克风格光标样式 */
+* {
+    cursor: crosshair !important;
+}
+
+/* 可点击元素的特殊光标 */
+button, .virus-button, .back-button, input, .style-card {
+    cursor: pointer !important;
+}
+
+/* 输入框光标 */
+input, textarea {
+    cursor: text !important;
+}
+
+/* 链接光标 */
+a {
+    cursor: pointer !important;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 8px 12px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(255, 0, 65, 0.2);
+    border-color: #ff0041;
+    color: #ff0041;
+    box-shadow: 0 0 20px rgba(255, 0, 65, 0.5);
+    transform: scale(1.05);
+}
+
+.back-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* 矩阵代码雨背景 */
+.matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+#matrixCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 故障扫描线 */
+.glitch-scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.03) 2px,
+        rgba(0, 255, 65, 0.03) 4px
+    );
+    animation: scanlineMove 0.1s linear infinite;
+}
+
+@keyframes scanlineMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
+
+/* 病毒感染粒子层 */
+.virus-infection-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.infection-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ff0041;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff0041;
+    animation: virusSpread 8s linear infinite;
+}
+
+.infection-particle:nth-child(1) {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.infection-particle:nth-child(2) {
+    top: 30%;
+    left: 70%;
+    animation-delay: 1.6s;
+}
+
+.infection-particle:nth-child(3) {
+    top: 60%;
+    left: 10%;
+    animation-delay: 3.2s;
+}
+
+.infection-particle:nth-child(4) {
+    top: 80%;
+    left: 90%;
+    animation-delay: 4.8s;
+}
+
+.infection-particle:nth-child(5) {
+    top: 20%;
+    left: 50%;
+    animation-delay: 6.4s;
+}
+
+@keyframes virusSpread {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        transform: scale(1) rotate(36deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(3) rotate(180deg);
+        opacity: 0.8;
+    }
+    90% {
+        transform: scale(8) rotate(324deg);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(12) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 系统警告弹窗 */
+.system-warning {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.warning-box {
+    background: rgba(255, 0, 65, 0.1);
+    border: 1px solid #ff0041;
+    border-radius: 4px;
+    animation: warningPulse 2s ease-in-out infinite;
+}
+
+.warning-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: rgba(255, 0, 65, 0.2);
+    border-bottom: 1px solid #ff0041;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.warning-icon {
+    animation: iconSpin 1s linear infinite;
+}
+
+.close-warning {
+    background: none;
+    border: none;
+    color: #ff0041;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.warning-content {
+    padding: 12px;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 8px 0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0041, #ff4081);
+    animation: progressLoad 3s ease-in-out infinite;
+}
+
+@keyframes warningPulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 0, 65, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(255, 0, 65, 0.8);
+    }
+}
+
+@keyframes iconSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes progressLoad {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* 主登录容器 */
+.login-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    max-width: 500px;
+    width: 90%;
+}
+
+/* 病毒终端样式 */
+.virus-terminal {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #00ff41;
+    border-radius: 8px;
+    box-shadow: 
+        0 0 50px rgba(0, 255, 65, 0.3),
+        inset 0 0 50px rgba(0, 255, 65, 0.05);
+    animation: terminalGlitch 0.1s linear infinite;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes terminalGlitch {
+    0%, 90%, 100% { 
+        transform: none;
+        filter: none;
+    }
+    91% { 
+        transform: skew(-2deg);
+        filter: hue-rotate(90deg);
+    }
+    92% { 
+        transform: skew(2deg);
+        filter: hue-rotate(-90deg);
+    }
+    93% { 
+        transform: skew(-1deg);
+        filter: invert(1);
+    }
+    94% { 
+        transform: skew(1deg);
+        filter: none;
+    }
+}
+
+/* 终端头部 */
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 255, 65, 0.1);
+    border-bottom: 1px solid #00ff41;
+    padding: 12px 16px;
+    border-radius: 6px 6px 0 0;
+}
+
+.terminal-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.terminal-icon {
+    font-size: 16px;
+    animation: virusRotate 3s linear infinite;
+}
+
+@keyframes virusRotate {
+    from { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    to { transform: rotate(360deg) scale(1); }
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.control-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.control-dot.red {
+    background: #ff5555;
+    box-shadow: 0 0 10px #ff5555;
+}
+
+.control-dot.yellow {
+    background: #ffff55;
+    box-shadow: 0 0 10px #ffff55;
+}
+
+.control-dot.green {
+    background: #55ff55;
+    box-shadow: 0 0 10px #55ff55;
+}
+
+/* 终端内容 */
+.terminal-content {
+    padding: 20px;
+}
+
+/* 系统信息 */
+.system-info {
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.terminal-line {
+    margin-bottom: 4px;
+    animation: typewriter 0.8s steps(20) 1 forwards;
+    opacity: 0;
+}
+
+.terminal-line:nth-child(1) { animation-delay: 0.5s; }
+.terminal-line:nth-child(2) { animation-delay: 1s; }
+.terminal-line:nth-child(3) { animation-delay: 1.5s; }
+.terminal-line:nth-child(4) { animation-delay: 2s; }
+
+@keyframes typewriter {
+    from { 
+        width: 0;
+        opacity: 1;
+    }
+    to { 
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.terminal-line.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.cursor {
+    background: #00ff41;
+    animation: cursorBlink 1s infinite;
+}
+
+/* 表单样式 */
+.virus-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.terminal-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #00ff41;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.virus-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 12px 16px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.virus-input:focus {
+    border-color: #ff0041;
+    box-shadow: 
+        0 0 20px rgba(255, 0, 65, 0.5),
+        inset 0 0 20px rgba(255, 0, 65, 0.1);
+    color: #ff0041;
+}
+
+.virus-input::placeholder {
+    color: rgba(0, 255, 65, 0.5);
+    font-style: italic;
+}
+
+.input-corruption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 0, 65, 0.1) 10px,
+        rgba(255, 0, 65, 0.1) 12px
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 4px;
+}
+
+.virus-input:focus + .input-corruption {
+    opacity: 1;
+    animation: corruptionGlitch 0.3s linear infinite;
+}
+
+@keyframes corruptionGlitch {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-2px); }
+    20% { transform: translateX(2px); }
+    30% { transform: translateX(-1px); }
+    40% { transform: translateX(1px); }
+    50% { transform: translateX(-3px); }
+    60% { transform: translateX(3px); }
+    70% { transform: translateX(-1px); }
+    80% { transform: translateX(1px); }
+    90% { transform: translateX(-2px); }
+}
+
+/* 复选框样式 */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.virus-checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #00ff41;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.virus-checkbox:checked {
+    background: #00ff41;
+    border-color: #ff0041;
+    animation: checkboxInfect 0.5s ease;
+}
+
+.virus-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+@keyframes checkboxInfect {
+    0% { 
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% { 
+        transform: scale(1.3);
+        box-shadow: 0 0 20px #ff0041;
+    }
+    100% { 
+        transform: scale(1);
+        box-shadow: 0 0 10px #00ff41;
+    }
+}
+
+.checkbox-label {
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* 按钮样式 */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.virus-button {
+    position: relative;
+    background: rgba(0, 255, 65, 0.1);
+    border: 2px solid #00ff41;
+    color: #00ff41;
+    padding: 12px 20px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-width: 120px;
+}
+
+.virus-button.primary {
+    background: rgba(255, 0, 65, 0.2);
+    border-color: #ff0041;
+    color: #ff0041;
+    font-weight: 700;
+}
+
+.virus-button.small {
+    padding: 8px 12px;
+    font-size: 10px;
+    min-width: 80px;
+}
+
+.virus-button:hover {
+    background: rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+    transform: scale(1.05);
+}
+
+.virus-button.primary:hover {
+    background: rgba(255, 0, 65, 0.4);
+    box-shadow: 0 0 30px rgba(255, 0, 65, 0.5);
+}
+
+.virus-button:active {
+    transform: scale(0.95);
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.button-virus-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 0, 65, 0.3),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.virus-button:hover .button-virus-effect {
+    left: 100%;
+}
+
+/* 故障文本效果 */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
+    color: #ff0041;
+    z-index: -1;
+}
+
+.glitch-text::after {
+    animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+    color: #00ffff;
+    z-index: -2;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip: rect(42px, 9999px, 44px, 0);
+        transform: skew(0.5deg);
+    }
+    5% {
+        clip: rect(12px, 9999px, 59px, 0);
+        transform: skew(0.4deg);
+    }
+    10% {
+        clip: rect(48px, 9999px, 29px, 0);
+        transform: skew(0.1deg);
+    }
+    15% {
+        clip: rect(42px, 9999px, 73px, 0);
+        transform: skew(0.1deg);
+    }
+    20% {
+        clip: rect(63px, 9999px, 27px, 0);
+        transform: skew(0.5deg);
+    }
+    25% {
+        clip: rect(34px, 9999px, 55px, 0);
+        transform: skew(0.2deg);
+    }
+    30% {
+        clip: rect(86px, 9999px, 73px, 0);
+        transform: skew(0.5deg);
+    }
+    35% {
+        clip: rect(20px, 9999px, 20px, 0);
+        transform: skew(0.4deg);
+    }
+    40% {
+        clip: rect(26px, 9999px, 60px, 0);
+        transform: skew(0.2deg);
+    }
+    45% {
+        clip: rect(25px, 9999px, 85px, 0);
+        transform: skew(0.1deg);
+    }
+    50% {
+        clip: rect(57px, 9999px, 46px, 0);
+        transform: skew(0.5deg);
+    }
+    55% {
+        clip: rect(15px, 9999px, 31px, 0);
+        transform: skew(0.1deg);
+    }
+    60% {
+        clip: rect(86px, 9999px, 75px, 0);
+        transform: skew(0.2deg);
+    }
+    65% {
+        clip: rect(50px, 9999px, 34px, 0);
+        transform: skew(0.4deg);
+    }
+    70% {
+        clip: rect(69px, 9999px, 85px, 0);
+        transform: skew(0.5deg);
+    }
+    75% {
+        clip: rect(75px, 9999px, 44px, 0);
+        transform: skew(0.1deg);
+    }
+    80% {
+        clip: rect(30px, 9999px, 76px, 0);
+        transform: skew(0.2deg);
+    }
+    85% {
+        clip: rect(65px, 9999px, 41px, 0);
+        transform: skew(0.4deg);
+    }
+    90% {
+        clip: rect(41px, 9999px, 14px, 0);
+        transform: skew(0.5deg);
+    }
+    95% {
+        clip: rect(62px, 9999px, 72px, 0);
+        transform: skew(0.1deg);
+    }
+    100% {
+        clip: rect(17px, 9999px, 56px, 0);
+        transform: skew(0.2deg);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(65px, 9999px, 100px, 0);
+        transform: skew(0.8deg);
+    }
+    5% {
+        clip: rect(52px, 9999px, 74px, 0);
+        transform: skew(0.7deg);
+    }
+    10% {
+        clip: rect(79px, 9999px, 85px, 0);
+        transform: skew(0.6deg);
+    }
+    15% {
+        clip: rect(75px, 9999px, 5px, 0);
+        transform: skew(0.4deg);
+    }
+    20% {
+        clip: rect(67px, 9999px, 61px, 0);
+        transform: skew(0.3deg);
+    }
+    25% {
+        clip: rect(14px, 9999px, 79px, 0);
+        transform: skew(0.5deg);
+    }
+    30% {
+        clip: rect(1px, 9999px, 66px, 0);
+        transform: skew(0.3deg);
+    }
+    35% {
+        clip: rect(86px, 9999px, 40px, 0);
+        transform: skew(0.7deg);
+    }
+    40% {
+        clip: rect(43px, 9999px, 63px, 0);
+        transform: skew(0.4deg);
+    }
+    45% {
+        clip: rect(90px, 9999px, 84px, 0);
+        transform: skew(0.8deg);
+    }
+    50% {
+        clip: rect(90px, 9999px, 55px, 0);
+        transform: skew(0.2deg);
+    }
+    55% {
+        clip: rect(18px, 9999px, 32px, 0);
+        transform: skew(0.6deg);
+    }
+    60% {
+        clip: rect(54px, 9999px, 27px, 0);
+        transform: skew(0.3deg);
+    }
+    65% {
+        clip: rect(93px, 9999px, 51px, 0);
+        transform: skew(0.8deg);
+    }
+    70% {
+        clip: rect(84px, 9999px, 56px, 0);
+        transform: skew(0.4deg);
+    }
+    75% {
+        clip: rect(27px, 9999px, 37px, 0);
+        transform: skew(0.7deg);
+    }
+    80% {
+        clip: rect(17px, 9999px, 16px, 0);
+        transform: skew(0.3deg);
+    }
+    85% {
+        clip: rect(50px, 9999px, 42px, 0);
+        transform: skew(0.5deg);
+    }
+    90% {
+        clip: rect(38px, 9999px, 82px, 0);
+        transform: skew(0.6deg);
+    }
+    95% {
+        clip: rect(69px, 9999px, 48px, 0);
+        transform: skew(0.2deg);
+    }
+    100% {
+        clip: rect(70px, 9999px, 23px, 0);
+        transform: skew(0.4deg);
+    }
+}
+
+/* 系统状态 */
+.system-status {
+    margin-top: 24px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00ff41;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.status-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.status-line:last-child {
+    margin-bottom: 0;
+}
+
+.cpu-usage,
+.mem-usage {
+    color: #ff0041;
+    font-weight: bold;
+    min-width: 40px;
+}
+
+.net-status {
+    color: #ff0041;
+    font-weight: bold;
+    animation: statusBlink 1s infinite;
+}
+
+@keyframes statusBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.status-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00ff41;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.status-fill {
+    height: 100%;
+    transition: width 2s ease;
+}
+
+.cpu-fill {
+    background: linear-gradient(90deg, #00ff41, #ff0041);
+    width: 87%;
+    animation: cpuFlicker 0.5s ease-in-out infinite alternate;
+}
+
+.mem-fill {
+    background: linear-gradient(90deg, #ff0041, #ff4081);
+    width: 94%;
+    animation: memFlicker 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes cpuFlicker {
+    0% { width: 85%; }
+    100% { width: 90%; }
+}
+
+@keyframes memFlicker {
+    0% { width: 92%; }
+    100% { width: 96%; }
+}
+
+/* 验证组 */
+.verification-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.verification-group .input-wrapper {
+    flex: 1;
+}
+
+/* 病毒粒子系统 */
+.virus-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+#virusCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 系统损坏效果 */
+.system-corruption {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.corruption-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255, 0, 65, 0.02) 40px,
+        rgba(255, 0, 65, 0.02) 42px
+    );
+    animation: corruptionShift 3s linear infinite;
+}
+
+@keyframes corruptionShift {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(42px) translateY(42px); }
+}
+
+.data-stream {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(180deg, transparent, #00ff41, transparent);
+    animation: dataFlow 2s linear infinite;
+}
+
+.data-stream:nth-child(2) {
+    left: 20%;
+    animation-delay: 0.5s;
+}
+
+.data-stream:nth-child(3) {
+    left: 60%;
+    animation-delay: 1s;
+}
+
+.data-stream:nth-child(4) {
+    left: 80%;
+    animation-delay: 1.5s;
+}
+
+@keyframes dataFlow {
+    0% {
+        top: -20px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+/* 病毒对话框 */
+.virus-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.dialog-box {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #00ff41;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 255, 65, 0.5);
+    max-width: 400px;
+    width: 90%;
+    animation: dialogAppear 0.3s ease-out;
+}
+
+@keyframes dialogAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotateY(-90deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+    }
+}
+
+.error-box {
+    border-color: #ff0041;
+    box-shadow: 0 0 50px rgba(255, 0, 65, 0.5);
+}
+
+.success-box {
+    border-color: #00ff41;
+    box-shadow: 0 0 50px rgba(0, 255, 65, 0.5);
+}
+
+.dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #00ff41;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.error-box .dialog-header {
+    border-bottom-color: #ff0041;
+}
+
+.dialog-icon {
+    font-size: 16px;
+}
+
+.dialog-content {
+    padding: 20px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.error-message,
+.success-message {
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.error-code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: #ff0041;
+    background: rgba(255, 0, 65, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ff0041;
+    margin-top: 8px;
+}
+
+.success-progress {
+    margin-top: 12px;
+}
+
+.success-progress span {
+    font-size: 10px;
+    color: #00ff41;
+    margin-top: 4px;
+    display: block;
+}
+
+.success-fill {
+    background: linear-gradient(90deg, #00ff41, #00ffff);
+    width: 100%;
+    animation: successProgress 2s ease-out;
+}
+
+@keyframes successProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+.dialog-actions {
+    padding: 16px 20px;
+    border-top: 1px solid #00ff41;
+    text-align: center;
+}
+
+.error-box .dialog-actions {
+    border-top-color: #ff0041;
+}
+
+/* 隐藏类 */
+.hidden {
+    display: none !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .login-container {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .terminal-content {
+        padding: 16px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .virus-button {
+        width: 100%;
+    }
+    
+    .verification-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .system-warning {
+        top: 20px;
+        right: 20px;
+        left: 20px;
+        max-width: none;
+    }
+    
+    .dialog-box {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
+        top: 10px;
+        left: 10px;
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+    
+    .terminal-header {
+        padding: 8px 12px;
+    }
+    
+    .terminal-title {
+        font-size: 12px;
+    }
+    
+    .terminal-content {
+        padding: 12px;
+    }
+    
+    .virus-input {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .virus-button {
+        padding: 10px 16px;
+        font-size: 11px;
+        min-width: 100px;
+    }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+    border: 1px solid #00ff41;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff41;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff0041;
+}
+
+/* 选择文本样式 */
+::selection {
+    background: rgba(255, 0, 65, 0.3);
+    color: #ff0041;
+}
+
+::-moz-selection {
+    background: rgba(255, 0, 65, 0.3);
+    color: #ff0041;
+}

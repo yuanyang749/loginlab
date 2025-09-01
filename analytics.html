@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LoginLab - 数据分析中心</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            --dark-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --accent-blue: #00d4ff;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-red: #ef4444;
+            --shadow-light: 0 8px 32px rgba(31, 38, 135, 0.37);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.4);
+            background: #1a1c31;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark-gradient);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 动态背景粒子效果 */
+        .background-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            opacity: 0.6;
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* 加载屏幕 */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 2px;
+            animation: loadingProgress 2s ease-out;
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 头部区域 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)); }
+            100% { filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.5)); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 返回按钮 */
+        .back-button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-light);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .back-button i {
+            font-size: 0.9rem;
+        }
+
+        /* 刷新按钮 */
+        .refresh-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-light);
+            border: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .refresh-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .refresh-button:active {
+            transform: translateY(0);
+        }
+
+        .refresh-button.refreshing {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .refresh-button.refreshing i {
+            animation: spin 1s linear infinite;
+        }
+
+        .refresh-button i {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* 移动端按钮容器 - 默认隐藏 */
+        .mobile-buttons {
+            display: none;
+        }
+
+        /* 玻璃态卡片 */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-heavy);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 统计网格 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card {
+            position: relative;
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .stat-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 212, 255, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* 进度条 */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* 图表区域 */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+        }
+
+        .chart-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 数据表格 */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: transparent;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            color: var(--text-secondary);
+            transition: background 0.3s ease;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .rank-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-blue);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .popularity-bar {
+            width: 100px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .popularity-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 20px 0;
+                margin-bottom: 30px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .back-button {
+                top: 15px;
+                left: 15px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .refresh-button {
+                top: 15px;
+                right: 15px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .glass-card {
+                padding: 20px;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+                padding-top: 80px; /* 为顶部浮动按钮留出空间 */
+            }
+
+            .header {
+                padding: 20px 0 30px 0;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            /* 隐藏桌面端按钮 */
+            .back-button:not(.mobile-back-button),
+            .refresh-button:not(.mobile-refresh-button) {
+                display: none;
+            }
+
+            /* 移动端顶部浮动按钮容器 */
+            .mobile-buttons {
+                position: fixed;
+                top: 20px;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                z-index: 1000;
+                pointer-events: none; /* 让容器本身不阻挡点击 */
+                transform: translateY(0);
+                opacity: 1;
+                will-change: transform, opacity;
+            }
+
+            /* 滚动隐藏状态 - 向上滑出 */
+            .mobile-buttons.hiding {
+                transform: translateY(-80px);
+                opacity: 0;
+                transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1), opacity 0.3s ease-out;
+            }
+
+            /* 滚动显示状态 - 向下滑入 */
+            .mobile-buttons.showing {
+                transform: translateY(0);
+                opacity: 1;
+                transition: transform 0.4s cubic-bezier(0, 0, 0.2, 1), opacity 0.4s ease-out;
+            }
+
+            /* 隐藏状态 */
+            .mobile-buttons.hidden {
+                transform: translateY(-80px);
+                opacity: 0;
+                pointer-events: none;
+                transition: none; /* 避免与动画冲突 */
+            }
+
+            /* 确保按钮在隐藏状态下不可交互 */
+            .mobile-buttons.hidden .mobile-back-button,
+            .mobile-buttons.hidden .mobile-refresh-button {
+                pointer-events: none;
+            }
+
+            /* 单个按钮的动画优化 */
+            .mobile-back-button,
+            .mobile-refresh-button {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                will-change: transform, background, box-shadow;
+            }
+
+            .mobile-back-button,
+            .mobile-refresh-button {
+                position: static;
+                margin: 0;
+                padding: 12px 20px;
+                border-radius: 30px; /* 胶囊形状 */
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 0.85rem;
+                font-weight: 500;
+
+                /* 半透明玻璃效果 */
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+                /* 恢复点击事件 */
+                pointer-events: auto;
+
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .mobile-back-button:hover,
+            .mobile-refresh-button:hover {
+                background: rgba(255, 255, 255, 0.15);
+                transform: translateY(-2px);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .mobile-back-button:active,
+            .mobile-refresh-button:active {
+                transform: translateY(0);
+            }
+
+            .mobile-refresh-button.refreshing {
+                pointer-events: none;
+                opacity: 0.8;
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            .mobile-refresh-button.refreshing i {
+                animation: spin 1s linear infinite;
+            }
+
+            /* 按钮文字在小屏幕上简化 */
+            .mobile-back-button span,
+            .mobile-refresh-button span {
+                font-size: 0.8rem;
+            }
+
+            /* 增强玻璃效果的高光 */
+            .mobile-back-button::before,
+            .mobile-refresh-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 10%;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                border-radius: 30px 30px 0 0;
+                width: 80%;
+            }
+
+            /* 按钮图标样式优化 */
+            .mobile-back-button i,
+            .mobile-refresh-button i {
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+
+            .glass-card {
+                padding: 16px;
+            }
+
+            .stat-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .data-table {
+                font-size: 0.8rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 10px 12px;
+            }
+        }
+
+        /* 超小屏幕优化 */
+        @media (max-width: 360px) {
+            .mobile-buttons {
+                padding: 0 15px;
+            }
+
+            .mobile-back-button,
+            .mobile-refresh-button {
+                padding: 10px 16px;
+                min-width: 40px;
+                min-height: 40px;
+            }
+
+            .mobile-back-button span,
+            .mobile-refresh-button span {
+                font-size: 0.75rem;
+            }
+
+            .mobile-back-button i,
+            .mobile-refresh-button i {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* 动画延迟 */
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+        /* 隐藏类 */
+        .hidden {
+            display: none !important;
+        }
+
+        /* 数据加载状态 */
+        .skeleton {
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 25%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.1) 75%
+            );
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+            height: 20px;
+            margin: 8px 0;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton.large { height: 40px; }
+        .skeleton.small { height: 16px; }
+
+        /* 错误状态样式 */
+        .no-data-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .no-data-message i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+            color: var(--accent-blue);
+        }
+
+        .no-data-message p {
+            margin: 0.25rem 0;
+        }
+
+        .no-data-message .primary-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .no-data-message .secondary-text {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态背景粒子 -->
+    <div class="background-particles" id="particles"></div>
+
+    <!-- 加载屏幕 -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在加载数据分析...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- 移动端顶部浮动按钮容器 -->
+    <div class="mobile-buttons">
+        <a href="/index.html" class="back-button mobile-back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>返回</span>
+        </a>
+        <button class="refresh-button mobile-refresh-button" id="mobileRefreshButton">
+            <i class="fas fa-sync-alt"></i>
+            <span>刷新</span>
+        </button>
+    </div>
+
+    <div class="container">
+        <!-- 桌面端按钮 -->
+        <a href="/index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>返回首页</span>
+        </a>
+
+        <button class="refresh-button" id="refreshButton">
+            <i class="fas fa-sync-alt"></i>
+            <span>刷新数据</span>
+        </button>
+
+        <!-- 头部区域 -->
+        <div class="header">
+            <h1>数据分析中心</h1>
+            <p>实时洞察 LoginLab 的使用趋势与用户行为，数据驱动产品优化决策</p>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card glass-card">
+                <div class="stat-header">
+                    <div class="stat-title">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        总浏览量
+                    </div>
+                </div>
+                <div class="stat-value" id="totalViews">0</div>
+                <div class="stat-subtitle">累计页面访问次数</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="viewsProgress" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="stat-card glass-card">
+                <div class="stat-header">
+                    <div class="stat-title">
+                        <div class="stat-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        总下载量
+                    </div>
+                </div>
+                <div class="stat-value" id="totalDownloads">0</div>
+                <div class="stat-subtitle">累计文件下载次数</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="downloadsProgress" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="stat-card glass-card">
+                <div class="stat-header">
+                    <div class="stat-title">
+                        <div class="stat-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        活跃风格
+                    </div>
+                </div>
+                <div class="stat-value" id="activeStyles">0</div>
+                <div class="stat-subtitle">有浏览记录的风格数</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="stylesProgress" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="stat-card glass-card">
+                <div class="stat-header">
+                    <div class="stat-title">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        热门风格
+                    </div>
+                </div>
+                <div class="stat-value" id="topStyle">-</div>
+                <div class="stat-subtitle">浏览量最高的风格</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="topStyleProgress" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 图表区域 -->
+        <div class="charts-section">
+            <div class="glass-card">
+                <h3 class="chart-title">📊 风格浏览趋势</h3>
+                <div class="chart-container">
+                    <canvas id="viewsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- 详细数据表格 -->
+        <div class="glass-card">
+            <h3 class="chart-title">📈 风格详细统计</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>风格名称</th>
+                            <th>浏览次数</th>
+                            <th>下载次数</th>
+                            <th>受欢迎程度</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stylesTableBody">
+                        <!-- 动态加载 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Analytics Script -->
+    <script src="src/js/analytics.js"></script>
+    
+    <script>
+        // 页面加载管理器
+        class PageLoader {
+            constructor() {
+                this.loadingScreen = document.getElementById('loadingScreen');
+                this.container = document.querySelector('.container');
+                this.particles = document.getElementById('particles');
+                this.refreshButton = document.getElementById('refreshButton');
+                this.mobileButtons = document.querySelector('.mobile-buttons');
+                this.lastScrollY = 0;
+                this.scrollThreshold = 50; // 滚动阈值
+                this.initializeParticles();
+                this.bindEvents();
+                this.init();
+            }
+
+            bindEvents() {
+                // 绑定桌面端刷新按钮事件
+                if (this.refreshButton) {
+                    this.refreshButton.addEventListener('click', () => {
+                        this.refreshData();
+                    });
+                }
+
+                // 绑定移动端刷新按钮事件
+                const mobileRefreshButton = document.getElementById('mobileRefreshButton');
+                if (mobileRefreshButton) {
+                    mobileRefreshButton.addEventListener('click', () => {
+                        this.refreshData();
+                    });
+                }
+
+                // 绑定滚动事件（仅在移动端）
+                if (window.innerWidth <= 480) {
+                    this.bindScrollEvents();
+                }
+
+                // 监听窗口大小变化
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth <= 480) {
+                        this.bindScrollEvents();
+                    } else {
+                        this.unbindScrollEvents();
+                    }
+                });
+            }
+
+            bindScrollEvents() {
+                if (this.scrollHandler) return; // 避免重复绑定
+
+                this.scrollHandler = this.throttle(() => {
+                    this.handleScroll();
+                }, 16); // 约60fps
+
+                window.addEventListener('scroll', this.scrollHandler, { passive: true });
+            }
+
+            unbindScrollEvents() {
+                if (this.scrollHandler) {
+                    window.removeEventListener('scroll', this.scrollHandler);
+                    this.scrollHandler = null;
+                }
+
+                // 重置按钮状态
+                if (this.mobileButtons) {
+                    this.mobileButtons.classList.remove('hidden', 'hiding', 'showing');
+                }
+            }
+
+            handleScroll() {
+                if (!this.mobileButtons) return;
+
+                const currentScrollY = window.scrollY;
+                const scrollDifference = currentScrollY - this.lastScrollY;
+
+                // 在页面顶部时始终显示
+                if (currentScrollY <= this.scrollThreshold) {
+                    this.showButtons();
+                }
+                // 向下滚动且超过阈值时隐藏
+                else if (scrollDifference > 5 && currentScrollY > this.scrollThreshold) {
+                    this.hideButtons();
+                }
+                // 向上滚动时显示（增加一点阈值避免过于敏感）
+                else if (scrollDifference < -5) {
+                    this.showButtons();
+                }
+
+                this.lastScrollY = currentScrollY;
+            }
+
+            showButtons() {
+                if (!this.mobileButtons) return;
+
+                // 避免重复显示动画
+                if (this.mobileButtons.classList.contains('showing') ||
+                    (!this.mobileButtons.classList.contains('hidden') &&
+                     !this.mobileButtons.classList.contains('hiding'))) {
+                    return;
+                }
+
+                // 清除所有状态类
+                this.mobileButtons.classList.remove('hidden', 'hiding');
+
+                // 强制重绘，避免闪烁
+                this.mobileButtons.offsetHeight;
+
+                // 添加显示动画
+                this.mobileButtons.classList.add('showing');
+
+                // 清除showing类，让按钮保持显示状态
+                clearTimeout(this.showTimeout);
+                this.showTimeout = setTimeout(() => {
+                    if (this.mobileButtons) {
+                        this.mobileButtons.classList.remove('showing');
+                    }
+                }, 400);
+            }
+
+            hideButtons() {
+                if (!this.mobileButtons) return;
+
+                // 避免重复隐藏动画
+                if (this.mobileButtons.classList.contains('hiding') ||
+                    this.mobileButtons.classList.contains('hidden')) {
+                    return;
+                }
+
+                // 清除显示相关的类和定时器
+                clearTimeout(this.showTimeout);
+                this.mobileButtons.classList.remove('showing');
+
+                // 强制重绘，避免闪烁
+                this.mobileButtons.offsetHeight;
+
+                // 添加隐藏动画
+                this.mobileButtons.classList.add('hiding');
+
+                // 动画完成后添加hidden类
+                clearTimeout(this.hideTimeout);
+                this.hideTimeout = setTimeout(() => {
+                    if (this.mobileButtons) {
+                        this.mobileButtons.classList.add('hidden');
+                        this.mobileButtons.classList.remove('hiding');
+                    }
+                }, 400);
+            }
+
+            // 节流函数
+            throttle(func, limit) {
+                let inThrottle;
+                return function() {
+                    const args = arguments;
+                    const context = this;
+                    if (!inThrottle) {
+                        func.apply(context, args);
+                        inThrottle = true;
+                        setTimeout(() => inThrottle = false, limit);
+                    }
+                }
+            }
+
+            async init() {
+                // 确保最小加载时间，给用户良好的视觉反馈
+                const minLoadTime = 2000;
+                const startTime = Date.now();
+
+                try {
+                    // 等待数据加载完成
+                    await this.waitForDataLoad();
+                    
+                    // 确保最小加载时间
+                    const elapsed = Date.now() - startTime;
+                    if (elapsed < minLoadTime) {
+                        await new Promise(resolve => setTimeout(resolve, minLoadTime - elapsed));
+                    }
+
+                    // 隐藏加载屏幕
+                    this.hideLoadingScreen();
+                    
+                    // 启动页面动画
+                    this.startPageAnimations();
+
+                    // 初始化滚动事件（延迟执行确保DOM完全加载）
+                    setTimeout(() => {
+                        // 重新获取移动端按钮元素
+                        this.mobileButtons = document.querySelector('.mobile-buttons');
+
+                        if (window.innerWidth <= 480) {
+                            this.bindScrollEvents();
+                        }
+                    }, 100);
+
+                } catch (error) {
+                    console.error('页面加载失败:', error);
+                    // 即使出错也要隐藏加载屏幕
+                    setTimeout(() => this.hideLoadingScreen(), 3000);
+                }
+            }
+
+            async waitForDataLoad() {
+                return new Promise((resolve) => {
+                    // 等待 analytics 服务初始化
+                    const checkAnalytics = () => {
+                        if (window.analyticsService) {
+                            resolve();
+                        } else {
+                            setTimeout(checkAnalytics, 100);
+                        }
+                    };
+                    checkAnalytics();
+                    
+                    // 设置超时，避免无限等待
+                    setTimeout(resolve, 5000);
+                });
+            }
+
+            hideLoadingScreen() {
+                this.loadingScreen.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            startPageAnimations() {
+                // 启动统计数据动画
+                this.animateStatistics();
+                
+                // 启动卡片入场动画
+                this.animateCards();
+            }
+
+            async animateStatistics() {
+                try {
+                    // 从Supabase获取真实数据
+                    const stats = await window.analyticsService.getOverviewStats();
+                    const activeStylesCount = Object.keys(stats.styleStats).length;
+                    
+                    // 数字计数动画
+                    const animateValue = (element, start, end, duration) => {
+                        if (!element || end === 0) return;
+                        
+                        const range = end - start;
+                        const minTimer = 50;
+                        const stepTime = Math.abs(Math.floor(duration / range));
+                        const timer = Math.max(stepTime, minTimer);
+                        
+                        let current = start;
+                        const increment = end > start ? 1 : -1;
+                        
+                        const obj = setInterval(() => {
+                            current += increment;
+                            element.textContent = current.toLocaleString();
+                            
+                            if (current === end) {
+                                clearInterval(obj);
+                            }
+                        }, timer);
+                    };
+
+                    // 使用真实数据进行动画
+                    setTimeout(() => {
+                        const totalViews = document.getElementById('totalViews');
+                        const totalDownloads = document.getElementById('totalDownloads');
+                        const activeStyles = document.getElementById('activeStyles');
+                        
+                        if (totalViews) animateValue(totalViews, 0, stats.totalViews, 2000);
+                        if (totalDownloads) animateValue(totalDownloads, 0, stats.totalDownloads, 2000);
+                        if (activeStyles) animateValue(activeStyles, 0, activeStylesCount, 1500);
+                        
+                        // 计算进度条百分比（基于最大值的相对比例）
+                        const maxViews = Math.max(stats.totalViews, 1000);
+                        const maxDownloads = Math.max(stats.totalDownloads, 500);
+                        
+                        const viewsPercent = Math.min((stats.totalViews / maxViews) * 100, 100);
+                        const downloadsPercent = Math.min((stats.totalDownloads / maxDownloads) * 100, 100);
+                        const stylesPercent = Math.min((activeStylesCount / 39) * 100, 100);
+                        
+                        // 进度条动画
+                        setTimeout(() => {
+                            document.getElementById('viewsProgress').style.width = viewsPercent + '%';
+                            document.getElementById('downloadsProgress').style.width = downloadsPercent + '%';
+                            document.getElementById('stylesProgress').style.width = stylesPercent + '%';
+                        }, 500);
+                    }, 300);
+                    
+                } catch (error) {
+                    console.error('❌ Failed to animate statistics:', error);
+                    this.showDataError();
+                }
+            }
+
+            showDataError() {
+                // 显示错误状态
+                const totalViews = document.getElementById('totalViews');
+                const totalDownloads = document.getElementById('totalDownloads');
+                const activeStyles = document.getElementById('activeStyles');
+                const topStyle = document.getElementById('topStyle');
+
+                if (totalViews) totalViews.textContent = '--';
+                if (totalDownloads) totalDownloads.textContent = '--';
+                if (activeStyles) activeStyles.textContent = '--';
+                if (topStyle) topStyle.textContent = '暂无数据';
+
+                // 隐藏进度条
+                const progressBars = document.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    bar.style.width = '0%';
+                });
+            }
+
+            animateCards() {
+                const cards = document.querySelectorAll('.stat-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                        
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, index * 150);
+                });
+            }
+
+            initializeParticles() {
+                // 创建动态背景粒子
+                const createParticle = () => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    this.particles.appendChild(particle);
+
+                    // 粒子动画结束后移除
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 25000);
+                };
+
+                // 初始创建一些粒子
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(createParticle, i * 300);
+                }
+
+                // 持续创建新粒子
+                setInterval(createParticle, 2000);
+            }
+
+            async refreshData() {
+                const desktopButton = this.refreshButton;
+                const mobileButton = document.getElementById('mobileRefreshButton');
+
+                // 设置刷新状态
+                const setRefreshingState = (button, text) => {
+                    if (button) {
+                        button.classList.add('refreshing');
+                        const span = button.querySelector('span');
+                        if (span) span.textContent = text;
+                    }
+                };
+
+                const removeRefreshingState = (button, text) => {
+                    if (button) {
+                        button.classList.remove('refreshing');
+                        const span = button.querySelector('span');
+                        if (span) span.textContent = text;
+                    }
+                };
+
+                setRefreshingState(desktopButton, '刷新中...');
+                setRefreshingState(mobileButton, '刷新中...');
+
+                try {
+                    // 重新加载统计数据
+                    await this.animateStatistics();
+
+                    // 通知StatsManager刷新
+                    if (window.statsManager) {
+                        await window.statsManager.refreshData();
+                    }
+
+                    // 显示成功反馈
+                    this.showRefreshSuccess();
+
+                } catch (error) {
+                    console.error('❌ 刷新数据失败:', error);
+                    this.showRefreshError();
+                } finally {
+                    // 恢复按钮状态
+                    setTimeout(() => {
+                        removeRefreshingState(desktopButton, '刷新数据');
+                        removeRefreshingState(mobileButton, '刷新');
+                    }, 1000);
+                }
+            }
+
+            showRefreshSuccess() {
+                const desktopButton = this.refreshButton;
+                const mobileButton = document.getElementById('mobileRefreshButton');
+
+                const setSuccessState = (button, text) => {
+                    if (button) {
+                        const span = button.querySelector('span');
+                        if (span) span.textContent = text;
+                        button.style.background = 'rgba(16, 185, 129, 0.2)';
+                        button.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+                    }
+                };
+
+                const resetState = (button) => {
+                    if (button) {
+                        button.style.background = '';
+                        button.style.borderColor = '';
+                    }
+                };
+
+                setSuccessState(desktopButton, '刷新成功');
+                setSuccessState(mobileButton, '成功');
+
+                setTimeout(() => {
+                    resetState(desktopButton);
+                    resetState(mobileButton);
+                }, 2000);
+            }
+
+            showRefreshError() {
+                const desktopButton = this.refreshButton;
+                const mobileButton = document.getElementById('mobileRefreshButton');
+
+                const setErrorState = (button, text) => {
+                    if (button) {
+                        const span = button.querySelector('span');
+                        if (span) span.textContent = text;
+                        button.style.background = 'rgba(239, 68, 68, 0.2)';
+                        button.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                    }
+                };
+
+                const resetState = (button) => {
+                    if (button) {
+                        button.style.background = '';
+                        button.style.borderColor = '';
+                    }
+                };
+
+                setErrorState(desktopButton, '刷新失败');
+                setErrorState(mobileButton, '失败');
+
+                setTimeout(() => {
+                    resetState(desktopButton);
+                    resetState(mobileButton);
+                }, 2000);
+            }
+        }
+
+        // 增强的统计数据管理器
+        class StatsManager {
+            constructor() {
+                this.charts = {};
+                this.initializeWithRealData();
+            }
+
+            async refreshData() {
+                try {
+                    // 重新获取数据
+                    const chartData = await window.analyticsService.getChartData();
+                    const rankings = await window.analyticsService.getStyleRankings();
+
+                    // 更新图表
+                    this.updateCharts(chartData);
+
+                    // 更新统计数据
+                    this.loadStatistics(rankings);
+
+                    return true;
+                } catch (error) {
+                    console.error('❌ Failed to refresh data:', error);
+                    // 刷新失败时显示错误信息
+                    this.showNoDataMessage();
+                    throw error;
+                }
+            }
+
+            async initializeWithRealData() {
+                try {
+                    // 从Supabase获取真实数据
+                    const chartData = await window.analyticsService.getChartData();
+                    const rankings = await window.analyticsService.getStyleRankings();
+                    
+                    // 初始化图表
+                    this.initializeCharts(chartData);
+                    
+                    // 加载统计数据
+                    this.loadStatistics(rankings);
+                    
+                } catch (error) {
+                    console.error('❌ Failed to initialize with real data:', error);
+                    this.showNoDataMessage();
+                }
+            }
+
+            initializeCharts(chartData) {
+                const ctx = document.getElementById('viewsChart');
+                if (ctx) {
+                    this.charts.views = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: chartData.labels,
+                            datasets: [{
+                                label: '浏览次数',
+                                data: chartData.data,
+                                borderColor: '#00d4ff',
+                                backgroundColor: 'rgba(0, 212, 255, 0.1)',
+                                borderWidth: 3,
+                                fill: true,
+                                tension: 0.4,
+                                pointBackgroundColor: '#00d4ff',
+                                pointBorderColor: '#ffffff',
+                                pointBorderWidth: 2,
+                                pointRadius: 6,
+                                pointHoverRadius: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    grid: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    },
+                                    ticks: {
+                                        color: 'rgba(255, 255, 255, 0.8)'
+                                    }
+                                },
+                                y: {
+                                    grid: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    },
+                                    ticks: {
+                                        color: 'rgba(255, 255, 255, 0.8)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            updateCharts(chartData) {
+                if (this.charts.views && chartData) {
+                    // 更新图表数据
+                    this.charts.views.data.labels = chartData.labels;
+                    this.charts.views.data.datasets[0].data = chartData.data;
+
+                    // 重新渲染图表
+                    this.charts.views.update('active');
+                }
+            }
+
+            loadStatistics(rankings) {
+                const tableBody = document.getElementById('stylesTableBody');
+                
+                if (rankings && rankings.length > 0) {
+                    // 使用真实数据
+                    tableBody.innerHTML = rankings.map(item => `
+                        <tr>
+                            <td>
+                                <span class="rank-number">${item.rank}</span>
+                            </td>
+                            <td>${item.name}</td>
+                            <td>${item.views.toLocaleString()}</td>
+                            <td>${item.downloads.toLocaleString()}</td>
+                            <td>
+                                <div class="popularity-bar">
+                                    <div class="popularity-fill" style="width: ${item.popularity}%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    `).join('');
+
+                    // 设置热门风格
+                    if (rankings[0]) {
+                        const topStyle = rankings[0].name.replace(/[🎨🌈🌙🖥️🚀🦠💖💼🌊⭐🌅🌲💎🤖👾🌌⚪💡✨🔮📻🍃🔶✏️🏭🧚🔥❄️🌸🌃🎭⚡🖋️]/g, '').trim();
+                        document.getElementById('topStyle').textContent = topStyle;
+                        setTimeout(() => {
+                            document.getElementById('topStyleProgress').style.width = rankings[0].popularity + '%';
+                        }, 1000);
+                    }
+                } else {
+                    // 如果没有数据，显示暂无数据
+                    this.showNoDataTable();
+                }
+            }
+
+            showNoDataMessage() {
+                // 显示图表暂无数据
+                const chartContainer = document.querySelector('.chart-container');
+                if (chartContainer) {
+                    chartContainer.innerHTML = `
+                        <div class="no-data-message">
+                            <i class="fas fa-chart-line"></i>
+                            <p class="primary-text">暂无图表数据</p>
+                            <p class="secondary-text">请检查网络连接或稍后重试</p>
+                        </div>
+                    `;
+                }
+
+                // 显示表格暂无数据
+                this.showNoDataTable();
+            }
+
+            showNoDataTable() {
+                const tableBody = document.getElementById('stylesTableBody');
+                if (tableBody) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 3rem;">
+                                <div class="no-data-message">
+                                    <i class="fas fa-database"></i>
+                                    <p class="primary-text">暂无统计数据</p>
+                                    <p class="secondary-text">请检查网络连接或稍后重试</p>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+        }
+
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            window.pageLoader = new PageLoader();
+            window.statsManager = new StatsManager();
+        });
+    </script>
+</body>
+</html>

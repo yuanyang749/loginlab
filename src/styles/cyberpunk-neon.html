@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛博朋克霓虹 - 登录</title>
+    <link rel="stylesheet" href="../assets/styles/cyberpunk-neon.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="window.location.href='/index.html'">
+        <span class="back-icon">←</span>
+        <span class="back-text">返回</span>
+    </button>
+
+    <!-- 背景动画 -->
+    <div class="cyber-bg">
+        <div class="grid-lines"></div>
+        <div class="neon-particles"></div>
+        <div class="data-stream"></div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="login-container">
+        <div class="cyber-card">
+            <!-- 登录表单 -->
+            <div class="form-container" id="loginForm">
+                <div class="card-header">
+                    <div class="cyber-logo">⚡</div>
+                    <h2>CYBER LOGIN</h2>
+                    <p class="subtitle">ENTER THE MATRIX</p>
+                </div>
+
+                <form class="cyber-form">
+                    <div class="form-group">
+                        <input type="text" id="username" required>
+                        <label for="username">用户名</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="password" required>
+                        <label for="password">密码</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">登录</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+
+                <div class="additional-links">
+                    <a href="#" class="cyber-link" onclick="showForm('forgotForm')">忘记密码?</a>
+                    <span class="divider">|</span>
+                    <a href="#" class="cyber-link" onclick="showForm('registerForm')">注册新用户</a>
+                </div>
+            </div>
+
+            <!-- 注册表单 -->
+            <div class="form-container hidden" id="registerForm">
+                <div class="card-header">
+                    <div class="cyber-logo">🤖</div>
+                    <h2>USER REGISTER</h2>
+                    <p class="subtitle">JOIN THE MATRIX</p>
+                </div>
+
+                <form class="cyber-form">
+                    <div class="form-group">
+                        <input type="text" id="regUsername" required>
+                        <label for="regUsername">用户名</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="regEmail" required>
+                        <label for="regEmail">邮箱</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <div class="verification-group">
+                        <div class="form-group">
+                            <input type="text" id="verificationCode" required>
+                            <label for="verificationCode">验证码</label>
+                            <div class="neon-line"></div>
+                        </div>
+                        <button type="button" class="verify-btn">获取验证码</button>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="regPassword" required>
+                        <label for="regPassword">密码</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="confirmPassword" required>
+                        <label for="confirmPassword">确认密码</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">注册</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+
+                <div class="additional-links">
+                    <a href="#" class="cyber-link" onclick="showForm('loginForm')">已有账户? 立即登录</a>
+                </div>
+            </div>
+
+            <!-- 忘记密码表单 -->
+            <div class="form-container hidden" id="forgotForm">
+                <div class="card-header">
+                    <div class="cyber-logo">🔐</div>
+                    <h2>RESET PASSWORD</h2>
+                    <p class="subtitle">RECOVER ACCESS</p>
+                </div>
+
+                <form class="cyber-form">
+                    <div class="form-group">
+                        <input type="email" id="resetEmail" required>
+                        <label for="resetEmail">邮箱地址</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <div class="verification-group">
+                        <div class="form-group">
+                            <input type="text" id="resetCode" required>
+                            <label for="resetCode">验证码</label>
+                            <div class="neon-line"></div>
+                        </div>
+                        <button type="button" class="verify-btn">发送验证码</button>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="newPassword" required>
+                        <label for="newPassword">新密码</label>
+                        <div class="neon-line"></div>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">重置密码</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+
+                <div class="additional-links">
+                    <a href="#" class="cyber-link" onclick="showForm('loginForm')">返回登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/cyberpunk-neon.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏰 梦幻童话王国登录</title>
+    <link rel="stylesheet" href="../assets/styles/fairy-tale.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>返回选择</span>
+        <div class="button-sparkle">✨</div>
+    </div>
+
+    <!-- 星空背景 -->
+    <div class="starry-sky">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+    </div>
+
+    <!-- 童话背景层 -->
+    <div class="fairy-world">
+        <!-- 魔法城堡 -->
+        <div class="fairy-castle">
+            <div class="castle-tower tower-1"></div>
+            <div class="castle-tower tower-2"></div>
+            <div class="castle-tower tower-3"></div>
+            <div class="castle-body"></div>
+            <div class="castle-flag"></div>
+            <div class="castle-glow"></div>
+        </div>
+
+        <!-- 彩虹桥 -->
+        <div class="rainbow-bridge">
+            <div class="rainbow-stripe stripe-1"></div>
+            <div class="rainbow-stripe stripe-2"></div>
+            <div class="rainbow-stripe stripe-3"></div>
+            <div class="rainbow-stripe stripe-4"></div>
+            <div class="rainbow-stripe stripe-5"></div>
+            <div class="rainbow-stripe stripe-6"></div>
+            <div class="rainbow-stripe stripe-7"></div>
+        </div>
+
+        <!-- 魔法森林 -->
+        <div class="magic-forest">
+            <div class="tree tree-1"></div>
+            <div class="tree tree-2"></div>
+            <div class="tree tree-3"></div>
+            <div class="tree tree-4"></div>
+            <div class="tree tree-5"></div>
+        </div>
+
+        <!-- 漂浮云朵 -->
+        <div class="floating-clouds">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+        </div>
+
+        <!-- 仙女精灵 -->
+        <div class="flying-fairies">
+            <div class="fairy fairy-1">
+                <div class="fairy-body">🧚‍♀️</div>
+                <div class="fairy-trail"></div>
+            </div>
+            <div class="fairy fairy-2">
+                <div class="fairy-body">🧚‍♂️</div>
+                <div class="fairy-trail"></div>
+            </div>
+            <div class="fairy fairy-3">
+                <div class="fairy-body">🦋</div>
+                <div class="fairy-trail"></div>
+            </div>
+        </div>
+
+        <!-- 魔法粒子系统 -->
+        <div class="magic-particles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+            <div class="particle particle-6"></div>
+            <div class="particle particle-7"></div>
+            <div class="particle particle-8"></div>
+            <div class="particle particle-9"></div>
+            <div class="particle particle-10"></div>
+        </div>
+
+        <!-- 魔法花朵 -->
+        <div class="magic-flowers">
+            <div class="flower flower-1">🌸</div>
+            <div class="flower flower-2">🌺</div>
+            <div class="flower flower-3">🌻</div>
+            <div class="flower flower-4">🌹</div>
+            <div class="flower flower-5">🌷</div>
+        </div>
+
+        <!-- 发光宝石 -->
+        <div class="glowing-gems">
+            <div class="gem gem-1">💎</div>
+            <div class="gem gem-2">💠</div>
+            <div class="gem gem-3">🔮</div>
+        </div>
+    </div>
+    
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="fairy-card">
+            <div class="card-sparkles">
+                <div class="sparkle">✨</div>
+                <div class="sparkle">⭐</div>
+                <div class="sparkle">💫</div>
+                <div class="sparkle">🌟</div>
+            </div>
+            <div class="card-header">
+                <div class="fairy-crown">👑</div>
+                <h2>🏰 童话王国</h2>
+                <p class="subtitle">欢迎来到梦幻世界</p>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <div class="input-icon">🧚‍♀️</div>
+                    <input type="text" id="username" required>
+                    <label for="username">用户名</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-icon">🔮</div>
+                    <input type="password" id="password" required>
+                    <label for="password">密码</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                
+                <button type="submit" class="fairy-btn">
+                    <div class="btn-icon">✨</div>
+                    <span>进入童话世界</span>
+                    <div class="magic-effect"></div>
+                    <div class="btn-glow"></div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="toForgotPassword">
+                        <span class="link-icon">🌙</span>
+                        忘记密码？
+                    </a>
+                    <span class="divider">🌟</span>
+                    <a href="#" id="toRegister">
+                        <span class="link-icon">🦋</span>
+                        注册新用户
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="fairy-card">
+            <div class="card-sparkles">
+                <div class="sparkle">✨</div>
+                <div class="sparkle">⭐</div>
+                <div class="sparkle">💫</div>
+                <div class="sparkle">🌟</div>
+            </div>
+            <div class="card-header">
+                <div class="fairy-crown">🌟</div>
+                <h2>🦋 创建账户</h2>
+                <p class="subtitle">加入我们的魔法世界</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <div class="input-icon">🧚‍♀️</div>
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">用户名</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">📱</div>
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">手机号码</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <div class="input-icon">🔢</div>
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">验证码</label>
+                    <div class="magic-border"></div>
+                    <button type="button" class="verify-btn" id="regSendCodeBtn">
+                        <span class="btn-icon">✨</span>
+                        获取验证码
+                    </button>
+                    <div class="input-sparkles"></div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">🔐</div>
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">密码</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">🔒</div>
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">确认密码</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                <button type="submit" class="fairy-btn">
+                    <div class="btn-icon">🌟</div>
+                    <span>创建魔法账户</span>
+                    <div class="magic-effect"></div>
+                    <div class="btn-glow"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLogin">
+                        <span class="link-icon">🏰</span>
+                        返回登录
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="fairy-card">
+            <div class="card-sparkles">
+                <div class="sparkle">✨</div>
+                <div class="sparkle">⭐</div>
+                <div class="sparkle">💫</div>
+                <div class="sparkle">🌟</div>
+            </div>
+            <div class="card-header">
+                <div class="fairy-crown">🌙</div>
+                <h2>🔮 重置密码</h2>
+                <p class="subtitle">恢复您的魔法力量</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <div class="input-icon">📱</div>
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">手机号码</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <div class="input-icon">🔢</div>
+                    <input type="text" id="resetVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="resetVerificationCode">验证码</label>
+                    <div class="magic-border"></div>
+                    <button type="button" class="verify-btn" id="resetSendCodeBtn">
+                        <span class="btn-icon">✨</span>
+                        获取验证码
+                    </button>
+                    <div class="input-sparkles"></div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">🔐</div>
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">新密码</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">🔒</div>
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">确认新密码</label>
+                    <div class="magic-border"></div>
+                    <div class="input-sparkles"></div>
+                </div>
+                <button type="submit" class="fairy-btn">
+                    <div class="btn-icon">🌟</div>
+                    <span>重获魔法力量</span>
+                    <div class="magic-effect"></div>
+                    <div class="btn-glow"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset">
+                        <span class="link-icon">🏰</span>
+                        返回登录
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/fairy-tale.js"></script>
+</body>
+</html>

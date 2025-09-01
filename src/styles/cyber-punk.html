@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛博朋克风格 - 登录</title>
+    <link rel="stylesheet" href="../assets/styles/cyber-punk.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <div class="container">
+        <!-- 背景动画 -->
+        <div class="background">
+            <div class="cyber-grid"></div>
+            <div class="glitch-line line1"></div>
+            <div class="glitch-line line2"></div>
+            <div class="glitch-line line3"></div>
+            <div class="neon-text text1">CYBER</div>
+            <div class="neon-text text2">2077</div>
+            <div class="data-stream stream1">10101010</div>
+            <div class="data-stream stream2">01010101</div>
+            <div class="data-stream stream3">11001100</div>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="login-container form-container" id="loginForm">
+            <div class="glitch-wrapper">
+                <h2 class="form-title glitch" data-text="系统接入">
+                    系统接入
+                </h2>
+            </div>
+            <p class="form-subtitle">[AUTHENTICATION REQUIRED]</p>
+            
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" placeholder=" " required>
+                    <label for="username">USER.ID</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" placeholder=" " required>
+                    <label for="password">PASS.CODE</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me cyber-checkbox">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span>保存凭证</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="toForgotPassword">
+                        <span class="glitch-text">密码丢失?</span>
+                    </a>
+                </div>
+                
+                <button type="submit" class="submit-btn cyber-btn">
+                    <span class="btn-text">[ 接入系统 ]</span>
+                    <div class="btn-glitch"></div>
+                </button>
+                
+                <div class="divider cyber-divider">
+                    <span>// OR //</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn neon-purple">
+                        <span>🤖</span>
+                        AI验证
+                    </button>
+                    <button type="button" class="social-btn neon-cyan">
+                        <span>🔮</span>
+                        生物识别
+                    </button>
+                </div>
+                
+                <p class="switch-form">
+                    新用户接入?
+                    <a href="#" id="toRegister" class="cyber-link">创建身份</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- 注册表单 -->
+        <div class="register-container form-container hidden" id="registerForm">
+            <div class="glitch-wrapper">
+                <h2 class="form-title glitch" data-text="身份创建">
+                    身份创建
+                </h2>
+            </div>
+            <p class="form-subtitle">[NEW USER REGISTRATION]</p>
+            
+            <form class="register-form">
+                <div class="form-group">
+                    <input type="text" id="regUsername" placeholder=" " required>
+                    <label for="regUsername">USER.NAME</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="regPhone" placeholder=" " required>
+                    <label for="regPhone">COMM.LINK</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" placeholder=" " required>
+                    <label for="regVerificationCode">VERIFY.CODE</label>
+                    <div class="input-line"></div>
+                    <button type="button" class="send-code-btn cyber-code-btn" id="regSendCodeBtn">
+                        [传输代码]
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="regPassword" placeholder=" " required>
+                    <label for="regPassword">PASS.CODE</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" placeholder=" " required>
+                    <label for="regConfirmPassword">CONFIRM.CODE</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+                
+                <button type="submit" class="submit-btn cyber-btn">
+                    <span class="btn-text">[ 创建身份 ]</span>
+                    <div class="btn-glitch"></div>
+                </button>
+                
+                <p class="switch-form">
+                    已有身份?
+                    <a href="#" id="backToLogin" class="cyber-link">立即接入</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- 忘记密码表单 -->
+        <div class="forgot-container form-container hidden" id="forgotPasswordForm">
+            <div class="glitch-wrapper">
+                <h2 class="form-title glitch" data-text="密码重置">
+                    密码重置
+                </h2>
+            </div>
+            <p class="form-subtitle">[SECURITY PROTOCOL]</p>
+            
+            <form class="forgot-form">
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" placeholder=" " required>
+                    <label for="resetPhone">COMM.LINK</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" placeholder=" " required>
+                    <label for="verificationCode">VERIFY.CODE</label>
+                    <div class="input-line"></div>
+                    <button type="button" class="send-code-btn cyber-code-btn" id="sendCodeBtn">
+                        [传输代码]
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="newPassword" placeholder=" " required>
+                    <label for="newPassword">NEW.PASS</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" placeholder=" " required>
+                    <label for="confirmNewPassword">CONFIRM.PASS</label>
+                    <div class="input-line"></div>
+                    <div class="cyber-corner corner-tl"></div>
+                    <div class="cyber-corner corner-br"></div>
+                </div>
+                
+                <button type="submit" class="submit-btn cyber-btn">
+                    <span class="btn-text">[ 重置密码 ]</span>
+                    <div class="btn-glitch"></div>
+                </button>
+                
+                <p class="switch-form">
+                    记起密码?
+                    <a href="#" id="backToLoginFromReset" class="cyber-link">返回接入</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/cyber-punk.js"></script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦠 网络朋克病毒感染风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/cyber-virus-infection.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 背景矩阵代码雨 -->
+    <div class="matrix-rain">
+        <canvas id="matrixCanvas"></canvas>
+    </div>
+
+    <!-- 故障扫描线 -->
+    <div class="glitch-scanlines"></div>
+
+    <!-- 病毒感染效果层 -->
+    <div class="virus-infection-layer">
+        <div class="infection-particle"></div>
+        <div class="infection-particle"></div>
+        <div class="infection-particle"></div>
+        <div class="infection-particle"></div>
+        <div class="infection-particle"></div>
+    </div>
+
+    <!-- 系统警告弹窗 -->
+    <div class="system-warning hidden" id="systemWarning">
+        <div class="warning-box">
+            <div class="warning-header">
+                <span class="warning-icon">⚠️</span>
+                <span>SYSTEM ALERT</span>
+                <button class="close-warning" onclick="closeSystemWarning()">×</button>
+            </div>
+            <div class="warning-content">
+                <p class="glitch-text" data-text="检测到未知入侵...">检测到未知入侵...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p>正在分析威胁等级...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主登录界面 -->
+    <div class="login-container" id="loginForm">
+        <div class="virus-terminal">
+            <!-- 终端头部 -->
+            <div class="terminal-header">
+                <div class="terminal-title">
+                    <span class="terminal-icon">🦠</span>
+                    <span class="glitch-text" data-text="VIRUS_LOGIN.EXE">VIRUS_LOGIN.EXE</span>
+                </div>
+                <div class="terminal-controls">
+                    <div class="control-dot red"></div>
+                    <div class="control-dot yellow"></div>
+                    <div class="control-dot green"></div>
+                </div>
+            </div>
+
+            <!-- 终端内容 -->
+            <div class="terminal-content">
+                <!-- 系统信息 -->
+                <div class="system-info">
+                    <p class="terminal-line">>>> 初始化病毒载体...</p>
+                    <p class="terminal-line">>>> 建立加密连接...</p>
+                    <p class="terminal-line">>>> 等待身份验证...</p>
+                    <p class="terminal-line blink">>>> <span class="cursor">_</span></p>
+                </div>
+
+                <!-- 登录表单 -->
+                <form class="virus-form">
+                    <div class="form-group">
+                        <label class="terminal-label">用户标识符:</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="username" name="username" class="virus-input" 
+                                   placeholder="输入访问代码..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="terminal-label">解密密钥:</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" name="password" class="virus-input" 
+                                   placeholder="输入病毒签名..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="rememberVirus" name="rememberVirus" class="virus-checkbox">
+                        <label for="rememberVirus" class="checkbox-label">
+                            <span class="glitch-text" data-text="植入持久化病毒">植入持久化病毒</span>
+                        </label>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="virus-button primary">
+                            <span class="button-text">执行感染</span>
+                            <div class="button-virus-effect"></div>
+                        </button>
+                        <button type="button" class="virus-button" id="toRegister">
+                            <span class="button-text">创建载体</span>
+                        </button>
+                        <button type="button" class="virus-button" id="toForgotPassword">
+                            <span class="button-text">恢复访问</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- 实时系统状态 -->
+                <div class="system-status">
+                    <div class="status-line">
+                        <span>CPU: </span>
+                        <span class="cpu-usage">87%</span>
+                        <div class="status-bar">
+                            <div class="status-fill cpu-fill"></div>
+                        </div>
+                    </div>
+                    <div class="status-line">
+                        <span>MEM: </span>
+                        <span class="mem-usage">94%</span>
+                        <div class="status-bar">
+                            <div class="status-fill mem-fill"></div>
+                        </div>
+                    </div>
+                    <div class="status-line">
+                        <span>NET: </span>
+                        <span class="net-status">COMPROMISED</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册界面 -->
+    <div class="login-container hidden" id="registerForm">
+        <div class="virus-terminal">
+            <div class="terminal-header">
+                <div class="terminal-title">
+                    <span class="terminal-icon">🧬</span>
+                    <span class="glitch-text" data-text="VIRUS_CREATE.EXE">VIRUS_CREATE.EXE</span>
+                </div>
+                <div class="terminal-controls">
+                    <div class="control-dot red"></div>
+                    <div class="control-dot yellow"></div>
+                    <div class="control-dot green"></div>
+                </div>
+            </div>
+
+            <div class="terminal-content">
+                <div class="system-info">
+                    <p class="terminal-line">>>> 启动载体生成程序...</p>
+                    <p class="terminal-line">>>> 准备植入恶意代码...</p>
+                    <p class="terminal-line blink">>>> <span class="cursor">_</span></p>
+                </div>
+
+                <form class="virus-form">
+                    <div class="form-group">
+                        <label class="terminal-label">载体标识:</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="reg-username" name="username" class="virus-input" 
+                                   placeholder="创建病毒标识..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="terminal-label">通信频道:</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="reg-email" name="email" class="virus-input" 
+                                   placeholder="建立加密通道..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="terminal-label">加密算法:</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="reg-password" name="password" class="virus-input" 
+                                   placeholder="设计病毒基因..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="terminal-label">验证序列:</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="reg-confirm-password" name="confirmPassword" class="virus-input" 
+                                   placeholder="确认病毒签名..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="virus-button primary">
+                            <span class="button-text">部署载体</span>
+                            <div class="button-virus-effect"></div>
+                        </button>
+                        <button type="button" class="virus-button" id="backToLogin">
+                            <span class="button-text">返回控制台</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 密码重置界面 -->
+    <div class="login-container hidden" id="forgotPasswordForm">
+        <div class="virus-terminal">
+            <div class="terminal-header">
+                <div class="terminal-title">
+                    <span class="terminal-icon">🔓</span>
+                    <span class="glitch-text" data-text="VIRUS_RECOVER.EXE">VIRUS_RECOVER.EXE</span>
+                </div>
+                <div class="terminal-controls">
+                    <div class="control-dot red"></div>
+                    <div class="control-dot yellow"></div>
+                    <div class="control-dot green"></div>
+                </div>
+            </div>
+
+            <div class="terminal-content">
+                <div class="system-info">
+                    <p class="terminal-line">>>> 启动恢复协议...</p>
+                    <p class="terminal-line">>>> 扫描备份病毒...</p>
+                    <p class="terminal-line blink">>>> <span class="cursor">_</span></p>
+                </div>
+
+                <form class="virus-form">
+                    <div class="form-group">
+                        <label class="terminal-label">恢复通道:</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="forgot-email" name="email" class="virus-input" 
+                                   placeholder="输入加密通道..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="terminal-label">验证码:</label>
+                        <div class="verification-group">
+                            <div class="input-wrapper">
+                                <input type="text" id="verification-code" name="verificationCode" class="virus-input" 
+                                       placeholder="病毒验证码..." required>
+                                <div class="input-corruption"></div>
+                            </div>
+                            <button type="button" class="virus-button small" id="sendCode">
+                                <span class="button-text">发送病毒</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="terminal-label">新病毒签名:</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="new-password" name="newPassword" class="virus-input" 
+                                   placeholder="重新编码病毒..." required>
+                            <div class="input-corruption"></div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="virus-button primary">
+                            <span class="button-text">重置病毒</span>
+                            <div class="button-virus-effect"></div>
+                        </button>
+                        <button type="button" class="virus-button" id="backToLoginFromReset">
+                            <span class="button-text">返回控制台</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 病毒传播粒子系统 -->
+    <div class="virus-particles">
+        <canvas id="virusCanvas"></canvas>
+    </div>
+
+    <!-- 系统损坏效果 -->
+    <div class="system-corruption">
+        <div class="corruption-overlay"></div>
+        <div class="data-stream"></div>
+        <div class="data-stream"></div>
+        <div class="data-stream"></div>
+    </div>
+
+    <!-- 错误弹窗 -->
+    <div class="virus-dialog hidden" id="errorDialog">
+        <div class="dialog-box error-box">
+            <div class="dialog-header">
+                <span class="dialog-icon">🚨</span>
+                <span class="glitch-text" data-text="SYSTEM ERROR">SYSTEM ERROR</span>
+            </div>
+            <div class="dialog-content">
+                <p class="error-message" id="errorMessage">病毒感染失败，访问被拒绝</p>
+                <div class="error-code">ERROR_CODE: 0x8007045D</div>
+            </div>
+            <div class="dialog-actions">
+                <button class="virus-button primary" onclick="hideErrorDialog()">
+                    <span class="button-text">强制关闭</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成功弹窗 -->
+    <div class="virus-dialog hidden" id="successDialog">
+        <div class="dialog-box success-box">
+            <div class="dialog-header">
+                <span class="dialog-icon">✅</span>
+                <span class="glitch-text" data-text="INFECTION SUCCESS">INFECTION SUCCESS</span>
+            </div>
+            <div class="dialog-content">
+                <p class="success-message" id="successMessage">病毒植入成功，系统已被感染</p>
+                <div class="success-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill success-fill"></div>
+                    </div>
+                    <span>感染进度: 100%</span>
+                </div>
+            </div>
+            <div class="dialog-actions">
+                <button class="virus-button primary" onclick="hideSuccessDialog()">
+                    <span class="button-text">继续传播</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="hackingSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmAaBEaO0fPQeSsFHGfA7+OWRwsOVqng77BdGQVbn9ny0YAsBYJQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmAaBEaO0fPQeSsFHGfA7+OWRwsOVqng77BdGQ=="></source>
+    </audio>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/cyber-virus-infection.js"></script>
+</body>
+</html>

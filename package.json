@@ -1,0 +1,34 @@
+{
+  "name": "beautiful-login",
+  "version": "1.0.0",
+  "description": "Beautiful Login - 精美移动端登录页面集合",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 8000 -o"
+  },
+  "keywords": [
+    "login",
+    "ui",
+    "css",
+    "javascript",
+    "mobile",
+    "responsive",
+    "supabase",
+    "analytics"
+  ],
+  "author": "LoginLab Team",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.56.0",
+    "chalk": "^4.1.2",
+    "playwright": "^1.55.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuanyang749/beautiful-login.git"
+  },
+  "homepage": "https://beautiful-login.vercel.app"
+}

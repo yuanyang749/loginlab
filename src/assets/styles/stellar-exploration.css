@@ -1,0 +1,592 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #1a0033 0%, #000000 70%);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(100, 50, 200, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(100, 50, 200, 0.3);
+}
+
+.back-button:hover {
+    background: rgba(100, 50, 200, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(100, 50, 200, 0.5);
+}
+
+/* 星际背景 */
+.stellar-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* 星系 */
+.galaxy {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    animation: galaxyRotate 60s linear infinite;
+}
+
+.galaxy-1 {
+    top: 10%;
+    right: 10%;
+    opacity: 0.6;
+}
+
+.galaxy-2 {
+    bottom: 20%;
+    left: 15%;
+    width: 200px;
+    height: 200px;
+    opacity: 0.4;
+    animation-duration: 80s;
+    animation-direction: reverse;
+}
+
+.galaxy-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ffffff 0%, #ffaa00 50%, #ff6600 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px #ffaa00;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.galaxy-arm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 170, 0, 0.8) 30%, rgba(255, 170, 0, 0.3) 70%, transparent 100%);
+    transform-origin: 0 50%;
+    border-radius: 2px;
+}
+
+.arm-1 { transform: translate(0, -50%) rotate(0deg); }
+.arm-2 { transform: translate(0, -50%) rotate(120deg); }
+.arm-3 { transform: translate(0, -50%) rotate(240deg); }
+
+/* 行星轨道 */
+.planet-orbit {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: orbitRotate linear infinite;
+}
+
+.orbit-1 {
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 30s;
+}
+
+.orbit-2 {
+    width: 600px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 45s;
+}
+
+.orbit-3 {
+    width: 800px;
+    height: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 60s;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    top: -5px;
+    left: -5px;
+}
+
+.planet-1 {
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #4a90e2 0%, #2171b5 100%);
+    box-shadow: 0 0 10px #4a90e2;
+}
+
+.planet-2 {
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #e74c3c 0%, #c0392b 100%);
+    box-shadow: 0 0 8px #e74c3c;
+}
+
+.planet-3 {
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #f39c12 0%, #e67e22 100%);
+    box-shadow: 0 0 6px #f39c12;
+}
+
+/* 星星 */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.star:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+.star:nth-child(2) { top: 40%; left: 70%; animation-delay: 0.5s; }
+.star:nth-child(3) { top: 60%; left: 20%; animation-delay: 1s; }
+.star:nth-child(4) { top: 80%; left: 80%; animation-delay: 1.5s; }
+.star:nth-child(5) { top: 10%; left: 60%; animation-delay: 2s; }
+.star:nth-child(6) { top: 30%; left: 90%; animation-delay: 0.3s; }
+.star:nth-child(7) { top: 70%; left: 40%; animation-delay: 0.8s; }
+.star:nth-child(8) { top: 90%; left: 10%; animation-delay: 1.3s; }
+.star:nth-child(9) { top: 50%; left: 50%; animation-delay: 1.8s; }
+.star:nth-child(10) { top: 15%; left: 85%; animation-delay: 0.2s; }
+
+/* 流星 */
+.meteors {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.meteor {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(45deg, #ffffff 0%, transparent 70%);
+    border-radius: 50%;
+    animation: meteorFall 3s linear infinite;
+}
+
+.meteor:nth-child(1) {
+    top: 10%;
+    left: 90%;
+    animation-delay: 0s;
+}
+
+.meteor:nth-child(2) {
+    top: 30%;
+    left: 80%;
+    animation-delay: 1s;
+}
+
+.meteor:nth-child(3) {
+    top: 50%;
+    left: 70%;
+    animation-delay: 2s;
+}
+
+/* 太空尘埃 */
+.space-dust {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.dust-particle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: dustFloat 8s ease-in-out infinite;
+}
+
+.dust-particle:nth-child(1) { top: 25%; left: 15%; animation-delay: 0s; }
+.dust-particle:nth-child(2) { top: 45%; left: 35%; animation-delay: 2s; }
+.dust-particle:nth-child(3) { top: 65%; left: 55%; animation-delay: 4s; }
+.dust-particle:nth-child(4) { top: 85%; left: 75%; animation-delay: 6s; }
+.dust-particle:nth-child(5) { top: 35%; left: 85%; animation-delay: 1s; }
+
+/* 表单容器 */
+.login-container {
+    position: relative;
+    z-index: 100;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.space-capsule {
+    background: linear-gradient(135deg, rgba(30, 30, 60, 0.9) 0%, rgba(10, 10, 30, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(100, 50, 200, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 
+        0 0 50px rgba(100, 50, 200, 0.3),
+        inset 0 0 50px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.space-capsule::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(100, 50, 200, 0.8) 50%, transparent 100%);
+    animation: scanLine 3s ease-in-out infinite;
+}
+
+.capsule-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.status-lights {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.status-light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.status-light.active {
+    background: #00ff88;
+    box-shadow: 0 0 15px #00ff88;
+    animation: statusBlink 2s ease-in-out infinite;
+}
+
+.capsule-header h2 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(100, 50, 200, 0.3);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-group label {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -8px;
+    left: 15px;
+    font-size: 12px;
+    color: #00ff88;
+    background: linear-gradient(135deg, rgba(30, 30, 60, 0.9) 0%, rgba(10, 10, 30, 0.95) 100%);
+    padding: 0 8px;
+    border-radius: 4px;
+}
+
+/* 按钮样式 */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #6432c8 0%, #4a90e2 100%);
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(100, 50, 200, 0.3);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(100, 50, 200, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.btn-energy {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover .btn-energy {
+    left: 100%;
+}
+
+.verify-btn {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #00ff88 0%, #0088ff 100%);
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.verify-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+/* 链接样式 */
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.additional-links a {
+    color: #00ff88;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.additional-links a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+}
+
+.divider {
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 15px;
+}
+
+/* 隐藏类 */
+.hidden {
+    display: none;
+}
+
+/* 动画关键帧 */
+@keyframes galaxyRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes orbitRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+@keyframes meteorFall {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-200px, 200px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes dustFloat {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+    25% { transform: translateY(-20px) translateX(10px); opacity: 0.6; }
+    50% { transform: translateY(-10px) translateX(-5px); opacity: 0.9; }
+    75% { transform: translateY(-30px) translateX(15px); opacity: 0.4; }
+}
+
+@keyframes scanLine {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%;
+        padding: 0 10px;
+    }
+    
+    .space-capsule {
+        padding: 20px;
+    }
+    
+    .capsule-header h2 {
+        font-size: 20px;
+    }
+    
+    .form-group input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+        top: 12px;
+        left: 15px;
+    }
+    
+    .login-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .galaxy {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .galaxy-2 {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .orbit-1, .orbit-2, .orbit-3 {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 320px) {
+    .space-capsule {
+        padding: 15px;
+    }
+    
+    .verification-group {
+        gap: 8px;
+    }
+
+    .verify-btn {
+        padding: 10px 12px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+}

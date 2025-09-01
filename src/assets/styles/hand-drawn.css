@@ -1,0 +1,417 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #fff9e6 0%, #ffe4b5 25%, #ffd1dc 50%, #e6e6fa 75%, #f0f8ff 100%);
+    color: #2c3e50;
+    overflow: hidden;
+}
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #fff;
+    border: 3px solid #2c3e50;
+    border-radius: 15px;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 0px #2c3e50;
+    transform: rotate(-2deg);
+}
+
+.back-button:hover {
+    background: #f39c12;
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 5px 5px 0px #2c3e50;
+}
+
+.sketch-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sketch-doodle {
+    position: absolute;
+    font-size: 30px;
+    animation: doodleFloat 8s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.doodle-1 { top: 15%; left: 10%; animation-delay: 0s; transform: rotate(-15deg); }
+.doodle-2 { top: 70%; right: 15%; animation-delay: 3s; transform: rotate(20deg); }
+.doodle-3 { bottom: 20%; left: 20%; animation-delay: 6s; transform: rotate(-10deg); }
+
+.sketch-lines .sketch-line {
+    position: absolute;
+    background: #2c3e50;
+    opacity: 0.1;
+    animation: sketchMove 10s ease-in-out infinite;
+}
+
+.line-1 {
+    width: 150px;
+    height: 3px;
+    top: 25%;
+    left: 30%;
+    transform: rotate(15deg);
+    border-radius: 2px;
+    animation-delay: 0s;
+}
+
+.line-2 {
+    width: 100px;
+    height: 3px;
+    top: 60%;
+    right: 25%;
+    transform: rotate(-20deg);
+    border-radius: 2px;
+    animation-delay: 3s;
+}
+
+.line-3 {
+    width: 80px;
+    height: 3px;
+    bottom: 30%;
+    left: 50%;
+    transform: rotate(10deg);
+    border-radius: 2px;
+    animation-delay: 6s;
+}
+
+.paper-texture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(44, 62, 80, 0.02) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(44, 62, 80, 0.02) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(44, 62, 80, 0.01) 1px, transparent 1px);
+    background-size: 30px 30px, 40px 40px, 20px 20px;
+    opacity: 0.5;
+}
+
+@keyframes doodleFloat {
+    0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
+    50% { transform: translateY(-15px) rotate(calc(var(--rotation, 0deg) + 5deg)); }
+}
+
+@keyframes sketchMove {
+    0%, 100% { opacity: 0.1; transform: translateX(0px); }
+    50% { opacity: 0.3; transform: translateX(10px); }
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    transition: all 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.sketch-card {
+    background: #fff;
+    border: 4px solid #2c3e50;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 8px 8px 0px rgba(44, 62, 80, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transform: rotate(-1deg);
+}
+
+.sketch-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px dashed rgba(44, 62, 80, 0.2);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+.sketch-card:hover {
+    transform: rotate(0deg) translateY(-5px);
+    box-shadow: 12px 12px 0px rgba(44, 62, 80, 0.3);
+}
+
+.sketch-card h2 {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #e74c3c;
+    transform: rotate(-2deg);
+    text-shadow: 2px 2px 0px rgba(231, 76, 60, 0.2);
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 32px;
+    color: #f39c12;
+    font-size: 14px;
+    font-weight: bold;
+    transform: rotate(1deg);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 16px 12px 8px 12px;
+    border: 3px solid #2c3e50;
+    background: #fff;
+    font-size: 16px;
+    color: #2c3e50;
+    outline: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    font-family: 'Comic Sans MS', cursive;
+    transform: rotate(-0.5deg);
+}
+
+.form-group input:focus {
+    background: #fff9e6;
+    border-color: #e74c3c;
+    box-shadow: 3px 3px 0px rgba(231, 76, 60, 0.3);
+    transform: rotate(0deg);
+}
+
+.form-group label {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    color: #7f8c8d;
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -8px;
+    left: 8px;
+    font-size: 12px;
+    color: #e74c3c;
+    background: #fff;
+    padding: 0 4px;
+    border-radius: 8px;
+    transform: rotate(-3deg);
+}
+
+.sketch-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px solid transparent;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #e74c3c, #f39c12, #3498db) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus ~ .sketch-border {
+    opacity: 1;
+    box-shadow: 3px 3px 0px rgba(231, 76, 60, 0.3);
+}
+
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 16px 20px;
+    background: #f39c12;
+    border: 3px solid #2c3e50;
+    border-radius: 15px;
+    color: #2c3e50;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    transform: rotate(1deg);
+    box-shadow: 2px 2px 0px #2c3e50;
+}
+
+.verify-btn:hover {
+    background: #e67e22;
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 4px 4px 0px #2c3e50;
+}
+
+.sketch-btn {
+    width: 100%;
+    padding: 16px;
+    margin: 32px 0 24px 0;
+    background: #e74c3c;
+    color: #fff;
+    border: 4px solid #2c3e50;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Comic Sans MS', cursive;
+    text-transform: uppercase;
+    transform: rotate(-1deg);
+    box-shadow: 4px 4px 0px #2c3e50;
+}
+
+.sketch-btn:hover {
+    background: #c0392b;
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: 6px 6px 0px #2c3e50;
+}
+
+.sketch-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.5s ease;
+}
+
+.sketch-btn:hover .sketch-effect {
+    left: 100%;
+}
+
+.additional-links {
+    text-align: center;
+    font-size: 14px;
+}
+
+.additional-links a {
+    color: #3498db;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    position: relative;
+}
+
+.additional-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3498db;
+    transition: all 0.3s ease;
+}
+
+.additional-links a:hover::after {
+    width: 100%;
+}
+
+.additional-links a:hover {
+    color: #2980b9;
+    transform: rotate(-1deg);
+}
+
+.divider {
+    margin: 0 12px;
+    color: #f39c12;
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 16px;
+    }
+    
+    .sketch-card {
+        padding: 24px;
+    }
+    
+    .sketch-card h2 {
+        font-size: 24px;
+    }
+    
+    .back-button {
+        top: 16px;
+        left: 16px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .sketch-doodle, .sketch-lines {
+        display: none;
+    }
+}
+
+@keyframes sketchFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(-1deg);
+    }
+}
+
+.sketch-card {
+    animation: sketchFadeIn 1s ease-out;
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎭 戏剧舞台风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/theatrical-stage.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 剧院背景 -->
+    <div class="theater-background">
+        <!-- 舞台帷幕 -->
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+        
+        <!-- 聚光灯 -->
+        <div class="spotlight spotlight-1"></div>
+        <div class="spotlight spotlight-2"></div>
+        <div class="spotlight spotlight-3"></div>
+        
+        <!-- 舞台装饰 -->
+        <div class="stage-decoration">
+            <div class="ornament ornament-1">🎭</div>
+            <div class="ornament ornament-2">🎪</div>
+            <div class="ornament ornament-3">🎨</div>
+            <div class="ornament ornament-4">🎵</div>
+        </div>
+        
+        <!-- 金色粒子 -->
+        <div class="golden-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <!-- 舞台烟雾 -->
+        <div class="stage-smoke">
+            <div class="smoke-cloud cloud-1"></div>
+            <div class="smoke-cloud cloud-2"></div>
+            <div class="smoke-cloud cloud-3"></div>
+        </div>
+        
+        <!-- 舞台地板 -->
+        <div class="stage-floor">
+            <div class="floor-pattern"></div>
+        </div>
+    </div>
+    
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="theater-box">
+            <div class="box-header">
+                <div class="theater-lights">
+                    <div class="theater-light active"></div>
+                    <div class="theater-light"></div>
+                    <div class="theater-light"></div>
+                </div>
+                <h2>🎭 剧院登录台</h2>
+                <p class="subtitle">欢迎来到艺术殿堂</p>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" required>
+                    <label for="username">艺术家姓名</label>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" required>
+                    <label for="password">演出密码</label>
+                    
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>开始演出</span>
+                    <div class="btn-curtain"></div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="toForgotPassword">忘记密码？</a>
+                    <span class="divider">|</span>
+                    <a href="#" id="toRegister">加入剧团</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="theater-box">
+            <div class="box-header">
+                <div class="theater-lights">
+                    <div class="theater-light"></div>
+                    <div class="theater-light active"></div>
+                    <div class="theater-light"></div>
+                </div>
+                <h2>🎭 剧团招募</h2>
+                <p class="subtitle">成为我们的艺术家</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">艺术家姓名</label>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">联系电话</label>
+                    
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">验证码</label>
+                    
+                    <button type="button" class="verify-btn" id="regSendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">演出密码</label>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">确认密码</label>
+                    
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>加入剧团</span>
+                    <div class="btn-curtain"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLogin">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="theater-box">
+            <div class="box-header">
+                <div class="theater-lights">
+                    <div class="theater-light"></div>
+                    <div class="theater-light"></div>
+                    <div class="theater-light active"></div>
+                </div>
+                <h2>🎭 密码找回</h2>
+                <p class="subtitle">重新获得演出资格</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">联系电话</label>
+                    
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="verificationCode">验证码</label>
+                    
+                    <button type="button" class="verify-btn" id="sendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">新演出密码</label>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">确认新密码</label>
+                    
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>重置密码</span>
+                    <div class="btn-curtain"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/theatrical-stage.js"></script>
+</body>
+</html>

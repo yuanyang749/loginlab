@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金属质感风格 - 登录</title>
+    <link rel="stylesheet" href="../assets/styles/metallic-shine.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <div class="container">
+        <!-- 金属背景层 -->
+        <div class="metal-background">
+            <!-- 金属反光条纹 -->
+            <div class="metal-stripe stripe-1"></div>
+            <div class="metal-stripe stripe-2"></div>
+            <div class="metal-stripe stripe-3"></div>
+            <div class="metal-stripe stripe-4"></div>
+            
+            <!-- 金属装饰元素 -->
+            <div class="metal-bolt bolt-1"></div>
+            <div class="metal-bolt bolt-2"></div>
+            <div class="metal-bolt bolt-3"></div>
+            <div class="metal-bolt bolt-4"></div>
+            
+            <!-- 金属网格纹理 -->
+            <div class="metal-grid"></div>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="login-container form-container" id="loginForm">
+            <div class="metal-frame">
+                <div class="frame-corner corner-tl"></div>
+                <div class="frame-corner corner-tr"></div>
+                <div class="frame-corner corner-bl"></div>
+                <div class="frame-corner corner-br"></div>
+                
+                <div class="metal-panel">
+                    <h2 class="form-title">
+                        <span class="metal-icon">⚡</span>
+                        钢铁登录
+                    </h2>
+                    <p class="form-subtitle">工业级安全认证</p>
+                    
+                    <form class="login-form">
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="text" id="username" placeholder=" " required>
+                                <label for="username">用户名 / 手机号</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="password" id="password" placeholder=" " required>
+                                <label for="password">密码</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="metal-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark">
+                                    <div class="check-metal"></div>
+                                </span>
+                                记住我
+                            </label>
+                            <a href="#" class="forgot-link" onclick="showForgotPassword()">忘记密码？</a>
+                        </div>
+                        
+                        <button type="submit" class="metal-submit-btn">
+                            <div class="btn-surface">
+                                <span class="btn-text">登录</span>
+                                <div class="btn-reflection"></div>
+                            </div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>还没有账户？ <a href="#" onclick="showRegister()">立即注册</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注册表单 -->
+        <div class="register-container form-container" id="registerForm" style="display: none;">
+            <div class="metal-frame">
+                <div class="frame-corner corner-tl"></div>
+                <div class="frame-corner corner-tr"></div>
+                <div class="frame-corner corner-bl"></div>
+                <div class="frame-corner corner-br"></div>
+                
+                <div class="metal-panel">
+                    <h2 class="form-title">
+                        <span class="metal-icon">🔧</span>
+                        注册账户
+                    </h2>
+                    <p class="form-subtitle">创建您的工业账户</p>
+                    
+                    <form class="register-form">
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="text" id="reg-username" placeholder=" " required>
+                                <label for="reg-username">用户名</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="tel" id="reg-phone" placeholder=" " required>
+                                <label for="reg-phone">手机号</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="password" id="reg-password" placeholder=" " required>
+                                <label for="reg-password">密码</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="password" id="reg-confirm-password" placeholder=" " required>
+                                <label for="reg-confirm-password">确认密码</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group verification-group">
+                            <div class="metal-input-frame flex-input">
+                                <input type="text" id="reg-verification" placeholder=" " required>
+                                <label for="reg-verification">验证码</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                            <button type="button" class="verification-btn">获取验证码</button>
+                        </div>
+                        
+                        <button type="submit" class="metal-submit-btn">
+                            <div class="btn-surface">
+                                <span class="btn-text">注册</span>
+                                <div class="btn-reflection"></div>
+                            </div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>已有账户？ <a href="#" onclick="showLogin()">立即登录</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 忘记密码表单 -->
+        <div class="forgot-container form-container" id="forgotForm" style="display: none;">
+            <div class="metal-frame">
+                <div class="frame-corner corner-tl"></div>
+                <div class="frame-corner corner-tr"></div>
+                <div class="frame-corner corner-bl"></div>
+                <div class="frame-corner corner-br"></div>
+                
+                <div class="metal-panel">
+                    <h2 class="form-title">
+                        <span class="metal-icon">🔑</span>
+                        重置密码
+                    </h2>
+                    <p class="form-subtitle">恢复您的账户访问</p>
+                    
+                    <form class="forgot-form">
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="tel" id="forgot-phone" placeholder=" " required>
+                                <label for="forgot-phone">手机号</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group verification-group">
+                            <div class="metal-input-frame flex-input">
+                                <input type="text" id="forgot-verification" placeholder=" " required>
+                                <label for="forgot-verification">验证码</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                            <button type="button" class="verification-btn">获取验证码</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="password" id="forgot-new-password" placeholder=" " required>
+                                <label for="forgot-new-password">新密码</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="metal-input-frame">
+                                <input type="password" id="forgot-confirm-password" placeholder=" " required>
+                                <label for="forgot-confirm-password">确认新密码</label>
+                                <div class="input-reflection"></div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="metal-submit-btn">
+                            <div class="btn-surface">
+                                <span class="btn-text">重置密码</span>
+                                <div class="btn-reflection"></div>
+                            </div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>想起密码了？ <a href="#" onclick="showLogin()">返回登录</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/metallic-shine.js"></script>
+</body>
+</html>

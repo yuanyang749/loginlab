@@ -1,0 +1,70 @@
+/* Material Icons CSS - Local Fallback */
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular');
+  font-display: swap;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+/* 如果CDN失败，使用Unicode字符作为备用 */
+.material-icons.fallback {
+  font-family: Arial, sans-serif;
+}
+
+/* 常用图标的Unicode备用 */
+.material-icons.fallback::before {
+  font-family: Arial, sans-serif;
+}
+
+/* 具体图标映射 */
+.material-icons[data-icon="arrow_back"]::before { content: "←"; }
+.material-icons[data-icon="menu"]::before { content: "☰"; }
+.material-icons[data-icon="list"]::before { content: "≡"; }
+.material-icons[data-icon="rocket_launch"]::before { content: "🚀"; }
+.material-icons[data-icon="auto_awesome"]::before { content: "✨"; }
+.material-icons[data-icon="psychology"]::before { content: "🧠"; }
+.material-icons[data-icon="code"]::before { content: "</>"; }
+.material-icons[data-icon="palette"]::before { content: "🎨"; }
+.material-icons[data-icon="diamond"]::before { content: "💎"; }
+.material-icons[data-icon="lightbulb"]::before { content: "💡"; }
+.material-icons[data-icon="school"]::before { content: "🎓"; }
+.material-icons[data-icon="speed"]::before { content: "⚡"; }
+.material-icons[data-icon="brush"]::before { content: "🖌"; }
+.material-icons[data-icon="color_lens"]::before { content: "🎨"; }
+.material-icons[data-icon="animation"]::before { content: "🎬"; }
+.material-icons[data-icon="groups"]::before { content: "👥"; }
+.material-icons[data-icon="forum"]::before { content: "💬"; }
+.material-icons[data-icon="science"]::before { content: "🔬"; }
+.material-icons[data-icon="settings"]::before { content: "⚙"; }
+.material-icons[data-icon="devices"]::before { content: "📱"; }
+.material-icons[data-icon="auto_fix_high"]::before { content: "✨"; }
+.material-icons[data-icon="accessibility"]::before { content: "♿"; }
+.material-icons[data-icon="group_work"]::before { content: "🤝"; }
+.material-icons[data-icon="description"]::before { content: "📄"; }
+.material-icons[data-icon="bug_report"]::before { content: "🐛"; }
+.material-icons[data-icon="favorite"]::before { content: "❤"; }
+.material-icons[data-icon="play_arrow"]::before { content: "▶"; }
+.material-icons[data-icon="contact_mail"]::before { content: "📧"; }
+.material-icons[data-icon="keyboard_arrow_up"]::before { content: "↑"; }

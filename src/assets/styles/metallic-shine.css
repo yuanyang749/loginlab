@@ -1,0 +1,650 @@
+/* 真实金属质感风格 - Realistic Metallic Shine Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    color: #e0e0e0;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(145deg, #404040, #2a2a2a);
+    border: 1px solid #555;
+    border-radius: 25px;
+    color: #e0e0e0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+    background: linear-gradient(145deg, #4a4a4a, #323232);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* 容器 */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 金属背景层 */
+.metal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+}
+
+/* 金属反光条纹 */
+.metal-stripe {
+    position: absolute;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 25%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 75%, 
+        transparent 100%);
+    height: 2px;
+    width: 100%;
+    animation: stripeMove 8s linear infinite;
+}
+
+.stripe-1 {
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.stripe-2 {
+    top: 40%;
+    animation-delay: 2s;
+}
+
+.stripe-3 {
+    top: 60%;
+    animation-delay: 4s;
+}
+
+.stripe-4 {
+    top: 80%;
+    animation-delay: 6s;
+}
+
+@keyframes stripeMove {
+    0% { transform: translateX(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* 金属装饰螺栓 */
+.metal-bolt {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: 
+        radial-gradient(circle at 30% 30%, #6a6a6a 0%, #3a3a3a 50%, #1a1a1a 100%);
+    border: 2px solid #4a4a4a;
+    border-radius: 50%;
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.metal-bolt::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 2px;
+    background: linear-gradient(90deg, #2a2a2a, #4a4a4a, #2a2a2a);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.metal-bolt::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 8px;
+    background: linear-gradient(180deg, #2a2a2a, #4a4a4a, #2a2a2a);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.bolt-1 {
+    top: 15%;
+    left: 10%;
+}
+
+.bolt-2 {
+    top: 20%;
+    right: 15%;
+}
+
+.bolt-3 {
+    bottom: 20%;
+    left: 15%;
+}
+
+.bolt-4 {
+    bottom: 15%;
+    right: 10%;
+}
+
+/* 金属网格纹理 */
+.metal-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, 
+            transparent 0px, 
+            rgba(255, 255, 255, 0.02) 1px, 
+            transparent 2px),
+        repeating-linear-gradient(90deg, 
+            transparent 0px, 
+            rgba(255, 255, 255, 0.02) 1px, 
+            transparent 2px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+}
+
+/* 表单容器 */
+.form-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+/* 金属边框 */
+.metal-frame {
+    position: relative;
+    background: linear-gradient(145deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    border: 2px solid #4a4a4a;
+    border-radius: 15px;
+    padding: 3px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* 金属边框角落装饰 */
+.frame-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #5a5a5a, #3a3a3a);
+    border: 1px solid #6a6a6a;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.corner-tl {
+    top: -10px;
+    left: -10px;
+    border-radius: 50% 0 50% 0;
+}
+
+.corner-tr {
+    top: -10px;
+    right: -10px;
+    border-radius: 0 50% 0 50%;
+}
+
+.corner-bl {
+    bottom: -10px;
+    left: -10px;
+    border-radius: 50% 0 50% 0;
+}
+
+.corner-br {
+    bottom: -10px;
+    right: -10px;
+    border-radius: 0 50% 0 50%;
+}
+
+/* 金属面板 */
+.metal-panel {
+    background: 
+        linear-gradient(145deg, #353535 0%, #2a2a2a 50%, #1f1f1f 100%);
+    border-radius: 12px;
+    padding: 40px 35px;
+    position: relative;
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.metal-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+}
+
+/* 表单标题 */
+.form-title {
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.metal-icon {
+    font-size: 32px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* 金属输入框边框 */
+.metal-input-frame {
+    position: relative;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border: 2px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 2px;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.metal-input-frame:focus-within {
+    border-color: #5a9fd4;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+        0 0 0 2px rgba(90, 159, 212, 0.2);
+}
+
+.metal-input-frame input {
+    width: 100%;
+    padding: 16px 15px;
+    background: linear-gradient(145deg, #323232, #282828);
+    border: none;
+    border-radius: 6px;
+    color: #e0e0e0;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.4),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.metal-input-frame input:focus {
+    background: linear-gradient(145deg, #363636, #2c2c2c);
+    color: #5a9fd4;
+    text-shadow: 0 0 8px rgba(90, 159, 212, 0.3);
+}
+
+.metal-input-frame label {
+    position: absolute;
+    top: 16px;
+    left: 17px;
+    color: #888;
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: linear-gradient(145deg, #323232, #282828);
+    padding: 0 4px;
+    border-radius: 3px;
+}
+
+.metal-input-frame input:focus ~ label,
+.metal-input-frame input:not(:placeholder-shown) ~ label {
+    top: -8px;
+    left: 12px;
+    font-size: 12px;
+    color: #5a9fd4;
+    text-shadow: 0 0 5px rgba(90, 159, 212, 0.5);
+}
+
+/* 输入框反光效果 */
+.input-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 100%);
+    border-radius: 6px 6px 0 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.metal-input-frame:focus-within .input-reflection {
+    opacity: 1;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.flex-input {
+    flex: 1;
+}
+
+.verification-btn {
+    padding: 18px 20px;
+    background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
+    border: 2px solid #555;
+    border-radius: 8px;
+    color: #e0e0e0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.verification-btn:hover {
+    background: linear-gradient(145deg, #525252, #424242);
+    transform: translateY(-1px);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.verification-btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.4),
+        inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* 金属复选框 */
+.metal-checkbox {
+    display: flex;
+    align-items: center;
+    color: #ccc;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.metal-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border: 2px solid #3a3a3a;
+    border-radius: 3px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.4),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.metal-checkbox input:checked ~ .checkmark {
+    background: linear-gradient(145deg, #5a9fd4, #4a8fc4);
+    border-color: #5a9fd4;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(90, 159, 212, 0.3);
+}
+
+.check-metal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(45deg, #ffffff, #e0e0e0);
+    border-radius: 1px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.metal-checkbox input:checked ~ .checkmark .check-metal {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.forgot-link {
+    color: #5a9fd4;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #7bb3d9;
+    text-shadow: 0 0 5px rgba(90, 159, 212, 0.3);
+}
+
+/* 金属提交按钮 */
+.metal-submit-btn {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.btn-surface {
+    position: relative;
+    padding: 16px;
+    background: linear-gradient(145deg, #5a9fd4, #4a8fc4);
+    border: 2px solid #6aa9d9;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 12px rgba(90, 159, 212, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.metal-submit-btn:hover .btn-surface {
+    background: linear-gradient(145deg, #6aa9d9, #5a99c9);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(90, 159, 212, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.metal-submit-btn:active .btn-surface {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 6px rgba(90, 159, 212, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+/* 按钮反光效果 */
+.btn-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 100%);
+    border-radius: 8px 8px 0 0;
+    pointer-events: none;
+}
+
+/* 表单底部 */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer p {
+    color: #999;
+    font-size: 14px;
+}
+
+.form-footer a {
+    color: #5a9fd4;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.form-footer a:hover {
+    color: #7bb3d9;
+    text-shadow: 0 0 5px rgba(90, 159, 212, 0.3);
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        margin: 20px;
+        max-width: none;
+    }
+    
+    .metal-panel {
+        padding: 30px 25px;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .verification-group {
+        gap: 8px;
+    }
+
+    .verification-group .form-group {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .verification-btn {
+        flex-shrink: 0;
+        padding: 16px 10px;
+        font-size: 12px;
+        min-width: 75px;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+/* 动画性能优化 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>樱花飘落风格 - 登录</title>
+    <link rel="stylesheet" href="../assets/styles/cherry-blossom.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <div class="container">
+        <!-- 樱花背景 -->
+        <div class="sakura-background">
+            <!-- 樱花分支 -->
+            <div class="sakura-branch branch-1">
+                <div class="branch-line"></div>
+                <div class="sakura-flower flower-1">🌸</div>
+                <div class="sakura-flower flower-2">🌸</div>
+                <div class="sakura-flower flower-3">🌸</div>
+            </div>
+            
+            <div class="sakura-branch branch-2">
+                <div class="branch-line"></div>
+                <div class="sakura-flower flower-1">🌸</div>
+                <div class="sakura-flower flower-2">🌸</div>
+            </div>
+            
+            <div class="sakura-branch branch-3">
+                <div class="branch-line"></div>
+                <div class="sakura-flower flower-1">🌸</div>
+                <div class="sakura-flower flower-2">🌸</div>
+                <div class="sakura-flower flower-3">🌸</div>
+                <div class="sakura-flower flower-4">🌸</div>
+            </div>
+            
+            <!-- 飘落的花瓣 -->
+            <div class="falling-petals" id="fallingPetals"></div>
+            
+            <!-- 日式纸灯笼 -->
+            <div class="paper-lantern lantern-1">
+                <div class="lantern-top"></div>
+                <div class="lantern-body"></div>
+                <div class="lantern-bottom"></div>
+                <div class="lantern-cord"></div>
+            </div>
+            
+            <div class="paper-lantern lantern-2">
+                <div class="lantern-top"></div>
+                <div class="lantern-body"></div>
+                <div class="lantern-bottom"></div>
+                <div class="lantern-cord"></div>
+            </div>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="login-container form-container" id="loginForm">
+            <div class="japanese-card">
+                <div class="card-bamboo-border"></div>
+                <div class="card-content">
+                    <h2 class="form-title">
+                        <span class="sakura-icon">🌸</span>
+                        樱花登录
+                    </h2>
+                    <p class="form-subtitle">在花瓣飞舞中，感受宁静之美</p>
+                    
+                    <form class="login-form">
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="text" id="username" placeholder=" " required>
+                                <label for="username">用户名 / 手机号</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="password" id="password" placeholder=" " required>
+                                <label for="password">密码</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="japanese-checkbox">
+                                <input type="checkbox">
+                                <span class="zen-checkmark">
+                                    <div class="check-petal"></div>
+                                </span>
+                                记住我
+                            </label>
+                            <a href="#" class="forgot-link" onclick="showForgotPassword()">忘记密码？</a>
+                        </div>
+                        
+                        <button type="submit" class="sakura-submit-btn">
+                            <div class="btn-wave-bg"></div>
+                            <span class="btn-text">登录</span>
+                            <div class="btn-petal-effect"></div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>还没有账户？ <a href="#" onclick="showRegister()">立即注册</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注册表单 -->
+        <div class="register-container form-container" id="registerForm" style="display: none;">
+            <div class="japanese-card">
+                <div class="card-bamboo-border"></div>
+                <div class="card-content">
+                    <h2 class="form-title">
+                        <span class="sakura-icon">🌺</span>
+                        樱花注册
+                    </h2>
+                    <p class="form-subtitle">在春风中开启您的新旅程</p>
+                    
+                    <form class="register-form">
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="text" id="reg-username" placeholder=" " required>
+                                <label for="reg-username">用户名</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="tel" id="reg-phone" placeholder=" " required>
+                                <label for="reg-phone">手机号</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        <div class="form-group verification-group">
+                            <div class="bamboo-input-container flex-input">
+                                <input type="text" id="reg-verification" placeholder=" " required>
+                                <label for="reg-verification">验证码</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                            <button type="button" class="verification-btn">获取验证码</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="password" id="reg-password" placeholder=" " required>
+                                <label for="reg-password">密码</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="password" id="reg-confirm-password" placeholder=" " required>
+                                <label for="reg-confirm-password">确认密码</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+              
+                        <button type="submit" class="sakura-submit-btn">
+                            <div class="btn-wave-bg"></div>
+                            <span class="btn-text">注册</span>
+                            <div class="btn-petal-effect"></div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>已有账户？ <a href="#" onclick="showLogin()">立即登录</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 忘记密码表单 -->
+        <div class="forgot-container form-container" id="forgotForm" style="display: none;">
+            <div class="japanese-card">
+                <div class="card-bamboo-border"></div>
+                <div class="card-content">
+                    <h2 class="form-title">
+                        <span class="sakura-icon">🌿</span>
+                        密码重置
+                    </h2>
+                    <p class="form-subtitle">让春风带走您的烦恼</p>
+                    
+                    <form class="forgot-form">
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="tel" id="forgot-phone" placeholder=" " required>
+                                <label for="forgot-phone">手机号</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group verification-group">
+                            <div class="bamboo-input-container flex-input">
+                                <input type="text" id="forgot-verification" placeholder=" " required>
+                                <label for="forgot-verification">验证码</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                            <button type="button" class="verification-btn">获取验证码</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="password" id="forgot-new-password" placeholder=" " required>
+                                <label for="forgot-new-password">新密码</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="bamboo-input-container">
+                                <input type="password" id="forgot-confirm-password" placeholder=" " required>
+                                <label for="forgot-confirm-password">确认新密码</label>
+                                <div class="sakura-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="sakura-submit-btn">
+                            <div class="btn-wave-bg"></div>
+                            <span class="btn-text">重置密码</span>
+                            <div class="btn-petal-effect"></div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>想起密码了？ <a href="#" onclick="showLogin()">返回登录</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/cherry-blossom.js"></script>
+</body>
+</html>

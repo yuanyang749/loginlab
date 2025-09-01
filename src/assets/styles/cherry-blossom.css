@@ -1,0 +1,746 @@
+/* 樱花飘落风格 - Cherry Blossom Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', 'MS Gothic', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fef9f3 0%, #fdf2f8 30%, #f9fafb 70%, #f0fdf4 100%);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(254, 249, 243, 0.9);
+    border: 2px solid #fbbf24;
+    border-radius: 25px;
+    color: #92400e;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    box-shadow: 
+        0 8px 25px rgba(251, 191, 36, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.back-button:hover {
+    background: rgba(254, 249, 243, 1);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 35px rgba(251, 191, 36, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* 容器 */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 樱花背景 */
+.sakura-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* 樱花分支 */
+.sakura-branch {
+    position: absolute;
+    transform-origin: center bottom;
+}
+
+.branch-line {
+    width: 4px;
+    background: linear-gradient(180deg, #8b5a3c 0%, #a16841 50%, #8b5a3c 100%);
+    border-radius: 2px;
+    box-shadow: 
+        inset 0 1px 0 rgba(139, 90, 60, 0.8),
+        2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.branch-1 {
+    bottom: 10%;
+    left: 5%;
+    transform: rotate(-25deg);
+}
+
+.branch-1 .branch-line {
+    height: 200px;
+}
+
+.branch-2 {
+    top: 20%;
+    right: 8%;
+    transform: rotate(45deg);
+}
+
+.branch-2 .branch-line {
+    height: 150px;
+}
+
+.branch-3 {
+    top: 30%;
+    left: 15%;
+    transform: rotate(-15deg);
+}
+
+.branch-3 .branch-line {
+    height: 180px;
+}
+
+/* 樱花花朵 */
+.sakura-flower {
+    position: absolute;
+    font-size: 24px;
+    animation: flowerBlossom 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(236, 72, 153, 0.2));
+}
+
+.branch-1 .flower-1 {
+    top: 20px;
+    left: -8px;
+    animation-delay: 0s;
+}
+
+.branch-1 .flower-2 {
+    top: 60px;
+    right: -10px;
+    animation-delay: 1.5s;
+}
+
+.branch-1 .flower-3 {
+    top: 120px;
+    left: -12px;
+    animation-delay: 3s;
+}
+
+.branch-2 .flower-1 {
+    top: 30px;
+    left: -6px;
+    animation-delay: 0.5s;
+}
+
+.branch-2 .flower-2 {
+    top: 80px;
+    right: -8px;
+    animation-delay: 2s;
+}
+
+.branch-3 .flower-1 {
+    top: 15px;
+    right: -10px;
+    animation-delay: 1s;
+}
+
+.branch-3 .flower-2 {
+    top: 50px;
+    left: -8px;
+    animation-delay: 2.5s;
+}
+
+.branch-3 .flower-3 {
+    top: 90px;
+    right: -12px;
+    animation-delay: 4s;
+}
+
+.branch-3 .flower-4 {
+    top: 130px;
+    left: -6px;
+    animation-delay: 5.5s;
+}
+
+@keyframes flowerBlossom {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.1) rotate(5deg);
+        opacity: 1;
+    }
+}
+
+/* 飘落的花瓣 */
+.falling-petals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.falling-petal {
+    position: absolute;
+    font-size: 16px;
+    color: #f8bbd9;
+    animation: petalFall 8s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 日式纸灯笼 */
+.paper-lantern {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    animation: lanternSway 6s ease-in-out infinite;
+}
+
+.lantern-1 {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.lantern-2 {
+    top: 15%;
+    right: 25%;
+    animation-delay: 3s;
+}
+
+.lantern-top {
+    width: 40px;
+    height: 8px;
+    background: linear-gradient(145deg, #8b5a3c, #6d4c41);
+    border-radius: 20px;
+    margin: 0 auto 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lantern-body {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, #fff3e0, #ffccbc);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.lantern-body::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 183, 77, 0.3) 20%, 
+        rgba(255, 183, 77, 0.5) 50%, 
+        rgba(255, 183, 77, 0.3) 80%, 
+        transparent 100%);
+    border-radius: 50%;
+    animation: lanternGlow 4s ease-in-out infinite;
+}
+
+.lantern-bottom {
+    width: 30px;
+    height: 6px;
+    background: linear-gradient(145deg, #8b5a3c, #6d4c41);
+    border-radius: 15px;
+    margin: 2px auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lantern-cord {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(180deg, #8b5a3c, #a16841);
+    margin: 0 auto;
+    border-radius: 1px;
+}
+
+@keyframes lanternSway {
+    0%, 100% {
+        transform: rotate(-2deg);
+    }
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes lanternGlow {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* 表单容器 */
+.form-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+/* 日式卡片 */
+.japanese-card {
+    position: relative;
+    background: rgba(254, 249, 243, 0.95);
+    border-radius: 20px;
+    padding: 3px;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 15px 35px rgba(251, 191, 36, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    animation: cardFloat 8s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(0.3deg);
+    }
+}
+
+/* 竹子边框装饰 */
+.card-bamboo-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(45deg, 
+        rgba(251, 191, 36, 0.3) 0%, 
+        transparent 25%, 
+        transparent 75%, 
+        rgba(251, 191, 36, 0.3) 100%);
+    animation: bambooGrow 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes bambooGrow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* 卡片内容 */
+.card-content {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 17px;
+    padding: 40px 35px;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+/* 表单标题 */
+.form-title {
+    text-align: center;
+    color: #92400e;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-shadow: 0 2px 4px rgba(146, 64, 14, 0.1);
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+}
+
+.sakura-icon {
+    font-size: 32px;
+    animation: sakuraFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(236, 72, 153, 0.2));
+}
+
+@keyframes sakuraFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(3deg);
+    }
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #a78bfa;
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-style: italic;
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* 竹子风格输入容器 */
+.bamboo-input-container {
+    position: relative;
+    border-radius: 12px;
+    background: rgba(254, 249, 243, 0.7);
+    border: 2px solid rgba(251, 191, 36, 0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.bamboo-input-container:focus-within {
+    background: rgba(254, 249, 243, 0.9);
+    border-color: rgba(251, 191, 36, 0.6);
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+.bamboo-input-container input {
+    width: 100%;
+    padding: 18px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    color: #92400e;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.bamboo-input-container input::placeholder {
+    color: transparent;
+}
+
+.bamboo-input-container label {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    color: rgba(146, 64, 14, 0.7);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: rgba(254, 249, 243, 0.9);
+    padding: 0 8px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.bamboo-input-container input:focus ~ label,
+.bamboo-input-container input:not(:placeholder-shown) ~ label {
+    top: 0px;
+    left: 15px;
+    font-size: 12px;
+    color: #92400e;
+    /* background: rgba(251, 191, 36, 0.2); */
+}
+
+/* 樱花下划线效果 */
+.sakura-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(236, 72, 153, 0.8) 0%, 
+        rgba(251, 191, 36, 0.8) 50%, 
+        rgba(236, 72, 153, 0.8) 100%);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+    border-radius: 0 0 12px 12px;
+}
+
+.bamboo-input-container:focus-within .sakura-underline {
+    transform: scaleX(1);
+    animation: sakuraFlow 2s linear infinite;
+}
+
+@keyframes sakuraFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.flex-input {
+    flex: 1;
+}
+
+.verification-btn {
+    padding: 18px 20px;
+    background: rgba(251, 191, 36, 0.2);
+    border: 2px solid rgba(251, 191, 36, 0.4);
+    border-radius: 12px;
+    color: #92400e;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+.verification-btn:hover {
+    background: rgba(251, 191, 36, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.2);
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* 日式复选框 */
+.japanese-checkbox {
+    display: flex;
+    align-items: center;
+    color: #92400e;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.japanese-checkbox input {
+    display: none;
+}
+
+.zen-checkmark {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: rgba(254, 249, 243, 0.8);
+    border: 2px solid rgba(251, 191, 36, 0.4);
+    border-radius: 50%;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.japanese-checkbox input:checked ~ .zen-checkmark {
+    background: rgba(251, 191, 36, 0.3);
+    border-color: rgba(251, 191, 36, 0.8);
+}
+
+.check-petal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #ec4899, #f59e0b);
+    border-radius: 50% 0 50% 0;
+    transform: translate(-50%, -50%) scale(0) rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+.japanese-checkbox input:checked ~ .zen-checkmark .check-petal {
+    transform: translate(-50%, -50%) scale(1) rotate(45deg);
+}
+
+.forgot-link {
+    color: #a78bfa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #8b5cf6;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+/* 樱花提交按钮 */
+.sakura-submit-btn {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.btn-wave-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(251, 191, 36, 0.8) 0%, 
+        rgba(236, 72, 153, 0.8) 50%, 
+        rgba(167, 139, 250, 0.8) 100%);
+    transition: all 0.3s ease;
+    animation: waveFlow 6s ease-in-out infinite;
+}
+
+@keyframes waveFlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.sakura-submit-btn:hover .btn-wave-bg {
+    filter: brightness(1.1);
+    animation-duration: 3s;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 18px;
+    display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 按钮花瓣效果 */
+.btn-petal-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: scale(0);
+    border-radius: 12px;
+    transition: transform 0.6s ease;
+}
+
+.sakura-submit-btn:active .btn-petal-effect {
+    transform: scale(1);
+}
+
+/* 表单底部 */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer p {
+    color: rgba(146, 64, 14, 0.8);
+    font-size: 14px;
+}
+
+.form-footer a {
+    color: #a78bfa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.form-footer a:hover {
+    color: #8b5cf6;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        margin: 20px;
+        max-width: none;
+    }
+    
+    .card-content {
+        padding: 30px 25px;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .verification-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .verification-btn {
+        width: 100%;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .sakura-branch {
+        display: none;
+    }
+    
+    .paper-lantern {
+        transform: scale(0.7);
+    }
+}
+
+/* 动画性能优化 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

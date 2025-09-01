@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 像素复古风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/pixel-retro.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 像素背景 -->
+    <div class="pixel-bg">
+        <div class="pixel-particle"></div>
+        <div class="pixel-particle"></div>
+        <div class="pixel-particle"></div>
+        <div class="pixel-particle"></div>
+        <div class="pixel-particle"></div>
+    </div>
+
+    <!-- 游戏边框 -->
+    <div class="game-border"></div>
+
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="pixel-card">
+            <div class="pixel-corner top-left"></div>
+            <div class="pixel-corner top-right"></div>
+            <div class="pixel-corner bottom-left"></div>
+            <div class="pixel-corner bottom-right"></div>
+
+            <h1 class="form-title">🎮 PIXEL LOGIN</h1>
+
+            <form class="login-form">
+                <div class="form-group">
+                    <label class="form-label">PLAYER NAME:</label>
+                    <input type="text" class="form-input" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">PASSWORD:</label>
+                    <input type="password" class="form-input" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" class="form-button pixel-button">
+                    START GAME
+                </button>
+            </form>
+
+            <div class="form-links">
+                <a href="#" class="link-button" data-action="register">NEW PLAYER</a>
+                <a href="#" class="link-button" data-action="forgot">FORGOT CODE</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="register-container form-container" id="registerForm" style="display: none;">
+        <div class="pixel-card">
+            <div class="pixel-corner top-left"></div>
+            <div class="pixel-corner top-right"></div>
+            <div class="pixel-corner bottom-left"></div>
+            <div class="pixel-corner bottom-right"></div>
+
+            <h1 class="form-title">🎮 NEW PLAYER</h1>
+
+            <form class="register-form">
+                <div class="form-group">
+                    <label class="form-label">PLAYER NAME:</label>
+                    <input type="text" class="form-input" placeholder="Choose your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">EMAIL:</label>
+                    <input type="email" class="form-input" placeholder="Enter email" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">PASSWORD:</label>
+                    <input type="password" class="form-input" placeholder="Create password" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">CONFIRM:</label>
+                    <input type="password" class="form-input" placeholder="Confirm password" required>
+                </div>
+
+                <button type="submit" class="form-button pixel-button">
+                    CREATE PLAYER
+                </button>
+            </form>
+
+            <div class="form-links">
+                <a href="#" class="link-button" data-action="login">BACK TO LOGIN</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="forgot-container form-container" id="forgotForm" style="display: none;">
+        <div class="pixel-card">
+            <div class="pixel-corner top-left"></div>
+            <div class="pixel-corner top-right"></div>
+            <div class="pixel-corner bottom-left"></div>
+            <div class="pixel-corner bottom-right"></div>
+
+            <h1 class="form-title">🎮 FORGOT CODE</h1>
+
+            <form class="forgot-form">
+                <div class="form-group">
+                    <label class="form-label">EMAIL:</label>
+                    <input type="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+
+                <button type="submit" class="form-button pixel-button">
+                    SEND CODE
+                </button>
+            </form>
+
+            <div class="form-links">
+                <a href="#" class="link-button" data-action="login">BACK TO LOGIN</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音效反馈元素 -->
+    <div class="sound-wave" id="soundWave"></div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/pixel-retro.js"></script>
+</body>
+</html>

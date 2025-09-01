@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 火焰熔岩风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/flame-lava.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 火焰熔岩背景 -->
+    <div class="flame-background">
+        <!-- 火焰粒子容器 -->
+        <div class="flame-particles">
+            <div class="flame-particle"></div>
+            <div class="flame-particle"></div>
+            <div class="flame-particle"></div>
+            <div class="flame-particle"></div>
+            <div class="flame-particle"></div>
+            <div class="flame-particle"></div>
+            <div class="flame-particle"></div>
+            <div class="flame-particle"></div>
+        </div>
+        
+        <!-- 熔岩流动效果 -->
+        <div class="lava-flow">
+            <div class="lava-wave lava-wave1"></div>
+            <div class="lava-wave lava-wave2"></div>
+            <div class="lava-wave lava-wave3"></div>
+        </div>
+        
+        <!-- 发光熔岩球 -->
+        <div class="lava-orbs">
+            <div class="lava-orb"></div>
+            <div class="lava-orb"></div>
+            <div class="lava-orb"></div>
+        </div>
+        
+        <!-- 火花效果容器 -->
+        <div class="sparks-container">
+            <div class="spark"></div>
+            <div class="spark"></div>
+            <div class="spark"></div>
+            <div class="spark"></div>
+            <div class="spark"></div>
+        </div>
+    </div>
+    
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="flame-card">
+            <div class="card-header">
+                <div class="flame-icon">🔥</div>
+                <h2>火焰登录</h2>
+                <p class="subtitle">FLAME LAVA STYLE</p>
+                <div class="flame-divider"></div>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" required>
+                    <label for="username">用户名</label>
+                    <div class="flame-line"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" required>
+                    <label for="password">密码</label>
+                    <div class="flame-line"></div>
+                </div>
+                
+                <button type="submit" class="login-btn flame-btn">
+                    <span class="btn-text">登录</span>
+                    <div class="btn-flame"></div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="toForgotPassword" class="flame-link">忘记密码？</a>
+                    <span class="divider">🔥</span>
+                    <a href="#" id="toRegister" class="flame-link">注册新用户</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="flame-card">
+            <div class="card-header">
+                <div class="flame-icon">🌋</div>
+                <h2>用户注册</h2>
+                <p class="subtitle">JOIN THE FLAME</p>
+                <div class="flame-divider"></div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">用户名</label>
+                    <div class="flame-line"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">手机号码</label>
+                    <div class="flame-line"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">验证码</label>
+                    <div class="flame-line"></div>
+                    <button type="button" class="verify-btn flame-btn-small" id="regSendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">密码</label>
+                    <div class="flame-line"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">确认密码</label>
+                    <div class="flame-line"></div>
+                </div>
+                <button type="submit" class="login-btn flame-btn">
+                    <span class="btn-text">注册</span>
+                    <div class="btn-flame"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLogin" class="flame-link">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="flame-card">
+            <div class="card-header">
+                <div class="flame-icon">⚡</div>
+                <h2>重置密码</h2>
+                <p class="subtitle">RESET PASSWORD</p>
+                <div class="flame-divider"></div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">手机号码</label>
+                    <div class="flame-line"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="verificationCode">验证码</label>
+                    <div class="flame-line"></div>
+                    <button type="button" class="verify-btn flame-btn-small" id="sendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">新密码</label>
+                    <div class="flame-line"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">确认新密码</label>
+                    <div class="flame-line"></div>
+                </div>
+                <button type="submit" class="login-btn flame-btn">
+                    <span class="btn-text">重置密码</span>
+                    <div class="btn-flame"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset" class="flame-link">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/flame-lava.js"></script>
+</body>
+</html>

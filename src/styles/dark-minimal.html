@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌙 深色极简风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/dark-minimal.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 动态网格背景 -->
+    <div class="background">
+        <div class="grid-overlay"></div>
+        <div class="neon-lines">
+            <div class="neon-line horizontal"></div>
+            <div class="neon-line vertical"></div>
+            <div class="neon-line diagonal"></div>
+        </div>
+    </div>
+    
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="dark-card">
+            <div class="card-header">
+                <h2>🌙 系统登录</h2>
+                <p class="subtitle">DARK MINIMAL STYLE</p>
+                <div class="header-line"></div>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" required>
+                    <label for="username">USERNAME</label>
+                    <div class="neon-border"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" required>
+                    <label for="password">PASSWORD</label>
+                    <div class="neon-border"></div>
+                </div>
+                
+                <button type="submit" class="login-btn neon-btn">
+                    <span class="btn-text">LOGIN</span>
+                    <div class="btn-glow"></div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="toForgotPassword" class="neon-link">FORGOT PASSWORD?</a>
+                    <span class="divider">|</span>
+                    <a href="#" id="toRegister" class="neon-link">REGISTER</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="dark-card">
+            <div class="card-header">
+                <h2>🌙 用户注册</h2>
+                <p class="subtitle">CREATE ACCOUNT</p>
+                <div class="header-line"></div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">USERNAME</label>
+                    <div class="neon-border"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">PHONE NUMBER</label>
+                    <div class="neon-border"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">VERIFICATION CODE</label>
+                    <div class="neon-border"></div>
+                    <button type="button" class="verify-btn neon-btn-small" id="regSendCodeBtn">GET CODE</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">PASSWORD</label>
+                    <div class="neon-border"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">CONFIRM PASSWORD</label>
+                    <div class="neon-border"></div>
+                </div>
+                <button type="submit" class="login-btn neon-btn">
+                    <span class="btn-text">REGISTER</span>
+                    <div class="btn-glow"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLogin" class="neon-link">BACK TO LOGIN</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="dark-card">
+            <div class="card-header">
+                <h2>🌙 重置密码</h2>
+                <p class="subtitle">RESET PASSWORD</p>
+                <div class="header-line"></div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">PHONE NUMBER</label>
+                    <div class="neon-border"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="verificationCode">VERIFICATION CODE</label>
+                    <div class="neon-border"></div>
+                    <button type="button" class="verify-btn neon-btn-small" id="sendCodeBtn">GET CODE</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">NEW PASSWORD</label>
+                    <div class="neon-border"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">CONFIRM PASSWORD</label>
+                    <div class="neon-border"></div>
+                </div>
+                <button type="submit" class="login-btn neon-btn">
+                    <span class="btn-text">RESET PASSWORD</span>
+                    <div class="btn-glow"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset" class="neon-link">BACK TO LOGIN</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/dark-minimal.js"></script>
+</body>
+</html>

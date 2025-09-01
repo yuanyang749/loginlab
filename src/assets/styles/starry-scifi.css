@@ -1,0 +1,622 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 2px solid #FFD700;
+    border-radius: 6px;
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.back-button:hover {
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 星空背景 */
+.starry-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+}
+
+.stars-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: starTwinkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(1) {
+    width: 3px;
+    height: 3px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.star:nth-child(2) {
+    width: 2px;
+    height: 2px;
+    top: 30%;
+    left: 80%;
+    animation-delay: 0.5s;
+}
+
+.star:nth-child(3) {
+    width: 4px;
+    height: 4px;
+    top: 60%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(4) {
+    width: 2px;
+    height: 2px;
+    top: 80%;
+    left: 70%;
+    animation-delay: 1.5s;
+}
+
+.star:nth-child(5) {
+    width: 3px;
+    height: 3px;
+    top: 15%;
+    left: 60%;
+    animation-delay: 2s;
+}
+
+.star:nth-child(6) {
+    width: 2px;
+    height: 2px;
+    top: 70%;
+    left: 90%;
+    animation-delay: 2.5s;
+}
+
+.star:nth-child(7) {
+    width: 4px;
+    height: 4px;
+    top: 40%;
+    left: 40%;
+    animation-delay: 3s;
+}
+
+.star:nth-child(8) {
+    width: 2px;
+    height: 2px;
+    top: 90%;
+    left: 30%;
+    animation-delay: 0.8s;
+}
+
+.star:nth-child(9) {
+    width: 3px;
+    height: 3px;
+    top: 10%;
+    left: 90%;
+    animation-delay: 1.8s;
+}
+
+.star:nth-child(10) {
+    width: 2px;
+    height: 2px;
+    top: 50%;
+    left: 5%;
+    animation-delay: 2.8s;
+}
+
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+        box-shadow: 0 0 5px #FFD700;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 15px #FFD700, 0 0 25px #FFD700;
+    }
+}
+
+/* 流星效果 */
+.meteors-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.meteor {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(45deg, #FFD700, transparent);
+    border-radius: 50%;
+    animation: meteorFall 8s linear infinite;
+}
+
+.meteor:nth-child(1) {
+    top: 10%;
+    left: 80%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+}
+
+.meteor:nth-child(2) {
+    top: 30%;
+    left: 60%;
+    animation-delay: 3s;
+    animation-duration: 10s;
+}
+
+.meteor:nth-child(3) {
+    top: 50%;
+    left: 90%;
+    animation-delay: 6s;
+    animation-duration: 7s;
+}
+
+@keyframes meteorFall {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+        box-shadow: 0 0 10px #FFD700;
+    }
+    70% {
+        opacity: 1;
+        box-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700;
+    }
+    100% {
+        transform: translateX(-300px) translateY(300px);
+        opacity: 0;
+    }
+}
+
+/* 星云效果 */
+.nebula {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(75, 0, 130, 0.1) 0%, transparent 50%);
+    animation: nebulaShift 20s ease-in-out infinite;
+}
+
+@keyframes nebulaShift {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* 粒子效果 */
+.particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: particleFloat 15s linear infinite;
+}
+
+.particle:nth-child(1) {
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    left: 40%;
+    animation-delay: 3s;
+}
+
+.particle:nth-child(3) {
+    left: 60%;
+    animation-delay: 6s;
+}
+
+.particle:nth-child(4) {
+    left: 80%;
+    animation-delay: 9s;
+}
+
+.particle:nth-child(5) {
+    left: 10%;
+    animation-delay: 12s;
+}
+
+@keyframes particleFloat {
+    0% {
+        bottom: -10px;
+        opacity: 0;
+        transform: translateX(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+/* 科幻卡片容器 */
+.login-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 20px;
+}
+
+.scifi-card {
+    background: rgba(20, 20, 30, 0.9);
+    backdrop-filter: blur(15px);
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.3),
+        inset 0 0 30px rgba(255, 215, 0, 0.1);
+    animation: cardMaterialize 1s ease-out;
+    position: relative;
+}
+
+.scifi-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #c7b761, #000000, #FFD700);
+    border-radius: 12px;
+    z-index: -1;
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes cardMaterialize {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes borderGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.galaxy-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: galaxySpin 4s linear infinite;
+}
+
+@keyframes galaxySpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.card-header h2 {
+    color: #FFD700;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #FFD700;
+}
+
+.subtitle {
+    color: rgba(255, 215, 0, 0.7);
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.laser-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    margin: 0 auto;
+    animation: laserPulse 2s ease-in-out infinite;
+}
+
+@keyframes laserPulse {
+    0%, 100% { 
+        box-shadow: 0 0 5px #FFD700; 
+        opacity: 0.7; 
+    }
+    50% { 
+        box-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700; 
+        opacity: 1; 
+    }
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input:focus {
+    border-bottom-color: #FFD700;
+    text-shadow: 0 0 5px #FFD700;
+}
+
+.form-group input::placeholder {
+    color: transparent;
+}
+
+.form-group label {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    color: rgba(255, 215, 0, 0.6);
+    font-size: 14px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -5px;
+    font-size: 11px;
+    color: #FFD700;
+    text-shadow: 0 0 5px #FFD700;
+}
+
+.laser-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #FFD700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #FFD700;
+}
+
+.form-group input:focus ~ .laser-line {
+    width: 100%;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn, .scifi-btn-small {
+    padding: 12px 20px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid #FFD700;
+    border-radius: 6px;
+    color: #FFD700;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.verify-btn:hover:not(:disabled), .scifi-btn-small:hover:not(:disabled) {
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.verify-btn:disabled, .scifi-btn-small:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 登录按钮 */
+.login-btn, .scifi-btn {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 2px solid #FFD700;
+    border-radius: 6px;
+    color: #FFD700;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 25px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.login-btn:hover, .scifi-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.5),
+        inset 0 0 20px rgba(255, 215, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover .btn-glow, .scifi-btn:hover .btn-glow {
+    left: 100%;
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.scifi-link {
+    color: rgba(255, 215, 0, 0.7);
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.scifi-link:hover {
+    color: #FFD700;
+    text-shadow: 0 0 10px #FFD700;
+}
+
+.divider {
+    color: rgba(255, 215, 0, 0.4);
+    margin: 0 15px;
+}
+
+/* 隐藏和显示动画 */
+.hidden {
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .scifi-card {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    
+    .back-button {
+        top: 15px;
+        left: 15px;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+    
+    .verification-group {
+        gap: 8px;
+    }
+
+    .verification-group .form-group {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .verify-btn, .scifi-btn-small {
+        flex-shrink: 0;
+        padding: 12px 10px;
+        font-size: 11px;
+        min-width: 75px;
+        letter-spacing: 0.5px;
+    }
+    
+    .galaxy-icon {
+        font-size: 2.5rem;
+    }
+    
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+}

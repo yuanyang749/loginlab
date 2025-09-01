@@ -1,0 +1,624 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #8B0000 0%, #4A0000 50%, #2D0000 100%);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(218, 165, 32, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 25px;
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(218, 165, 32, 0.3);
+}
+
+.back-button:hover {
+    background: rgba(218, 165, 32, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.5);
+}
+
+/* 剧院背景 */
+.theater-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* 舞台帷幕 */
+.curtain {
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background: linear-gradient(90deg, #8B0000 0%, #A0522D 20%, #8B0000 40%, #A0522D 60%, #8B0000 80%, #A0522D 100%);
+    background-size: 20px 100%;
+    z-index: 10;
+    transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.curtain::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        rgba(255, 215, 0, 0.1) 2px,
+        transparent 4px
+    );
+}
+
+.curtain-left {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.curtain-right {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.curtain.open.curtain-left {
+    transform: translateX(-80%);
+}
+
+.curtain.open.curtain-right {
+    transform: translateX(80%);
+}
+
+/* 聚光灯 */
+.spotlight {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 40%, transparent 70%);
+    pointer-events: none;
+    animation: spotlightMove 8s ease-in-out infinite;
+}
+
+.spotlight-1 {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.spotlight-2 {
+    top: 30%;
+    right: 25%;
+    animation-delay: 2s;
+    animation-direction: reverse;
+}
+
+.spotlight-3 {
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 4s;
+}
+
+/* 舞台装饰 */
+.stage-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.ornament {
+    position: absolute;
+    font-size: 24px;
+    color: #FFD700;
+    text-shadow: 0 0 20px #FFD700;
+    animation: ornamentFloat 6s ease-in-out infinite;
+}
+
+.ornament-1 {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.ornament-2 {
+    top: 20%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+.ornament-3 {
+    bottom: 25%;
+    left: 15%;
+    animation-delay: 3s;
+}
+
+.ornament-4 {
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 4.5s;
+}
+
+/* 金色粒子 */
+.golden-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #FFD700 0%, #FFA500 50%, transparent 100%);
+    border-radius: 50%;
+    animation: particleFloat 8s ease-in-out infinite;
+    box-shadow: 0 0 10px #FFD700;
+}
+
+.particle:nth-child(1) { top: 20%; left: 25%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 40%; left: 75%; animation-delay: 1s; }
+.particle:nth-child(3) { top: 60%; left: 15%; animation-delay: 2s; }
+.particle:nth-child(4) { top: 80%; left: 85%; animation-delay: 3s; }
+.particle:nth-child(5) { top: 30%; left: 45%; animation-delay: 4s; }
+.particle:nth-child(6) { top: 70%; left: 65%; animation-delay: 5s; }
+.particle:nth-child(7) { top: 10%; left: 55%; animation-delay: 6s; }
+.particle:nth-child(8) { top: 90%; left: 35%; animation-delay: 7s; }
+
+/* 舞台烟雾 */
+.stage-smoke {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+}
+
+.smoke-cloud {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: smokeRise 10s ease-in-out infinite;
+}
+
+.cloud-1 {
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.cloud-2 {
+    left: 50%;
+    animation-delay: 3s;
+}
+
+.cloud-3 {
+    left: 80%;
+    animation-delay: 6s;
+}
+
+/* 舞台地板 */
+.stage-floor {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(180deg, transparent 0%, rgba(139, 69, 19, 0.3) 50%, rgba(101, 67, 33, 0.5) 100%);
+}
+
+.floor-pattern {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        rgba(255, 215, 0, 0.1) 2px,
+        transparent 4px,
+        transparent 20px
+    );
+}
+
+/* 表单容器 */
+.login-container {
+    position: relative;
+    z-index: 100;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.theater-box {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(74, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border: 3px solid rgba(255, 215, 0, 0.4);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 
+        0 0 50px rgba(255, 215, 0, 0.3),
+        inset 0 0 50px rgba(255, 215, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.theater-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent 0px,
+        rgba(255, 215, 0, 0.05) 1px,
+        transparent 2px,
+        transparent 20px
+    );
+    pointer-events: none;
+}
+
+.theater-box::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+.box-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.theater-lights {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.theater-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.3);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.theater-light.active {
+    background: #FFD700;
+    box-shadow: 0 0 20px #FFD700;
+    animation: theaterLightBlink 3s ease-in-out infinite;
+}
+
+.box-header h2 {
+    color: #FFD700;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    font-family: 'Playfair Display', serif;
+}
+
+.subtitle {
+    color: rgba(255, 215, 0, 0.8);
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    color: #FFD700;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 215, 0, 0.5);
+}
+
+.form-group label {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: rgba(255, 215, 0, 0.7);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -10px;
+    left: 15px;
+    font-size: 12px;
+    color: #FFD700;
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(74, 0, 0, 0.95) 100%);
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.input-spotlight {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.form-group input:focus ~ .input-spotlight {
+    width: 100%;
+    box-shadow: 0 0 15px #FFD700;
+}
+
+/* 按钮样式 */
+.login-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 50%, #FFD700 100%);
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    color: #8B0000;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(135deg, #DAA520 0%, #FFD700 50%, #FFFF99 100%);
+}
+
+.login-btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-curtain {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(139, 0, 0, 0.3) 50%, transparent 100%);
+    transition: left 0.6s ease;
+}
+
+.login-btn:hover .btn-curtain {
+    left: 100%;
+}
+
+.verify-btn {
+    padding: 16px 16px;
+    background: linear-gradient(135deg, #DAA520 0%, #FFD700 100%);
+    border: 1px solid #FFD700;
+    border-radius: 8px;
+    color: #8B0000;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.verify-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+/* 链接样式 */
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.additional-links a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    font-style: italic;
+}
+
+.additional-links a:hover {
+    color: #FFFF99;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    transform: scale(1.05);
+}
+
+.divider {
+    color: rgba(255, 215, 0, 0.5);
+    margin: 0 15px;
+}
+
+/* 隐藏类 */
+.hidden {
+    display: none;
+}
+
+/* 动画关键帧 */
+@keyframes spotlightMove {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    25% { transform: translate(20px, -10px) scale(1.1); opacity: 0.5; }
+    50% { transform: translate(-15px, 15px) scale(0.9); opacity: 0.4; }
+    75% { transform: translate(10px, -20px) scale(1.05); opacity: 0.6; }
+}
+
+@keyframes ornamentFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(5deg); }
+    50% { transform: translateY(-5px) rotate(-3deg); }
+    75% { transform: translateY(-15px) rotate(8deg); }
+}
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+    25% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+    50% { transform: translateY(-10px) scale(0.8); opacity: 0.8; }
+    75% { transform: translateY(-30px) scale(1.1); opacity: 0.9; }
+}
+
+@keyframes smokeRise {
+    0% { transform: translateY(0) scale(1); opacity: 0.1; }
+    50% { transform: translateY(-50px) scale(1.5); opacity: 0.3; }
+    100% { transform: translateY(-100px) scale(2); opacity: 0; }
+}
+
+@keyframes theaterLightBlink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.9); }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%;
+        padding: 0 10px;
+    }
+    
+    .theater-box {
+        padding: 20px;
+    }
+    
+    .box-header h2 {
+        font-size: 22px;
+    }
+    
+    .form-group input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+        top: 12px;
+        left: 15px;
+    }
+    
+    .login-btn {
+        padding: 14px;
+        font-size: 14px;
+    }
+    
+    .spotlight {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .ornament {
+        font-size: 18px;
+    }
+    .verify-btn {
+        padding: 12px 15px;
+        font-size: 12px;
+        min-width: 75px;
+    }
+}
+
+@media (max-width: 320px) {
+    .theater-box {
+        padding: 15px;
+    }
+    
+    .verification-group {
+        gap: 8px;
+    }
+
+    .verify-btn {
+        padding: 10px 12px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+    
+    .theater-lights {
+        gap: 10px;
+    }
+    
+    .theater-light {
+        width: 10px;
+        height: 10px;
+    }
+}

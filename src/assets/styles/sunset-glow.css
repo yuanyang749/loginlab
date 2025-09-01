@@ -1,0 +1,574 @@
+/* 日落余晖风格 - Sunset Glow Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 126, 95, 0.3);
+    border-radius: 25px;
+    color: #ff7e5f;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(255, 126, 95, 0.2);
+}
+
+.back-button:hover {
+    background: rgba(255, 126, 95, 0.1);
+    border-color: #ff7e5f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 126, 95, 0.3);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 背景渐变 - 日落色调 */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 25%, #ff7979 50%, #ff6348 75%, #ee5a6f 100%);
+    overflow: hidden;
+}
+
+/* 太阳动画 */
+.sun {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #ffeb3b 0%, #ff9800 70%);
+    border-radius: 50%;
+    top: 20%;
+    right: 10%;
+    box-shadow: 0 0 100px rgba(255, 235, 59, 0.8);
+    animation: sunGlow 4s ease-in-out infinite;
+}
+
+@keyframes sunGlow {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 100px rgba(255, 235, 59, 0.8);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 150px rgba(255, 235, 59, 1);
+    }
+}
+
+/* 云朵动画 */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 100px;
+    opacity: 0.8;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 100px;
+}
+
+.cloud1 {
+    width: 100px;
+    height: 40px;
+    top: 15%;
+    left: 20%;
+    animation: float 20s infinite;
+}
+
+.cloud1::before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+}
+
+.cloud1::after {
+    width: 60px;
+    height: 40px;
+    top: -15px;
+    right: 10px;
+}
+
+.cloud2 {
+    width: 80px;
+    height: 35px;
+    top: 25%;
+    left: 60%;
+    animation: float 25s infinite;
+}
+
+.cloud2::before {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 15px;
+}
+
+.cloud2::after {
+    width: 50px;
+    height: 35px;
+    top: -10px;
+    right: 15px;
+}
+
+.cloud3 {
+    width: 90px;
+    height: 30px;
+    top: 40%;
+    left: 10%;
+    animation: float 30s infinite;
+}
+
+.cloud4 {
+    width: 70px;
+    height: 25px;
+    top: 60%;
+    right: 20%;
+    animation: float 22s infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(20px) translateY(-10px);
+    }
+    50% {
+        transform: translateX(-10px) translateY(5px);
+    }
+    75% {
+        transform: translateX(15px) translateY(-5px);
+    }
+}
+
+/* 飞鸟动画 */
+.bird {
+    position: absolute;
+    font-size: 20px;
+    animation: fly 15s linear infinite;
+}
+
+.bird1 {
+    top: 30%;
+    animation-delay: 0s;
+}
+
+.bird2 {
+    top: 50%;
+    animation-delay: 7s;
+}
+
+.bird::before {
+    content: '🦅';
+}
+
+@keyframes fly {
+    0% {
+        left: -50px;
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-20px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    75% {
+        transform: translateY(-15px);
+    }
+    100% {
+        left: calc(100% + 50px);
+        transform: translateY(0);
+    }
+}
+
+/* 登录容器样式 */
+.login-container,
+.register-container,
+.forgot-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+    display: block;
+    animation: slideIn 0.5s ease-out;
+}
+
+.login-container.hidden,
+.register-container.hidden,
+.forgot-container.hidden {
+    display: none;
+}
+
+.login-container.active,
+.register-container.active,
+.forgot-container.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 表单标题 */
+.form-title {
+    text-align: center;
+    color: #ff6348;
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sunset-icon {
+    font-size: 32px;
+    animation: iconBounce 2s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+/* 表单组 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    outline: none;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.form-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 16px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.input-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #ff6348, #ffa502);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.form-group input:focus ~ .input-line,
+.form-group input:not(:placeholder-shown) ~ .input-line {
+    transform: scaleX(1);
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+    transform: translateY(-25px);
+    font-size: 12px;
+    color: #ff6348;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.send-code-btn {
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #ff6348, #ffa502);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.3s;
+}
+
+.send-code-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 99, 72, 0.4);
+}
+
+.send-code-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+}
+
+.remember-me input {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ff6348;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.remember-me input:checked ~ .checkmark {
+    background: linear-gradient(135deg, #ff6348, #ffa502);
+}
+
+.remember-me input:checked ~ .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+.forgot-password {
+    color: #ff6348;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: #ffa502;
+}
+
+/* 提交按钮 */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff6348, #ffa502);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 99, 72, 0.4);
+}
+
+.btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s;
+}
+
+.submit-btn:hover .btn-glow {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+/* 分隔线 */
+.divider {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #ddd;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    color: #999;
+    padding: 0 15px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* 社交登录 */
+.social-login {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 10px;
+    background: white;
+    border: 2px solid #ff6348;
+    border-radius: 10px;
+    color: #ff6348;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.social-btn:hover {
+    background: linear-gradient(135deg, #ff6348, #ffa502);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+/* 切换表单 */
+.switch-form {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.switch-form a {
+    color: #ff6348;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.switch-form a:hover {
+    color: #ffa502;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .login-container,
+    .register-container,
+    .forgot-container {
+        padding: 30px 25px;
+        width: 95%;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .sun {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .cloud {
+        transform: scale(0.8);
+    }
+}

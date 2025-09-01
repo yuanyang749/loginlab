@@ -1,0 +1,699 @@
+/* 流体艺术风格 - Fluid Art Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* 容器 */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 流体背景 */
+.fluid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* 动态流体层 */
+.fluid-layer {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    border-radius: 50%;
+    animation: fluidMove 20s ease-in-out infinite;
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+}
+
+.layer-1 {
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+    animation-duration: 25s;
+    animation-delay: 0s;
+}
+
+.layer-2 {
+    background: radial-gradient(circle, rgba(118, 75, 162, 0.5) 0%, transparent 70%);
+    top: -20%;
+    right: -15%;
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.layer-3 {
+    background: radial-gradient(circle, rgba(240, 147, 251, 0.4) 0%, transparent 70%);
+    bottom: -15%;
+    left: -5%;
+    animation-duration: 35s;
+    animation-delay: -10s;
+}
+
+.layer-4 {
+    background: radial-gradient(circle, rgba(255, 154, 158, 0.3) 0%, transparent 70%);
+    bottom: -20%;
+    right: -10%;
+    animation-duration: 28s;
+    animation-delay: -15s;
+}
+
+@keyframes fluidMove {
+    0%, 100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+        transform: translate(-5%, 5%) scale(1.1) rotate(90deg);
+    }
+    50% {
+        transform: translate(5%, -5%) scale(0.9) rotate(180deg);
+    }
+    75% {
+        transform: translate(-3%, -3%) scale(1.05) rotate(270deg);
+    }
+}
+
+/* 流体气泡 */
+.fluid-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+    animation: bubbleFloat 15s ease-in-out infinite;
+    mix-blend-mode: overlay;
+}
+
+.bubble-1 {
+    width: 60px;
+    height: 60px;
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.bubble-2 {
+    width: 40px;
+    height: 40px;
+    top: 60%;
+    right: 20%;
+    animation-delay: 3s;
+}
+
+.bubble-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 25%;
+    left: 25%;
+    animation-delay: 6s;
+}
+
+.bubble-4 {
+    width: 35px;
+    height: 35px;
+    top: 40%;
+    left: 70%;
+    animation-delay: 9s;
+}
+
+.bubble-5 {
+    width: 50px;
+    height: 50px;
+    bottom: 40%;
+    right: 15%;
+    animation-delay: 12s;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-30px) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* 流体波纹 */
+.fluid-ripple {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: rippleExpand 8s ease-out infinite;
+}
+
+.ripple-1 {
+    width: 200px;
+    height: 200px;
+    top: 30%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.ripple-2 {
+    width: 150px;
+    height: 150px;
+    bottom: 30%;
+    right: 25%;
+    animation-delay: 2.7s;
+}
+
+.ripple-3 {
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 5.4s;
+}
+
+@keyframes rippleExpand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* 流体粒子系统 */
+.fluid-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.fluid-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: particleDrift 12s linear infinite;
+}
+
+@keyframes particleDrift {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(-10vh) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20vh) scale(0);
+    }
+}
+
+/* 表单容器 */
+.form-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+/* 流体卡片 */
+.fluid-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 3px;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: cardFloat 6s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(0.5deg);
+    }
+}
+
+/* 液体边框 */
+.card-liquid-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 25px;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 25%, 
+        transparent 75%, 
+        rgba(255, 255, 255, 0.3) 100%);
+    animation: liquidBorderFlow 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes liquidBorderFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* 卡片内容 */
+.card-content {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 22px;
+    padding: 40px 35px;
+    position: relative;
+    backdrop-filter: blur(15px);
+}
+
+/* 表单标题 */
+.form-title {
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.fluid-icon {
+    font-size: 32px;
+    animation: fluidIconFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes fluidIconFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(5deg);
+    }
+}
+
+.form-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* 液体输入容器 */
+.liquid-input-container {
+    position: relative;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.liquid-input-container:focus-within {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.liquid-input-container input {
+    width: 100%;
+    padding: 18px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.liquid-input-container input::placeholder {
+    color: transparent;
+}
+
+.liquid-input-container label {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    /* background: rgba(255, 255, 255, 0.1); */
+    padding: 0 8px;
+    border-radius: 8px;
+    /* backdrop-filter: blur(10px); */
+}
+
+.liquid-input-container input:focus ~ label,
+.liquid-input-container input:not(:placeholder-shown) ~ label {
+    top: 0px;
+    left: 15px;
+    font-size: 12px;
+    color: white;
+    /* background: rgba(255, 255, 255, 0.2); */
+}
+
+/* 液体波浪效果 */
+.liquid-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(102, 126, 234, 0.8) 50%, 
+        rgba(255, 255, 255, 0.8) 100%);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+    border-radius: 0 0 15px 15px;
+}
+
+.liquid-input-container:focus-within .liquid-wave {
+    transform: scaleX(1);
+    animation: liquidWaveFlow 2s linear infinite;
+}
+
+@keyframes liquidWaveFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.flex-input {
+    flex: 1;
+}
+
+.verification-btn {
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+.verification-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* 流体复选框 */
+.fluid-checkbox {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.fluid-checkbox input {
+    display: none;
+}
+
+.liquid-checkmark {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.fluid-checkbox input:checked ~ .liquid-checkmark {
+    background: rgba(102, 126, 234, 0.6);
+    border-color: rgba(102, 126, 234, 0.8);
+}
+
+.check-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+}
+
+.fluid-checkbox input:checked ~ .liquid-checkmark .check-ripple {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.forgot-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* 流体提交按钮 */
+.fluid-submit-btn {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.btn-liquid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.8) 0%, 
+        rgba(118, 75, 162, 0.8) 50%, 
+        rgba(240, 147, 251, 0.8) 100%);
+    transition: all 0.3s ease;
+    animation: liquidBgFlow 6s ease-in-out infinite;
+}
+
+@keyframes liquidBgFlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.fluid-submit-btn:hover .btn-liquid-bg {
+    filter: brightness(1.2);
+    animation-duration: 3s;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 18px;
+    display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 按钮波纹效果 */
+.btn-ripple-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: scale(0);
+    border-radius: 15px;
+    transition: transform 0.6s ease;
+}
+
+.fluid-submit-btn:active .btn-ripple-effect {
+    transform: scale(1);
+}
+
+/* 表单底部 */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+.form-footer a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.form-footer a:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        margin: 20px;
+        max-width: none;
+    }
+    
+    .card-content {
+        padding: 30px 25px;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .verification-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .verification-btn {
+        width: 100%;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+/* 动画性能优化 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,378 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #0a0a0a;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    border-radius: 25px;
+    color: #00ffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.back-button:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 霓虹背景 */
+.neon-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.neon-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #ff00ff, transparent);
+    animation: neonFlow 4s ease-in-out infinite;
+}
+
+.line-1 {
+    width: 2px;
+    height: 100vh;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.line-2 {
+    width: 100vw;
+    height: 2px;
+    top: 30%;
+    animation-delay: 1.5s;
+}
+
+.line-3 {
+    width: 2px;
+    height: 100vh;
+    right: 25%;
+    animation-delay: 3s;
+}
+
+.neon-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00ffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ffff;
+    animation: particleFloat 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 1.2s; }
+.particle:nth-child(3) { top: 80%; left: 30%; animation-delay: 2.4s; }
+.particle:nth-child(4) { top: 40%; left: 70%; animation-delay: 3.6s; }
+.particle:nth-child(5) { top: 10%; left: 60%; animation-delay: 4.8s; }
+
+@keyframes neonFlow {
+    0%, 100% { opacity: 0.3; box-shadow: 0 0 5px currentColor; }
+    50% { opacity: 1; box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; }
+}
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+}
+
+/* 表单容器 */
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    transition: all 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.neon-card {
+    background: rgba(10, 10, 10, 0.9);
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.3),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.neon-card:hover {
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.5),
+        inset 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+.neon-card h2 {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 32px;
+    color: #ff00ff;
+    font-size: 14px;
+    font-weight: 400;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 16px 12px;
+    border: none;
+    background: rgba(0, 255, 255, 0.05);
+    font-size: 16px;
+    color: #ffffff;
+    outline: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+.form-group input:focus {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.form-group label {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    color: #888888;
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: 2px;
+    left: 8px;
+    font-size: 12px;
+    color: #00ffff;
+    background: #0a0a0a;
+    padding: 0 4px;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.neon-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus ~ .neon-border {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 16px 20px;
+    background: rgba(255, 0, 255, 0.2);
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    color: #ff00ff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+.verify-btn:hover {
+    background: rgba(255, 0, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+/* 霓虹按钮 */
+.neon-btn {
+    width: 100%;
+    padding: 16px;
+    margin: 32px 0 24px 0;
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.neon-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.5),
+        0 0 40px rgba(255, 0, 255, 0.3);
+}
+
+.neon-glow-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.5s ease;
+}
+
+.neon-btn:hover .neon-glow-effect {
+    left: 100%;
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    font-size: 14px;
+}
+
+.additional-links a {
+    color: #00ffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.additional-links a:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+.divider {
+    margin: 0 12px;
+    color: #666666;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 16px;
+    }
+    
+    .neon-card {
+        padding: 24px;
+    }
+    
+    .neon-card h2 {
+        font-size: 24px;
+    }
+    
+    .back-button {
+        top: 16px;
+        left: 16px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .neon-line {
+        display: none;
+    }
+}
+
+/* 加载动画 */
+@keyframes neonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.neon-card {
+    animation: neonFadeIn 0.8s ease-out;
+}

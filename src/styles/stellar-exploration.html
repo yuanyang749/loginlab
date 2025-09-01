@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 星际探索风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/stellar-exploration.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 星际背景 -->
+    <div class="stellar-background">
+        <!-- 星系 -->
+        <div class="galaxy galaxy-1">
+            <div class="galaxy-core"></div>
+            <div class="galaxy-arm arm-1"></div>
+            <div class="galaxy-arm arm-2"></div>
+            <div class="galaxy-arm arm-3"></div>
+        </div>
+        <div class="galaxy galaxy-2">
+            <div class="galaxy-core"></div>
+            <div class="galaxy-arm arm-1"></div>
+            <div class="galaxy-arm arm-2"></div>
+        </div>
+        
+        <!-- 行星轨道 -->
+        <div class="planet-orbit orbit-1">
+            <div class="planet planet-1"></div>
+        </div>
+        <div class="planet-orbit orbit-2">
+            <div class="planet planet-2"></div>
+        </div>
+        <div class="planet-orbit orbit-3">
+            <div class="planet planet-3"></div>
+        </div>
+        
+        <!-- 星星 -->
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+        
+        <!-- 流星 -->
+        <div class="meteors">
+            <div class="meteor"></div>
+            <div class="meteor"></div>
+            <div class="meteor"></div>
+        </div>
+        
+        <!-- 太空尘埃 -->
+        <div class="space-dust">
+            <div class="dust-particle"></div>
+            <div class="dust-particle"></div>
+            <div class="dust-particle"></div>
+            <div class="dust-particle"></div>
+            <div class="dust-particle"></div>
+        </div>
+    </div>
+    
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="space-capsule">
+            <div class="capsule-header">
+                <div class="status-lights">
+                    <div class="status-light active"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <h2>🌌 星际控制台</h2>
+                <p class="subtitle">深空探索登录系统</p>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" required>
+                    <label for="username">探索者代号</label>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" required>
+                    <label for="password">访问密钥</label>
+                    
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>启动探索</span>
+                    <div class="btn-energy"></div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="toForgotPassword">重置密钥？</a>
+                    <span class="divider">|</span>
+                    <a href="#" id="toRegister">注册探索者</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="space-capsule">
+            <div class="capsule-header">
+                <div class="status-lights">
+                    <div class="status-light"></div>
+                    <div class="status-light active"></div>
+                    <div class="status-light"></div>
+                </div>
+                <h2>🌌 探索者注册</h2>
+                <p class="subtitle">加入星际探索计划</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">探索者代号</label>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">通讯频道</label>
+                    
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">验证码</label>
+                    
+                    <button type="button" class="verify-btn" id="regSendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">访问密钥</label>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">确认密钥</label>
+                    
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>注册探索者</span>
+                    <div class="btn-energy"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLogin">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="space-capsule">
+            <div class="capsule-header">
+                <div class="status-lights">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light active"></div>
+                </div>
+                <h2>🌌 密钥重置</h2>
+                <p class="subtitle">恢复探索者访问权限</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">通讯频道</label>
+                    
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="verificationCode">验证码</label>
+                    
+                    <button type="button" class="verify-btn" id="sendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">新访问密钥</label>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">确认新密钥</label>
+                    
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>重置密钥</span>
+                    <div class="btn-energy"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/stellar-exploration.js"></script>
+</body>
+</html>

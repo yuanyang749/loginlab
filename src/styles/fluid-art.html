@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流体艺术风格 - 登录</title>
+    <link rel="stylesheet" href="../assets/styles/fluid-art.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <div class="container">
+        <!-- 流体背景 -->
+        <div class="fluid-background">
+            <!-- 动态流体层 -->
+            <div class="fluid-layer layer-1"></div>
+            <div class="fluid-layer layer-2"></div>
+            <div class="fluid-layer layer-3"></div>
+            <div class="fluid-layer layer-4"></div>
+            
+            <!-- 流体气泡 -->
+            <div class="fluid-bubble bubble-1"></div>
+            <div class="fluid-bubble bubble-2"></div>
+            <div class="fluid-bubble bubble-3"></div>
+            <div class="fluid-bubble bubble-4"></div>
+            <div class="fluid-bubble bubble-5"></div>
+            
+            <!-- 流体波纹 -->
+            <div class="fluid-ripple ripple-1"></div>
+            <div class="fluid-ripple ripple-2"></div>
+            <div class="fluid-ripple ripple-3"></div>
+            
+            <!-- 流体粒子系统 -->
+            <div class="fluid-particles" id="fluidParticles"></div>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="login-container form-container" id="loginForm">
+            <div class="fluid-card">
+                <div class="card-liquid-border"></div>
+                <div class="card-content">
+                    <h2 class="form-title">
+                        <span class="fluid-icon">🌊</span>
+                        流体登录
+                    </h2>
+                    <p class="form-subtitle">在艺术的流动中，开启您的旅程</p>
+                    
+                    <form class="login-form">
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="text" id="username" placeholder=" " required>
+                                <label for="username">用户名 / 手机号</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="password" id="password" placeholder=" " required>
+                                <label for="password">密码</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="fluid-checkbox">
+                                <input type="checkbox">
+                                <span class="liquid-checkmark">
+                                    <div class="check-ripple"></div>
+                                </span>
+                                记住我
+                            </label>
+                            <a href="#" class="forgot-link" onclick="showForgotPassword()">忘记密码？</a>
+                        </div>
+                        
+                        <button type="submit" class="fluid-submit-btn">
+                            <div class="btn-liquid-bg"></div>
+                            <span class="btn-text">登录</span>
+                            <div class="btn-ripple-effect"></div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>还没有账户？ <a href="#" onclick="showRegister()">立即注册</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注册表单 -->
+        <div class="register-container form-container" id="registerForm" style="display: none;">
+            <div class="fluid-card">
+                <div class="card-liquid-border"></div>
+                <div class="card-content">
+                    <h2 class="form-title">
+                        <span class="fluid-icon">💧</span>
+                        流体注册
+                    </h2>
+                    <p class="form-subtitle">在色彩的涌动中创建您的账户</p>
+                    
+                    <form class="register-form">
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="text" id="reg-username" placeholder=" " required>
+                                <label for="reg-username">用户名</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="tel" id="reg-phone" placeholder=" " required>
+                                <label for="reg-phone">手机号</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        <div class="form-group verification-group">
+                            <div class="liquid-input-container flex-input">
+                                <input type="text" id="reg-verification" placeholder=" " required>
+                                <label for="reg-verification">验证码</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                            <button type="button" class="verification-btn">获取验证码</button>
+                        </div>
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="password" id="reg-password" placeholder=" " required>
+                                <label for="reg-password">密码</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="password" id="reg-confirm-password" placeholder=" " required>
+                                <label for="reg-confirm-password">确认密码</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="fluid-submit-btn">
+                            <div class="btn-liquid-bg"></div>
+                            <span class="btn-text">注册</span>
+                            <div class="btn-ripple-effect"></div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>已有账户？ <a href="#" onclick="showLogin()">立即登录</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 忘记密码表单 -->
+        <div class="forgot-container form-container" id="forgotForm" style="display: none;">
+            <div class="fluid-card">
+                <div class="card-liquid-border"></div>
+                <div class="card-content">
+                    <h2 class="form-title">
+                        <span class="fluid-icon">🌀</span>
+                        密码重置
+                    </h2>
+                    <p class="form-subtitle">让流体带走您的困扰</p>
+                    
+                    <form class="forgot-form">
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="tel" id="forgot-phone" placeholder=" " required>
+                                <label for="forgot-phone">手机号</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group verification-group">
+                            <div class="liquid-input-container flex-input">
+                                <input type="text" id="forgot-verification" placeholder=" " required>
+                                <label for="forgot-verification">验证码</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                            <button type="button" class="verification-btn">获取验证码</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="password" id="forgot-new-password" placeholder=" " required>
+                                <label for="forgot-new-password">新密码</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="liquid-input-container">
+                                <input type="password" id="forgot-confirm-password" placeholder=" " required>
+                                <label for="forgot-confirm-password">确认新密码</label>
+                                <div class="liquid-wave"></div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="fluid-submit-btn">
+                            <div class="btn-liquid-bg"></div>
+                            <span class="btn-text">重置密码</span>
+                            <div class="btn-ripple-effect"></div>
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>想起密码了？ <a href="#" onclick="showLogin()">返回登录</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/fluid-art.js"></script>
+</body>
+</html>

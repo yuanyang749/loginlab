@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0a0a0a;
+    color: #00ffff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    border-radius: 4px;
+    color: #00ffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.back-button:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 动态背景 */
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.grid-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.neon-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.neon-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    opacity: 0.3;
+}
+
+.neon-line.horizontal {
+    width: 100%;
+    height: 2px;
+    top: 30%;
+    animation: lineGlow 4s ease-in-out infinite;
+}
+
+.neon-line.vertical {
+    width: 2px;
+    height: 100%;
+    left: 70%;
+    animation: lineGlow 4s ease-in-out infinite 1s;
+}
+
+.neon-line.diagonal {
+    width: 200px;
+    height: 2px;
+    top: 60%;
+    left: 20%;
+    transform: rotate(45deg);
+    animation: lineGlow 4s ease-in-out infinite 2s;
+}
+
+@keyframes lineGlow {
+    0%, 100% { opacity: 0.1; box-shadow: 0 0 5px #00ffff; }
+    50% { opacity: 0.8; box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff; }
+}
+
+/* 深色卡片容器 */
+.login-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 20px;
+}
+
+.dark-card {
+    background: rgba(20, 20, 20, 0.9);
+    border: 2px solid #00ffff;
+    border-radius: 8px;
+    padding: 40px 30px;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.3),
+        inset 0 0 30px rgba(0, 255, 255, 0.1);
+    animation: cardGlow 3s ease-in-out infinite alternate;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes cardGlow {
+    0% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(0, 255, 255, 0.1); }
+    100% { box-shadow: 0 0 50px rgba(0, 255, 255, 0.5), inset 0 0 50px rgba(0, 255, 255, 0.2); }
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-header h2 {
+    color: #00ffff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.subtitle {
+    color: rgba(0, 255, 255, 0.7);
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.header-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    margin: 0 auto;
+    animation: lineGlow 2s ease-in-out infinite;
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    color: #00ffff;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input:focus {
+    border-bottom-color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.form-group input::placeholder {
+    color: transparent;
+}
+
+.form-group label {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    color: rgba(0, 255, 255, 0.6);
+    font-size: 14px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -5px;
+    font-size: 11px;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.neon-border {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #00ffff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #00ffff;
+}
+
+.form-group input:focus ~ .neon-border {
+    width: 100%;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn, .neon-btn-small {
+    padding: 12px 20px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    border-radius: 4px;
+    color: #00ffff;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.verify-btn:hover:not(:disabled), .neon-btn-small:hover:not(:disabled) {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.verify-btn:disabled, .neon-btn-small:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 登录按钮 */
+.login-btn, .neon-btn {
+    width: 100%;
+    padding: 15px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #00ffff;
+    border-radius: 4px;
+    color: #00ffff;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 25px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.login-btn:hover, .neon-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.5),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover .btn-glow, .neon-btn:hover .btn-glow {
+    left: 100%;
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.neon-link {
+    color: rgba(0, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.neon-link:hover {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.divider {
+    color: rgba(0, 255, 255, 0.4);
+    margin: 0 15px;
+}
+
+/* 隐藏和显示动画 */
+.hidden {
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .dark-card {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    
+    .back-button {
+        top: 15px;
+        left: 15px;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+    
+    .verification-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .verify-btn, .neon-btn-small {
+        width: 100%;
+    }
+    
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+}

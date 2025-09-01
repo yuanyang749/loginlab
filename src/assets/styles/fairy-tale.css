@@ -1,0 +1,1353 @@
+/* 梦幻童话王国登录页面样式 */
+
+/* 基础重置和根设置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-purple: #8A2BE2;
+    --primary-pink: #FF69B4;
+    --primary-gold: #FFD700;
+    --primary-cyan: #00FFFF;
+    --primary-emerald: #50C878;
+    --dark-purple: #4B0082;
+    --light-purple: #DDA0DD;
+    --magic-glow: rgba(255, 215, 0, 0.8);
+    --fairy-shadow: rgba(138, 43, 226, 0.4);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --font-fairy: 'Kalam', 'Comic Sans MS', cursive;
+}
+
+body {
+    font-family: var(--font-fairy);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #1a0033 0%,
+        #2d1b69 25%,
+        #0f3460 50%,
+        #16537e 75%,
+        #1a0033 100%
+    );
+    color: var(--primary-purple);
+    animation: backgroundShift 30s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% {
+        background: linear-gradient(135deg, #1a0033 0%, #2d1b69 25%, #0f3460 50%, #16537e 75%, #1a0033 100%);
+    }
+    50% {
+        background: linear-gradient(135deg, #2d1b69 0%, #1a0033 25%, #16537e 50%, #0f3460 75%, #2d1b69 100%);
+    }
+}
+
+/* 星空背景 */
+.starry-sky {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+    border-radius: 50%;
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.star:nth-child(1) { width: 3px; height: 3px; top: 10%; left: 15%; animation-delay: 0s; }
+.star:nth-child(2) { width: 2px; height: 2px; top: 20%; left: 80%; animation-delay: 0.5s; }
+.star:nth-child(3) { width: 4px; height: 4px; top: 30%; left: 60%; animation-delay: 1s; }
+.star:nth-child(4) { width: 2px; height: 2px; top: 40%; left: 25%; animation-delay: 1.5s; }
+.star:nth-child(5) { width: 3px; height: 3px; top: 50%; left: 90%; animation-delay: 2s; }
+.star:nth-child(6) { width: 2px; height: 2px; top: 60%; left: 10%; animation-delay: 0.3s; }
+.star:nth-child(7) { width: 4px; height: 4px; top: 70%; left: 75%; animation-delay: 0.8s; }
+.star:nth-child(8) { width: 3px; height: 3px; top: 80%; left: 45%; animation-delay: 1.3s; }
+.star:nth-child(9) { width: 2px; height: 2px; top: 15%; left: 40%; animation-delay: 1.8s; }
+.star:nth-child(10) { width: 3px; height: 3px; top: 85%; left: 20%; animation-delay: 2.3s; }
+.star:nth-child(11) { width: 2px; height: 2px; top: 25%; left: 70%; animation-delay: 0.7s; }
+.star:nth-child(12) { width: 4px; height: 4px; top: 5%; left: 85%; animation-delay: 1.2s; }
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(90deg, #FFD700, transparent);
+    border-radius: 50%;
+    animation: shootingStar 3s linear infinite;
+}
+
+.shooting-star:nth-child(13) {
+    top: 20%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.shooting-star:nth-child(14) {
+    top: 60%;
+    left: -10%;
+    animation-delay: 2s;
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translateX(0) translateY(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(120vw) translateY(60px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* 童话世界背景 */
+.fairy-world {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* 魔法城堡 */
+.fairy-castle {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    width: 200px;
+    height: 300px;
+    opacity: 0.6;
+}
+
+.castle-tower {
+    position: absolute;
+    background: linear-gradient(180deg, #8A2BE2, #4B0082);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.tower-1 {
+    width: 40px;
+    height: 120px;
+    left: 0;
+    bottom: 0;
+    transform: rotate(-2deg);
+}
+
+.tower-2 {
+    width: 60px;
+    height: 160px;
+    left: 70px;
+    bottom: 0;
+    z-index: 2;
+}
+
+.tower-3 {
+    width: 45px;
+    height: 130px;
+    right: 0;
+    bottom: 0;
+    transform: rotate(3deg);
+}
+
+.castle-body {
+    position: absolute;
+    width: 120px;
+    height: 100px;
+    bottom: 0;
+    left: 40px;
+    background: linear-gradient(180deg, #9932CC, #6A0DAD);
+    border-radius: 5px 5px 0 0;
+    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.castle-flag {
+    position: absolute;
+    top: -10px;
+    left: 85px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid #FFD700;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    animation: flagWave 3s ease-in-out infinite;
+}
+
+@keyframes flagWave {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+}
+
+.castle-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: castleGlow 4s ease-in-out infinite;
+}
+
+@keyframes castleGlow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* 彩虹桥 */
+.rainbow-bridge {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 300px;
+    height: 150px;
+    opacity: 0.7;
+}
+
+.rainbow-stripe {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    animation: rainbowGlow 6s ease-in-out infinite;
+}
+
+.stripe-1 { top: 0; background: #FF0000; }
+.stripe-2 { top: 12px; background: #FF7F00; }
+.stripe-3 { top: 24px; background: #FFFF00; }
+.stripe-4 { top: 36px; background: #00FF00; }
+.stripe-5 { top: 48px; background: #0000FF; }
+.stripe-6 { top: 60px; background: #4B0082; }
+.stripe-7 { top: 72px; background: #9400D3; }
+
+@keyframes rainbowGlow {
+    0%, 100% { 
+        opacity: 0.7; 
+        filter: brightness(1); 
+        transform: translateY(0px);
+    }
+    50% { 
+        opacity: 1; 
+        filter: brightness(1.3); 
+        transform: translateY(-2px);
+    }
+}
+
+/* 魔法森林 */
+.magic-forest {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    opacity: 0.4;
+}
+
+.tree {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180deg, #228B22, #006400);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.tree::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 30px;
+    background: #8B4513;
+    border-radius: 4px;
+}
+
+.tree-1 { width: 40px; height: 60px; left: 5%; animation: treeSwing 4s ease-in-out infinite; }
+.tree-2 { width: 35px; height: 50px; left: 15%; animation: treeSwing 5s ease-in-out infinite; }
+.tree-3 { width: 45px; height: 70px; left: 25%; animation: treeSwing 3.5s ease-in-out infinite; }
+.tree-4 { width: 30px; height: 45px; left: 85%; animation: treeSwing 4.5s ease-in-out infinite; }
+.tree-5 { width: 38px; height: 55px; left: 95%; animation: treeSwing 3.8s ease-in-out infinite; }
+
+@keyframes treeSwing {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(2deg); }
+}
+
+/* 漂浮云朵 */
+.floating-clouds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    opacity: 0.6;
+    animation: cloudFloat 15s ease-in-out infinite;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+}
+
+.cloud-1 {
+    width: 60px;
+    height: 25px;
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.cloud-1::before {
+    width: 40px;
+    height: 40px;
+    top: -15px;
+    left: 10px;
+}
+
+.cloud-1::after {
+    width: 30px;
+    height: 30px;
+    top: -10px;
+    right: 10px;
+}
+
+.cloud-2 {
+    width: 80px;
+    height: 35px;
+    top: 25%;
+    right: 20%;
+    animation-delay: 3s;
+}
+
+.cloud-2::before {
+    width: 50px;
+    height: 50px;
+    top: -20px;
+    left: 15px;
+}
+
+.cloud-2::after {
+    width: 40px;
+    height: 40px;
+    top: -15px;
+    right: 15px;
+}
+
+.cloud-3 {
+    width: 70px;
+    height: 30px;
+    top: 40%;
+    left: 30%;
+    animation-delay: 6s;
+}
+
+.cloud-3::before {
+    width: 45px;
+    height: 45px;
+    top: -18px;
+    left: 12px;
+}
+
+.cloud-3::after {
+    width: 35px;
+    height: 35px;
+    top: -12px;
+    right: 12px;
+}
+
+.cloud-4 {
+    width: 55px;
+    height: 22px;
+    top: 60%;
+    right: 35%;
+    animation-delay: 9s;
+}
+
+.cloud-4::before {
+    width: 35px;
+    height: 35px;
+    top: -12px;
+    left: 8px;
+}
+
+.cloud-4::after {
+    width: 25px;
+    height: 25px;
+    top: -8px;
+    right: 8px;
+}
+
+@keyframes cloudFloat {
+    0%, 100% { transform: translateX(0px) translateY(0px); }
+    25% { transform: translateX(20px) translateY(-10px); }
+    50% { transform: translateX(40px) translateY(0px); }
+    75% { transform: translateX(20px) translateY(10px); }
+}
+
+/* 仙女精灵 */
+.flying-fairies {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.fairy {
+    position: absolute;
+    font-size: 24px;
+    animation: fairyFlight 12s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+}
+
+.fairy-body {
+    position: relative;
+    z-index: 2;
+}
+
+.fairy-trail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.8), transparent);
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+    animation: trailGlow 2s ease-in-out infinite;
+}
+
+.fairy-1 {
+    top: 20%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.fairy-2 {
+    top: 50%;
+    right: -10%;
+    animation-delay: 4s;
+    animation-direction: reverse;
+}
+
+.fairy-3 {
+    top: 70%;
+    left: -10%;
+    animation-delay: 8s;
+}
+
+@keyframes fairyFlight {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); }
+    25% { transform: translateX(30vw) translateY(-20px) rotate(5deg); }
+    50% { transform: translateX(60vw) translateY(10px) rotate(-3deg); }
+    75% { transform: translateX(90vw) translateY(-15px) rotate(7deg); }
+    100% { transform: translateX(120vw) translateY(0) rotate(0deg); }
+}
+
+@keyframes trailGlow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scaleX(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scaleX(1.5); }
+}
+
+/* 魔法粒子系统 */
+.magic-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, var(--primary-gold), var(--primary-pink));
+    border-radius: 50%;
+    animation: particleFloat 8s ease-in-out infinite;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.particle-1 { top: 10%; left: 20%; animation-delay: 0s; }
+.particle-2 { top: 30%; left: 80%; animation-delay: 1s; }
+.particle-3 { top: 50%; left: 15%; animation-delay: 2s; }
+.particle-4 { top: 70%; left: 70%; animation-delay: 3s; }
+.particle-5 { top: 20%; left: 50%; animation-delay: 4s; }
+.particle-6 { top: 80%; left: 30%; animation-delay: 5s; }
+.particle-7 { top: 40%; left: 90%; animation-delay: 6s; }
+.particle-8 { top: 60%; left: 10%; animation-delay: 7s; }
+.particle-9 { top: 25%; left: 75%; animation-delay: 1.5s; }
+.particle-10 { top: 85%; left: 60%; animation-delay: 3.5s; }
+
+@keyframes particleFloat {
+    0%, 100% { 
+        transform: translateY(0px) scale(1) rotate(0deg); 
+        opacity: 0.6; 
+    }
+    50% { 
+        transform: translateY(-30px) scale(1.5) rotate(180deg); 
+        opacity: 1; 
+    }
+}
+
+/* 魔法花朵 */
+.magic-flowers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.flower {
+    position: absolute;
+    font-size: 20px;
+    animation: flowerBloom 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 192, 203, 0.8));
+}
+
+.flower-1 { bottom: 5%; left: 10%; animation-delay: 0s; }
+.flower-2 { bottom: 8%; left: 25%; animation-delay: 1.2s; }
+.flower-3 { bottom: 3%; left: 60%; animation-delay: 2.4s; }
+.flower-4 { bottom: 6%; left: 85%; animation-delay: 3.6s; }
+.flower-5 { bottom: 4%; left: 40%; animation-delay: 4.8s; }
+
+@keyframes flowerBloom {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        filter: drop-shadow(0 0 8px rgba(255, 192, 203, 0.8)); 
+    }
+    50% { 
+        transform: scale(1.3) rotate(10deg); 
+        filter: drop-shadow(0 0 15px rgba(255, 192, 203, 1)); 
+    }
+}
+
+/* 发光宝石 */
+.glowing-gems {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.gem {
+    position: absolute;
+    font-size: 18px;
+    animation: gemSparkle 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1));
+}
+
+.gem-1 { top: 35%; left: 15%; animation-delay: 0s; }
+.gem-2 { top: 55%; right: 25%; animation-delay: 1.3s; }
+.gem-3 { top: 75%; left: 65%; animation-delay: 2.6s; }
+
+@keyframes gemSparkle {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1)); 
+    }
+    50% { 
+        transform: scale(1.4) rotate(180deg); 
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1.5)); 
+    }
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(220, 160, 221, 0.9));
+    border: 2px solid var(--primary-purple);
+    border-radius: 25px;
+    color: var(--primary-purple);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 15px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 105, 180, 0.9));
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 6px 20px rgba(138, 43, 226, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    color: var(--dark-purple);
+}
+
+.button-sparkle {
+    font-size: 12px;
+    animation: sparkleRotate 2s ease-in-out infinite;
+}
+
+@keyframes sparkleRotate {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+}
+
+/* 表单容器 */
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* 童话卡片 */
+.fairy-card {
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(248, 248, 255, 0.9) 100%
+    );
+    border: 3px solid transparent;
+    border-radius: 30px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+        0 15px 35px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 0 0 1px rgba(255, 215, 0, 0.3);
+    animation: cardEntrance 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8) rotateX(20deg);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0);
+    }
+}
+
+.fairy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 215, 0, 0.1) 0%,
+        rgba(255, 105, 180, 0.1) 25%,
+        rgba(138, 43, 226, 0.1) 50%,
+        rgba(0, 255, 255, 0.1) 75%,
+        rgba(255, 215, 0, 0.1) 100%
+    );
+    border-radius: 30px;
+    pointer-events: none;
+    /* animation: magicAura 8s ease-in-out infinite; */
+}
+
+@keyframes magicAura {
+    0%, 100% { opacity: 0.3; transform: rotate(0deg); }
+    50% { opacity: 0.6; transform: rotate(180deg); }
+}
+
+.fairy-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(138, 43, 226, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 0 30px rgba(255, 215, 0, 0.6);
+    border-color: var(--primary-gold);
+}
+
+/* 卡片闪光效果 */
+.card-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-sparkles .sparkle {
+    position: absolute;
+    font-size: 16px;
+    animation: cardSparkle 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.card-sparkles .sparkle:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.card-sparkles .sparkle:nth-child(2) {
+    top: 15%;
+    right: 15%;
+    animation-delay: 0.8s;
+}
+
+.card-sparkles .sparkle:nth-child(3) {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 1.6s;
+}
+
+.card-sparkles .sparkle:nth-child(4) {
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 2.4s;
+}
+
+@keyframes cardSparkle {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: scale(1) rotate(0deg); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.5) rotate(180deg); 
+    }
+}
+
+/* 卡片头部 */
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.fairy-crown {
+    font-size: 32px;
+    margin-bottom: 10px;
+    animation: crownFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes crownFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-8px) rotate(5deg); 
+    }
+}
+
+.fairy-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-purple);
+    text-shadow: 
+        2px 2px 4px rgba(138, 43, 226, 0.3),
+        0 0 20px rgba(255, 215, 0, 0.5);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    animation: titleGlow 4s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 
+            2px 2px 4px rgba(138, 43, 226, 0.3),
+            0 0 20px rgba(255, 215, 0, 0.5);
+    }
+    50% { 
+        text-shadow: 
+            2px 2px 4px rgba(138, 43, 226, 0.5),
+            0 0 30px rgba(255, 215, 0, 0.8);
+    }
+}
+
+.subtitle {
+    /* color: var(--dark-purple); */
+    font-size: 16px;
+    font-weight: 500;
+    font-style: italic;
+    opacity: 0.8;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* 表单组样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 40px;
+    z-index: 2;
+}
+
+.input-icon {
+    position: absolute;
+    top: 18px;
+    left: 15px;
+    font-size: 18px;
+    z-index: 3;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.form-group input {
+    width: 100%;
+    padding: 18px 15px 8px 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    color: var(--primary-purple);
+    outline: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-family: var(--font-fairy);
+    font-weight: 500;
+    border: 2px solid rgba(138, 43, 226, 0.2);
+    box-shadow: 
+        inset 0 2px 6px rgba(138, 43, 226, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.form-group input:focus {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: var(--primary-purple);
+    box-shadow: 
+        inset 0 2px 6px rgba(138, 43, 226, 0.2),
+        0 0 20px rgba(138, 43, 226, 0.4),
+        0 0 0 3px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.form-group label {
+    position: absolute;
+    top: 18px;
+    left: 50px;
+    /* color: var(--dark-purple); */
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: var(--font-fairy);
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -30px;
+    left: 45px;
+    font-size: 12px;
+    color: var(--primary-purple);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 255, 0.95));
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.2);
+}
+
+/* 魔法边框效果 */
+.magic-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    background: linear-gradient(45deg, var(--primary-gold), var(--primary-pink), var(--primary-purple), var(--primary-cyan)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+    0% { background: linear-gradient(45deg, var(--primary-gold), var(--primary-pink), var(--primary-purple), var(--primary-cyan)) border-box; }
+    25% { background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple), var(--primary-cyan), var(--primary-gold)) border-box; }
+    50% { background: linear-gradient(225deg, var(--primary-purple), var(--primary-cyan), var(--primary-gold), var(--primary-pink)) border-box; }
+    75% { background: linear-gradient(315deg, var(--primary-cyan), var(--primary-gold), var(--primary-pink), var(--primary-purple)) border-box; }
+    100% { background: linear-gradient(45deg, var(--primary-gold), var(--primary-pink), var(--primary-purple), var(--primary-cyan)) border-box; }
+}
+
+.form-group input:focus ~ .magic-border {
+    opacity: 1;
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.6),
+        inset 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* 输入框闪光效果 */
+.input-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-group input:focus ~ .input-sparkles {
+    opacity: 1;
+}
+
+.input-sparkles::before,
+.input-sparkles::after {
+    content: '✨';
+    position: absolute;
+    font-size: 12px;
+    color: var(--primary-gold);
+    animation: inputSparkle 2s ease-in-out infinite;
+}
+
+.input-sparkles::before {
+    top: 5px;
+    right: 15px;
+    animation-delay: 0s;
+}
+
+.input-sparkles::after {
+    bottom: 5px;
+    left: 15px;
+    animation-delay: 1s;
+}
+
+@keyframes inputSparkle {
+    0%, 100% { 
+        opacity: 0; 
+        transform: scale(0.5) rotate(0deg); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.2) rotate(180deg); 
+    }
+}
+
+/* 验证码组样式 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    position: relative;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 18px 20px;
+    background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+    border: 2px solid var(--primary-purple);
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: var(--font-fairy);
+    box-shadow: 
+        0 4px 15px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.verify-btn:hover {
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-gold));
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 6px 20px rgba(138, 43, 226, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.verify-btn .btn-icon {
+    font-size: 12px;
+    animation: btnIconSpin 2s linear infinite;
+}
+
+@keyframes btnIconSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 主要按钮样式 */
+.fairy-btn {
+    width: 100%;
+    padding: 18px 20px;
+    margin: 35px 0 25px 0;
+    background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink), var(--primary-gold));
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-fairy);
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    box-shadow: 
+        0 8px 25px rgba(138, 43, 226, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1;
+}
+
+.fairy-btn:hover {
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-cyan), var(--primary-pink));
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 
+        0 12px 35px rgba(138, 43, 226, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.fairy-btn:active {
+    transform: translateY(-2px) scale(1.01);
+}
+
+.btn-icon {
+    font-size: 16px;
+    animation: btnIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes btnIconFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(10deg); }
+}
+
+/* 按钮发光效果 */
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+    border-radius: 25px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    animation: btnGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes btnGlowPulse {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.fairy-btn:hover .btn-glow {
+    opacity: 1;
+}
+
+/* 魔法效果 */
+.magic-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.fairy-btn:hover .magic-effect {
+    left: 100%;
+}
+
+/* 附加链接样式 */
+.additional-links {
+    text-align: center;
+    font-size: 14px;
+    z-index: 2;
+    position: relative;
+}
+
+.additional-links a {
+    color: var(--dark-purple);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.additional-links a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-purple), var(--primary-gold));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.additional-links a:hover::before {
+    width: 100%;
+}
+
+.additional-links a:hover {
+    color: var(--primary-purple);
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 215, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+}
+
+.link-icon {
+    font-size: 12px;
+    animation: linkIconBounce 2s ease-in-out infinite;
+}
+
+@keyframes linkIconBounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-2px); }
+}
+
+.divider {
+    margin: 0 15px;
+    color: var(--primary-gold);
+    font-size: 18px;
+    animation: dividerTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes dividerTwinkle {
+    0%, 100% { 
+        opacity: 0.6; 
+        transform: scale(1) rotate(0deg); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.2) rotate(180deg); 
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 16px;
+        max-width: 360px;
+    }
+    
+    .fairy-card {
+        padding: 30px 24px;
+    }
+    
+    .fairy-card h2 {
+        font-size: 24px;
+    }
+    
+    .back-button {
+        top: 16px;
+        left: 16px;
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+    
+    .fairy-castle,
+    .rainbow-bridge,
+    .flying-fairies {
+        display: none;
+    }
+    
+    .cloud {
+        opacity: 0.3;
+    }
+    
+    .particle,
+    .star {
+        opacity: 0.5;
+    }
+    
+    .form-group input {
+        padding: 16px 12px 6px 45px;
+    }
+    
+    .input-icon {
+        top: 16px;
+        left: 12px;
+        font-size: 16px;
+    }
+    
+    .form-group label {
+        top: 16px;
+        left: 45px;
+        font-size: 15px;
+    }
+    
+    .verify-btn {
+        padding: 16px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .fairy-card {
+        padding: 24px 20px;
+    }
+    
+    .verification-group {
+        gap: 8px;
+    }
+
+    .verification-group .form-group {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .verify-btn {
+        flex-shrink: 0;
+        padding: 16px 10px;
+        font-size: 12px;
+        min-width: 75px;
+        justify-content: center;
+    }
+}
+
+/* 高性能动画优化 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 加载动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fairy-card {
+    animation: fadeInUp 1s ease-out;
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(
+            135deg,
+            #0a001a 0%,
+            #1a0b3d 25%,
+            #0d2847 50%,
+            #1a4c96 75%,
+            #0a001a 100%
+        );
+    }
+    
+    .fairy-card {
+        background: linear-gradient(
+            145deg,
+            rgba(20, 20, 30, 0.95) 0%,
+            rgba(30, 30, 40, 0.9) 100%
+        );
+        color: #E6E6FA;
+    }
+    
+    .fairy-card h2 {
+        color: #DDA0DD;
+    }
+    
+    .form-group input {
+        background: rgba(40, 40, 50, 0.9);
+        color: #E6E6FA;
+        border-color: rgba(221, 160, 221, 0.3);
+    }
+    
+    .additional-links a {
+        color: #DDA0DD;
+    }
+}

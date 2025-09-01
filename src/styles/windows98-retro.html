@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🖥️ Windows 98 复古风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/windows98-retro.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- Windows 98 桌面 -->
+    <div class="desktop">
+        <!-- 桌面图标 -->
+        <div class="desktop-icons">
+            <div class="desktop-icon">
+                <div class="icon my-computer"></div>
+                <span>我的电脑</span>
+            </div>
+            <div class="desktop-icon">
+                <div class="icon recycle-bin"></div>
+                <span>回收站</span>
+            </div>
+            <div class="desktop-icon">
+                <div class="icon network"></div>
+                <span>网络邻居</span>
+            </div>
+        </div>
+
+        <!-- 任务栏 -->
+        <div class="taskbar">
+            <div class="start-button">
+                <span class="start-icon">🏠</span>
+                <span>开始</span>
+            </div>
+            <div class="taskbar-separator"></div>
+            <div class="taskbar-time" id="currentTime">12:34</div>
+        </div>
+
+        <!-- 登录对话框 -->
+        <div class="window login-window" id="loginForm">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🔐</span>
+                    <span>登录到 Windows</span>
+                </div>
+                <div class="window-controls">
+                    <button class="window-button minimize">_</button>
+                    <button class="window-button maximize">□</button>
+                    <button class="window-button close">×</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="login-header">
+                    <div class="user-icon">👤</div>
+                    <div class="welcome-text">
+                        <h3>欢迎使用 Windows</h3>
+                        <p>请输入您的用户名和密码</p>
+                    </div>
+                </div>
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="username">用户名(&U):</label>
+                        <input type="text" id="username" name="username" class="win98-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码(&P):</label>
+                        <input type="password" id="password" name="password" class="win98-input" required>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="remember" name="remember" class="win98-checkbox">
+                        <label for="remember">记住密码</label>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="win98-button primary">确定</button>
+                        <button type="button" class="win98-button" id="toRegister">注册</button>
+                        <button type="button" class="win98-button" id="toForgotPassword">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 注册对话框 -->
+        <div class="window register-window hidden" id="registerForm">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">📝</span>
+                    <span>新用户注册</span>
+                </div>
+                <div class="window-controls">
+                    <button class="window-button minimize">_</button>
+                    <button class="window-button maximize">□</button>
+                    <button class="window-button close">×</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="register-header">
+                    <div class="user-icon">👥</div>
+                    <div class="welcome-text">
+                        <h3>创建新帐户</h3>
+                        <p>请填写以下信息来创建您的帐户</p>
+                    </div>
+                </div>
+                <form class="register-form">
+                    <div class="form-group">
+                        <label for="reg-username">用户名(&U):</label>
+                        <input type="text" id="reg-username" name="username" class="win98-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">电子邮件(&E):</label>
+                        <input type="email" id="reg-email" name="email" class="win98-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">密码(&P):</label>
+                        <input type="password" id="reg-password" name="password" class="win98-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-confirm-password">确认密码(&C):</label>
+                        <input type="password" id="reg-confirm-password" name="confirmPassword" class="win98-input" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="win98-button primary">创建帐户</button>
+                        <button type="button" class="win98-button" id="backToLogin">返回登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 忘记密码对话框 -->
+        <div class="window forgot-password-window hidden" id="forgotPasswordForm">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">❓</span>
+                    <span>密码重置</span>
+                </div>
+                <div class="window-controls">
+                    <button class="window-button minimize">_</button>
+                    <button class="window-button maximize">□</button>
+                    <button class="window-button close">×</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="forgot-header">
+                    <div class="user-icon">🔑</div>
+                    <div class="welcome-text">
+                        <h3>重置密码</h3>
+                        <p>请输入您的电子邮件地址来重置密码</p>
+                    </div>
+                </div>
+                <form class="forgot-form">
+                    <div class="form-group">
+                        <label for="forgot-email">电子邮件(&E):</label>
+                        <input type="email" id="forgot-email" name="email" class="win98-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="verification-code">验证码(&V):</label>
+                        <div class="verification-group">
+                            <input type="text" id="verification-code" name="verificationCode" class="win98-input" required>
+                            <button type="button" class="win98-button small" id="sendCode">发送验证码</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">新密码(&N):</label>
+                        <input type="password" id="new-password" name="newPassword" class="win98-input" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="win98-button primary">重置密码</button>
+                        <button type="button" class="win98-button" id="backToLoginFromReset">返回登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 错误对话框 -->
+    <div class="error-dialog hidden" id="errorDialog">
+        <div class="window error-window">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">⚠️</span>
+                    <span>错误</span>
+                </div>
+                <div class="window-controls">
+                    <button class="window-button close" onclick="hideErrorDialog()">×</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="error-content">
+                    <div class="error-icon">🚫</div>
+                    <div class="error-message" id="errorMessage">登录失败，请检查用户名和密码</div>
+                </div>
+                <div class="button-group">
+                    <button class="win98-button primary" onclick="hideErrorDialog()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成功对话框 -->
+    <div class="success-dialog hidden" id="successDialog">
+        <div class="window success-window">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">✅</span>
+                    <span>信息</span>
+                </div>
+                <div class="window-controls">
+                    <button class="window-button close" onclick="hideSuccessDialog()">×</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="success-content">
+                    <div class="success-icon">✅</div>
+                    <div class="success-message" id="successMessage">操作成功完成！</div>
+                </div>
+                <div class="button-group">
+                    <button class="win98-button primary" onclick="hideSuccessDialog()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/windows98-retro.js"></script>
+</body>
+</html>

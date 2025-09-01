@@ -1,0 +1,510 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'KaiTi', '楷体', 'STKaiti', serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d5 50%, #d5cbb7 100%);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(139, 69, 19, 0.1);
+    border: 2px solid #8b4513;
+    border-radius: 20px;
+    color: #8b4513;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+}
+
+.back-button:hover {
+    background: rgba(139, 69, 19, 0.2);
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 水墨背景 */
+.ink-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.ink-wash {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 40%, transparent 70%);
+    animation: inkSpread 8s ease-in-out infinite;
+}
+
+.wash-1 {
+    width: 300px;
+    height: 200px;
+    top: 10%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.wash-2 {
+    width: 250px;
+    height: 180px;
+    top: 60%;
+    right: 20%;
+    animation-delay: 2s;
+}
+
+.wash-3 {
+    width: 200px;
+    height: 150px;
+    bottom: 15%;
+    left: 30%;
+    animation-delay: 4s;
+}
+
+@keyframes inkSpread {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+    50% { transform: scale(1.2) rotate(5deg); opacity: 0.6; }
+}
+
+/* 墨滴效果 */
+.ink-drops {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.ink-drop {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 8px;
+    animation: inkDrop 6s ease-in-out infinite;
+}
+
+.drop-1 { top: 20%; left: 25%; animation-delay: 0s; }
+.drop-2 { top: 40%; right: 30%; animation-delay: 1.5s; }
+.drop-3 { bottom: 30%; left: 40%; animation-delay: 3s; }
+.drop-4 { top: 70%; right: 15%; animation-delay: 4.5s; }
+
+@keyframes inkDrop {
+    0% { transform: scale(0); opacity: 0; }
+    20% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(3); opacity: 0; }
+}
+
+/* 书法元素 */
+.calligraphy-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.brush-stroke {
+    position: absolute;
+    color: rgba(139, 69, 19, 0.3);
+    font-size: 40px;
+    font-weight: bold;
+    animation: brushWrite 4s ease-in-out infinite;
+}
+
+.stroke-1 { top: 15%; left: 10%; animation-delay: 0s; }
+.stroke-2 { top: 25%; right: 20%; animation-delay: 1s; }
+.stroke-3 { bottom: 40%; left: 20%; animation-delay: 2s; }
+.stroke-4 { bottom: 20%; right: 25%; animation-delay: 3s; }
+
+@keyframes brushWrite {
+    0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+    50% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+    100% { opacity: 0.2; transform: scale(1.1) rotate(5deg); }
+}
+
+.seal-stamp {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    color: #dc143c;
+    font-size: 24px;
+    background: rgba(220, 20, 60, 0.1);
+    border: 2px solid #dc143c;
+    border-radius: 4px;
+    padding: 8px;
+    animation: sealGlow 3s ease-in-out infinite;
+}
+
+@keyframes sealGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(220, 20, 60, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(220, 20, 60, 0.6); }
+}
+
+/* 浮动汉字 */
+.floating-characters {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.character {
+    position: absolute;
+    color: rgba(139, 69, 19, 0.2);
+    font-size: 20px;
+    animation: floatChar 10s ease-in-out infinite;
+}
+
+.char-1 { top: 30%; left: 5%; animation-delay: 0s; }
+.char-2 { top: 50%; right: 5%; animation-delay: 2.5s; }
+.char-3 { bottom: 35%; left: 8%; animation-delay: 5s; }
+.char-4 { bottom: 15%; right: 12%; animation-delay: 7.5s; }
+
+@keyframes floatChar {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+    50% { transform: translateY(-20px) rotate(2deg); opacity: 0.5; }
+}
+
+/* 表单容器 */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    z-index: 100;
+}
+
+.form-container.hidden {
+    display: none;
+}
+
+/* 墨韵卡片 */
+.ink-card {
+    background: rgba(248, 246, 240, 0.95);
+    border: 3px solid rgba(139, 69, 19, 0.3);
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        inset 0 0 20px rgba(139, 69, 19, 0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.ink-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(139, 69, 19, 0.3) 0%, 
+        rgba(218, 165, 32, 0.3) 25%, 
+        rgba(139, 69, 19, 0.3) 50%, 
+        rgba(218, 165, 32, 0.3) 75%, 
+        rgba(139, 69, 19, 0.3) 100%);
+    border-radius: 15px;
+    z-index: -1;
+    animation: borderFlow 4s linear infinite;
+}
+
+@keyframes borderFlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 200%; }
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.ink-seal {
+    font-size: 24px;
+    background: rgba(139, 69, 19, 0.1);
+    border: 2px solid #8b4513;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: sealRotate 6s ease-in-out infinite;
+}
+
+.ink-seal.register-seal {
+    background: rgba(34, 139, 34, 0.1);
+    border-color: #228b22;
+    color: #228b22;
+}
+
+.ink-seal.reset-seal {
+    background: rgba(220, 20, 60, 0.1);
+    border-color: #dc143c;
+    color: #dc143c;
+}
+
+@keyframes sealRotate {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.decorative-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.line-ornament {
+    color: rgba(139, 69, 19, 0.5);
+    font-size: 16px;
+    animation: ornamentWave 3s ease-in-out infinite;
+}
+
+@keyframes ornamentWave {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(1.2); }
+}
+
+.ink-card h2 {
+    color: #8b4513;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+    font-family: 'KaiTi', '楷体', serif;
+}
+
+.subtitle {
+    color: rgba(139, 69, 19, 0.7);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(139, 69, 19, 0.3);
+    color: #333;
+    font-size: 16px;
+    font-family: 'KaiTi', '楷体', serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-bottom-color: #8b4513;
+    box-shadow: 0 2px 10px rgba(139, 69, 19, 0.2);
+}
+
+.form-group label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    color: rgba(139, 69, 19, 0.6);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: 'KaiTi', '楷体', serif;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -10px;
+    font-size: 12px;
+    color: #8b4513;
+}
+
+.ink-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8b4513, #daa520);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(139, 69, 19, 0.3);
+}
+
+.form-group input:focus ~ .ink-underline {
+    width: 100%;
+}
+
+/* 按钮样式 */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(218, 165, 32, 0.1));
+    border: 2px solid #8b4513;
+    border-radius: 25px;
+    color: #8b4513;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'KaiTi', '楷体', serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.2), rgba(218, 165, 32, 0.2));
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+    transform: translateY(-2px);
+}
+
+.ink-ripple {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.login-btn:hover .ink-ripple {
+    left: 100%;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 12px 16px;
+    background: rgba(218, 165, 32, 0.1);
+    border: 1px solid #daa520;
+    border-radius: 15px;
+    color: #222222;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'KaiTi', '楷体', serif;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.verify-btn:hover {
+    background: rgba(218, 165, 32, 0.2);
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ink-link {
+    color: #8b4513;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'KaiTi', '楷体', serif;
+    position: relative;
+}
+
+.ink-link:hover {
+    color: #daa520;
+    text-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+}
+
+.ink-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #daa520;
+    transition: width 0.3s ease;
+}
+
+.ink-link:hover::after {
+    width: 100%;
+}
+
+.divider {
+    color: rgba(139, 69, 19, 0.4);
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 15px;
+    }
+    
+    .ink-card {
+        padding: 30px 20px;
+    }
+    
+    .back-button {
+        top: 15px;
+        left: 15px;
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    
+    .brush-stroke {
+        font-size: 30px;
+    }
+    
+    .character {
+        font-size: 16px;
+    }
+
+    .verification-group {
+        gap: 8px;
+    }
+
+    .verify-btn {
+        padding: 10px 12px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+}

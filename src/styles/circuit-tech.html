@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ 电路板科技风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/circuit-tech.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 电路板背景 -->
+    <div class="circuit-background">
+        <div class="circuit-board">
+            <div class="circuit-line horizontal line-1"></div>
+            <div class="circuit-line horizontal line-2"></div>
+            <div class="circuit-line horizontal line-3"></div>
+            <div class="circuit-line vertical line-4"></div>
+            <div class="circuit-line vertical line-5"></div>
+            <div class="circuit-line vertical line-6"></div>
+        </div>
+        <div class="electronic-components">
+            <div class="component chip chip-1">🔲</div>
+            <div class="component chip chip-2">🔳</div>
+            <div class="component led led-1">💡</div>
+            <div class="component led led-2">💡</div>
+            <div class="component led led-3">💡</div>
+            <div class="component resistor resistor-1">━━━</div>
+            <div class="component resistor resistor-2">━━━</div>
+        </div>
+        <div class="data-flow">
+            <div class="data-packet packet-1">●</div>
+            <div class="data-packet packet-2">●</div>
+            <div class="data-packet packet-3">●</div>
+        </div>
+    </div>
+    
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="tech-card">
+            <div class="card-header">
+                <div class="status-indicator"></div>
+                <h2>⚡ 系统登录</h2>
+                <div class="tech-lines">
+                    <div class="tech-line"></div>
+                    <div class="tech-line"></div>
+                </div>
+            </div>
+            <p class="subtitle">电路板科技风格</p>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" required>
+                    <label for="username">用户名</label>
+                    <div class="input-circuit"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" required>
+                    <label for="password">密码</label>
+                    <div class="input-circuit"></div>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">登录系统</span>
+                    <div class="btn-circuit">
+                        <div class="circuit-pulse"></div>
+                    </div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="toForgotPassword" class="tech-link">
+                        <span>🔐</span> 密码重置
+                    </a>
+                    <span class="divider">|</span>
+                    <a href="#" id="toRegister" class="tech-link">
+                        <span>📝</span> 用户注册
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="tech-card">
+            <div class="card-header">
+                <div class="status-indicator register-mode"></div>
+                <h2>⚡ 用户注册</h2>
+                <div class="tech-lines">
+                    <div class="tech-line"></div>
+                    <div class="tech-line"></div>
+                </div>
+            </div>
+            <p class="subtitle">创建新用户账户</p>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">用户名</label>
+                    <div class="input-circuit"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">手机号码</label>
+                    <div class="input-circuit"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">验证码</label>
+                    <div class="input-circuit"></div>
+                    <button type="button" class="verify-btn" id="regSendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">密码</label>
+                    <div class="input-circuit"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">确认密码</label>
+                    <div class="input-circuit"></div>
+                </div>
+                
+                <button type="submit" class="login-btn register-btn">
+                    <span class="btn-text">创建账户</span>
+                    <div class="btn-circuit">
+                        <div class="circuit-pulse"></div>
+                    </div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="backToLogin" class="tech-link">
+                        <span>🔙</span> 返回登录
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="tech-card">
+            <div class="card-header">
+                <div class="status-indicator reset-mode"></div>
+                <h2>⚡ 密码重置</h2>
+                <div class="tech-lines">
+                    <div class="tech-line"></div>
+                    <div class="tech-line"></div>
+                </div>
+            </div>
+            <p class="subtitle">重置您的登录密码</p>
+            <form>
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">手机号码</label>
+                    <div class="input-circuit"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="resetVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="resetVerificationCode">验证码</label>
+                    <div class="input-circuit"></div>
+                    <button type="button" class="verify-btn" id="resetSendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">新密码</label>
+                    <div class="input-circuit"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">确认新密码</label>
+                    <div class="input-circuit"></div>
+                </div>
+                
+                <button type="submit" class="login-btn reset-btn">
+                    <span class="btn-text">重置密码</span>
+                    <div class="btn-circuit">
+                        <div class="circuit-pulse"></div>
+                    </div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset" class="tech-link">
+                        <span>🔙</span> 返回登录
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/circuit-tech.js"></script>
+</body>
+</html>

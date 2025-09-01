@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>LoginLab - AI驱动的登录页实验室 | 39种精美移动端登录页面模板</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="LoginLab是AI驱动的登录页实验室，提供39种精美的移动端登录页面模板。包含霓虹赛博、极简商务、自然森林等多种风格，支持HTML5+CSS3+JavaScript，零框架依赖，开源免费下载。" />
+    <meta name="keywords" content="登录页面,移动端登录,AI登录页面,登录界面设计,精美登录页面模板,响应式登录界面,创意登录页设计,HTML5登录模板,CSS3登录页面,JavaScript登录组件,前端UI模板,登录表单设计" />
+    <meta name="author" content="LoginLab Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="zh-CN" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="LoginLab - AI驱动的登录页实验室 | 39种精美移动端登录页面模板" />
+    <meta property="og:description" content="AI生成的39种精美登录页面模板，包含霓虹赛博、极简商务、自然森林等多种风格，支持移动端响应式设计，开源免费下载。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://loginlab.520ai.xin/" />
+    <meta property="og:image" content="https://loginlab.520ai.xin/logo.png" />
+    <meta property="og:site_name" content="LoginLab" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LoginLab - AI驱动的登录页实验室" />
+    <meta name="twitter:description" content="39种AI生成的精美登录页面模板，支持移动端响应式设计，开源免费下载。" />
+    <meta name="twitter:image" content="https://loginlab.520ai.xin/logo.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://loginlab.520ai.xin/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="src/assets/styles/style-selector.css" />
+    <link rel="stylesheet" href="src/assets/styles/home-modern.css" />
+    <!-- JSZip库用于生成ZIP文件 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- Supabase客户端库用于数据统计 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "LoginLab",
+      "alternateName": "AI驱动的登录页实验室",
+      "description": "LoginLab是AI驱动的登录页实验室，提供39种精美的移动端登录页面模板，支持HTML5+CSS3+JavaScript，零框架依赖，开源免费下载。",
+      "url": "https://loginlab.520ai.xin/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY",
+        "availability": "https://schema.org/InStock"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "LoginLab Team",
+        "url": "https://loginlab.520ai.xin/"
+      },
+      "datePublished": "2025-01-01",
+      "dateModified": "2025-01-01",
+      "inLanguage": "zh-CN",
+      "keywords": "登录页面,移动端登录,AI登录页面,登录界面设计,精美登录页面模板,响应式登录界面,创意登录页设计",
+      "screenshot": "https://loginlab.520ai.xin/screenshot.png",
+      "softwareVersion": "2.0",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "156",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- 背景动效层：光斑 / 网格 / 粒子（不阻挡内容） -->
+    <div class="bg-anim" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="particles" id="particlesBg" aria-hidden="true"></div>
+
+    <!-- 轻量加载层 -->
+    <div id="pageLoader"><div class="loader"></div></div>
+
+    <header>
+      <nav class="topbar" role="navigation" aria-label="主导航">
+        <a class="topbar__brand" href="#" aria-label="LoginLab首页">
+          <span class="topbar__logo"
+            ><img class="topbar__logo-img" src="/logo.png" alt="LoginLab - AI驱动的登录页实验室标志"
+          /></span>
+        </a>
+        <div class="topbar__actions">
+          <a
+            href="analytics.html"
+            target="_blank"
+            class="btn btn--ghost"
+            aria-label="查看统计数据"
+            >📊 <span class="text">统计数据</span></a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main class="container" role="main">
+      <!-- 面包屑导航 -->
+      <nav aria-label="面包屑导航" class="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="https://loginlab.520ai.xin/">
+              <span itemprop="name">首页</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+        </ol>
+      </nav>
+
+      <!-- 项目介绍卡片 -->
+      <section class="project-intro-section" aria-labelledby="project-title">
+        <div class="project-intro-card" id="projectIntro">
+          <div class="intro-header">
+            <div class="intro-icon">
+              <img class="logo-img" src="logo.png" alt="LoginLab - AI驱动的登录页实验室标志，展示39种精美移动端登录页面模板" />
+            </div>
+            <div class="intro-title">
+              <h1 id="project-title">🎨 LoginLab - AI驱动的登录页实验室</h1>
+              <p class="intro-tagline">探索人工智能在前端UI设计中的无限可能</p>
+            </div>
+          </div>
+
+          <div class="intro-content" id="introContent">
+            <p class="intro-description">
+              这是一个完全由AI生成的登录页面集合，采用纯前端技术栈（HTML5+CSS3+JavaScript），
+              无框架依赖。每个页面都是AI创意的结晶，为开发者提供丰富的UI灵感和配色方案。
+            </p>
+
+            <div class="intro-highlights">
+              <div class="highlight-item">
+                <span class="highlight-icon">🤖</span>
+                <span class="highlight-text">100% AI生成</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">🎨</span>
+                <span class="highlight-text">39种独特风格</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">🔧</span>
+                <span class="highlight-text">开源协作</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">⚡</span>
+                <span class="highlight-text">零框架依赖</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="intro-actions">
+            <a href="about.html" class="intro-btn intro-btn--primary">
+              <span class="btn-icon">📖</span>
+              <span class="btn-text">了解项目详情</span>
+            </a>
+            <a
+              href="https://github.com/yuanyang749/beautiful-login"
+              target="_blank"
+              class="intro-btn intro-btn--secondary"
+            >
+              <span class="btn-icon">⭐</span>
+              <span class="btn-text">GitHub 仓库</span>
+            </a>
+            <button
+              class="intro-expand-btn"
+              id="introExpandBtn"
+              aria-label="展开/收起详情"
+            >
+              <span class="expand-text"></span>
+              <span class="expand-icon">▼</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="styles" class="styles-grid">
+        <!-- 霓虹赛博城市风格 -->
+        <div class="style-card" data-style="neon-cyber-city">
+          <div class="card-preview neon-cyber-city-preview">
+            <div class="preview-bg">
+              <div class="city-mini">🌃</div>
+              <div class="neon-mini">NEON</div>
+              <div class="car-mini">🚗</div>
+              <div class="hologram-mini">📱</div>
+            </div>
+            <div class="preview-form cyber-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌃 霓虹赛博城市</h3>
+            <p>未来城市主题配合霓虹灯光和飞行汽车</p>
+            <ul class="features">
+              <li>赛博朋克城市天际线</li>
+              <li>霓虹招牌和全息广告</li>
+              <li>飞行汽车和雨滴效果</li>
+              <li>适用：科技、游戏、未来类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 深色极简风格 -->
+        <div class="style-card" data-style="dark-minimal">
+          <div class="card-preview dark-minimal-preview">
+            <div class="preview-bg">
+              <div class="grid-pattern"></div>
+            </div>
+            <div class="preview-form dark-form">
+              <div class="form-title">登录</div>
+              <div class="form-input neon-border"></div>
+              <div class="form-input neon-border"></div>
+              <div class="form-button neon-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌕 月夜神秘</h3>
+            <p>神秘月夜配合魔法符文和雾气</p>
+            <ul class="features">
+              <li>深紫渐变背景和月光效果</li>
+              <li>神秘符文和雾气动画</li>
+              <li>适用：高端、艺术类应用</li>
+            </ul>
+            <div class="card-actions">
+              <button class="download-btn" data-style="dark-minimal">
+                <span class="download-icon">📦</span>
+                <span class="download-text">下载文件包</span>
+                <div class="download-progress">
+                  <div class="progress-bar"></div>
+                  <span class="progress-text">0%</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 温馨粉色风格 -->
+        <div class="style-card" data-style="warm-pink">
+          <div class="card-preview warm-pink-preview">
+            <div class="preview-bg">
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+            </div>
+            <div class="preview-form pink-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🎭 戏剧舞台</h3>
+            <p>剧院舞台主题配合聚光灯和帷幕效果</p>
+            <ul class="features">
+              <li>深红丝绒舞台背景</li>
+              <li>聚光灯扫描和帷幕拉开</li>
+              <li>金色粒子和舞台烟雾</li>
+              <li>适用：艺术、文化、娱乐类应用</li>
+            </ul>
+            <div class="card-actions">
+              <button class="download-btn" data-style="warm-pink">
+                <span class="download-icon">📦</span>
+                <span class="download-text">下载文件包</span>
+                <div class="download-progress">
+                  <div class="progress-bar"></div>
+                  <span class="progress-text">0%</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 商务专业风格 -->
+        <div class="style-card" data-style="business-professional">
+          <div class="card-preview business-preview">
+            <div class="preview-bg">
+              <div class="geometric-shape"></div>
+              <div class="geometric-shape"></div>
+            </div>
+            <div class="preview-form business-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🏢 商务专业风格</h3>
+            <p>简洁白色配合几何图形装饰</p>
+            <ul class="features">
+              <li>简洁白色背景</li>
+              <li>蓝色商务配色</li>
+              <li>几何图形装饰元素</li>
+              <li>适用：企业、金融类应用</li>
+            </ul>
+            <div class="card-actions">
+              <button class="download-btn" data-style="business-professional">
+                <span class="download-icon">📦</span>
+                <span class="download-text">下载文件包</span>
+                <div class="download-progress">
+                  <div class="progress-bar"></div>
+                  <span class="progress-text">0%</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 海洋蓝调风格 -->
+        <div class="style-card" data-style="ocean-blue">
+          <div class="card-preview ocean-blue-preview">
+            <div class="preview-bg">
+              <div class="wave-animation"></div>
+              <div class="bubble-float"></div>
+              <div class="bubble-float"></div>
+            </div>
+            <div class="preview-form ocean-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌊 海洋蓝调风格</h3>
+            <p>海洋波浪动画配合水滴效果</p>
+            <ul class="features">
+              <li>深蓝到浅蓝渐变</li>
+              <li>海洋波浪动画</li>
+              <li>水滴飘落效果</li>
+              <li>适用：旅游、海洋类应用</li>
+            </ul>
+            <div class="card-actions">
+              <button class="download-btn" data-style="ocean-blue">
+                <span class="download-icon">📦</span>
+                <span class="download-text">下载文件包</span>
+                <div class="download-progress">
+                  <div class="progress-bar"></div>
+                  <span class="progress-text">0%</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 星空科幻风格 -->
+        <div class="style-card" data-style="starry-scifi">
+          <div class="card-preview starry-scifi-preview">
+            <div class="preview-bg">
+              <div class="star-twinkle"></div>
+              <div class="star-twinkle"></div>
+              <div class="star-twinkle"></div>
+              <div class="meteor-trail"></div>
+            </div>
+            <div class="preview-form scifi-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌟 星空科幻风格</h3>
+            <p>星空背景配合粒子系统</p>
+            <ul class="features">
+              <li>深紫到黑色背景</li>
+              <li>金色星光效果</li>
+              <li>流星粒子动画</li>
+              <li>适用：科技、游戏类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 日落余晖风格 -->
+        <div class="style-card" data-style="sunset-glow">
+          <div class="card-preview sunset-glow-preview">
+            <div class="preview-bg">
+              <div class="sun-glow"></div>
+              <div class="cloud-float"></div>
+              <div class="cloud-float"></div>
+            </div>
+            <div class="preview-form sunset-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌅 日落余晖风格</h3>
+            <p>橙红渐变配合云朵动画</p>
+            <ul class="features">
+              <li>温暖橙红渐变</li>
+              <li>太阳光晕效果</li>
+              <li>飞鸟云朵动画</li>
+              <li>适用：旅游、生活类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 自然森林风格 -->
+        <div class="style-card" data-style="nature-forest">
+          <div class="card-preview nature-forest-preview">
+            <div class="preview-bg">
+              <div class="tree-silhouette"></div>
+              <div class="leaf-fall">🍃</div>
+              <div class="leaf-fall">🍂</div>
+              <div class="butterfly-fly">🦋</div>
+            </div>
+            <div class="preview-form forest-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🍃 自然森林风格</h3>
+            <p>绿色主题配合树叶飘落</p>
+            <ul class="features">
+              <li>自然绿色渐变</li>
+              <li>树叶飘落动画</li>
+              <li>蝴蝶飞舞效果</li>
+              <li>适用：环保、自然类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 奢华钻石风格 -->
+        <div class="style-card" data-style="luxury-diamond">
+          <div class="card-preview luxury-diamond-preview">
+            <div class="preview-bg">
+              <div class="diamond-sparkle">💎</div>
+              <div class="gold-shimmer"></div>
+              <div class="sparkle-effect">✨</div>
+            </div>
+            <div class="preview-form luxury-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>💎 奢华钻石风格</h3>
+            <p>黑金配色配合钻石闪烁</p>
+            <ul class="features">
+              <li>高贵黑金配色</li>
+              <li>钻石闪烁效果</li>
+              <li>金线流动动画</li>
+              <li>适用：奢侈品、VIP应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 赛博朋克风格 -->
+        <div class="style-card" data-style="cyber-punk">
+          <div class="card-preview cyber-punk-preview">
+            <div class="preview-bg">
+              <div class="cyber-grid-bg"></div>
+              <div class="neon-line"></div>
+              <div class="glitch-effect"></div>
+            </div>
+            <div class="preview-form cyber-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🎮 赛博朋克风格</h3>
+            <p>霓虹紫色配合故障艺术</p>
+            <ul class="features">
+              <li>霓虹紫色主题</li>
+              <li>故障艺术效果</li>
+              <li>矩阵数据流</li>
+              <li>适用：游戏、科技类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 像素复古风格 -->
+        <div class="style-card" data-style="pixel-retro">
+          <div class="card-preview pixel-retro-preview">
+            <div class="preview-bg">
+              <div class="pixel-grid"></div>
+              <div class="pixel-particle">🎮</div>
+              <div class="pixel-particle">⭐</div>
+            </div>
+            <div class="preview-form pixel-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🎮 像素复古风格</h3>
+            <p>8位像素游戏风格配合复古动画</p>
+            <ul class="features">
+              <li>8位像素字体</li>
+              <li>复古游戏配色</li>
+              <li>像素粒子动画</li>
+              <li>适用：游戏、怀旧类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 极光风格 -->
+        <div class="style-card" data-style="aurora-borealis">
+          <div class="card-preview aurora-borealis-preview">
+            <div class="preview-bg">
+              <div class="aurora-wave"></div>
+              <div class="star-twinkle">✨</div>
+              <div class="star-twinkle">⭐</div>
+            </div>
+            <div class="preview-form aurora-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌌 极光风格</h3>
+            <p>北极光主题配合星空背景</p>
+            <ul class="features">
+              <li>极光渐变背景</li>
+              <li>流动光效动画</li>
+              <li>星空粒子效果</li>
+              <li>适用：科技、梦幻类应用</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 极简白色风格 -->
+        <div class="style-card" data-style="minimalist-white">
+          <div class="card-preview minimalist-white-preview">
+            <div class="preview-bg">
+              <div class="floating-circle"></div>
+              <div class="floating-circle"></div>
+              <div class="grid-pattern"></div>
+            </div>
+            <div class="preview-form minimal-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>⚪ 极简白色</h3>
+            <p>纯净白色背景，简洁线条设计</p>
+            <ul class="features">
+              <li>纯净白色背景设计</li>
+              <li>简洁线条和微妙阴影</li>
+              <li>适用：商务、办公类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 霓虹发光风格 -->
+        <div class="style-card" data-style="neon-glow">
+          <div class="card-preview neon-glow-preview">
+            <div class="preview-bg">
+              <div class="neon-line"></div>
+              <div class="neon-line"></div>
+              <div class="neon-particle"></div>
+              <div class="neon-particle"></div>
+            </div>
+            <div class="preview-form neon-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>💫 霓虹发光</h3>
+            <p>深色背景配霓虹色边框和发光效果</p>
+            <ul class="features">
+              <li>霓虹色边框和发光效果</li>
+              <li>深色背景科技感设计</li>
+              <li>适用：游戏、娱乐类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 水彩艺术风格 -->
+        <div class="style-card" data-style="watercolor-art">
+          <div class="card-preview watercolor-art-preview">
+            <div class="preview-bg">
+              <div class="watercolor-blob"></div>
+              <div class="watercolor-blob"></div>
+              <div class="watercolor-splash"></div>
+            </div>
+            <div class="preview-form watercolor-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🎨 水彩艺术</h3>
+            <p>柔和水彩背景，艺术感渐变</p>
+            <ul class="features">
+              <li>柔和水彩背景效果</li>
+              <li>艺术感渐变和动画</li>
+              <li>适用：创意、艺术类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 金属质感风格 -->
+        <div class="style-card" data-style="metallic-shine">
+          <div class="card-preview metallic-shine-preview">
+            <div class="preview-bg">
+              <div class="metal-panel"></div>
+              <div class="shine-effect"></div>
+              <div class="gear-decoration">⚙️</div>
+            </div>
+            <div class="preview-form metallic-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>⚡ 金属质感</h3>
+            <p>金属光泽，反光效果，工业感</p>
+            <ul class="features">
+              <li>金属光泽和反光效果</li>
+              <li>工业感设计元素</li>
+              <li>适用：工业、科技类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 玻璃拟态风格 -->
+        <div class="style-card" data-style="glassmorphism">
+          <div class="card-preview glassmorphism-preview">
+            <div class="preview-bg">
+              <div class="glass-orb"></div>
+              <div class="glass-orb"></div>
+              <div class="glass-particle"></div>
+            </div>
+            <div class="preview-form glass-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🔮 玻璃拟态</h3>
+            <p>毛玻璃效果，透明度，模糊背景</p>
+            <ul class="features">
+              <li>毛玻璃效果和透明度</li>
+              <li>模糊背景和光影效果</li>
+              <li>适用：现代、时尚类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 复古怀旧风格 -->
+        <div class="style-card" data-style="vintage-retro">
+          <div class="card-preview vintage-retro-preview">
+            <div class="preview-bg">
+              <div class="vintage-pattern"></div>
+              <div class="vintage-ornament">❦</div>
+              <div class="film-grain"></div>
+            </div>
+            <div class="preview-form vintage-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>📻 复古怀旧</h3>
+            <p>复古色调，老式字体，怀旧元素</p>
+            <ul class="features">
+              <li>复古色调和纹理效果</li>
+              <li>老式字体和装饰元素</li>
+              <li>适用：传统、文化类应用</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 未来科技风格 -->
+        <div class="style-card" data-style="futuristic-tech">
+          <div class="card-preview futuristic-tech-preview">
+            <div class="preview-bg">
+              <div class="tech-grid-mini"></div>
+              <div class="holo-line"></div>
+              <div class="tech-particle"></div>
+              <div class="tech-particle"></div>
+            </div>
+            <div class="preview-form tech-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🚀 未来科技</h3>
+            <p>全息效果，科技线条，未来感UI</p>
+            <ul class="features">
+              <li>全息扫描和数据流效果</li>
+              <li>科技线条和粒子动画</li>
+              <li>适用：科技、创新类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 自然有机风格 -->
+        <div class="style-card" data-style="organic-nature">
+          <div class="card-preview organic-nature-preview">
+            <div class="preview-bg">
+              <div class="organic-blob"></div>
+              <div class="leaf-element">🍃</div>
+              <div class="nature-particle"></div>
+            </div>
+            <div class="preview-form nature-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌿 自然有机</h3>
+            <p>有机形状，自然元素，生态友好设计</p>
+            <ul class="features">
+              <li>有机曲线和自然纹理</li>
+              <li>叶子花朵装饰元素</li>
+              <li>适用：环保、健康类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 几何抽象风格 -->
+        <div class="style-card" data-style="geometric-abstract">
+          <div class="card-preview geometric-abstract-preview">
+            <div class="preview-bg">
+              <div class="geo-triangle"></div>
+              <div class="geo-circle"></div>
+              <div class="geo-line"></div>
+            </div>
+            <div class="preview-form geometric-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🔷 几何抽象</h3>
+            <p>几何图形，抽象设计，现代艺术</p>
+            <ul class="features">
+              <li>几何图形和抽象线条</li>
+              <li>现代艺术风格设计</li>
+              <li>适用：设计、艺术类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 手绘风格 -->
+        <div class="style-card" data-style="hand-drawn">
+          <div class="card-preview hand-drawn-preview">
+            <div class="preview-bg">
+              <div class="sketch-element">✏️</div>
+              <div class="doodle-line"></div>
+              <div class="paper-texture-mini"></div>
+            </div>
+            <div class="preview-form sketch-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>✏️ 手绘风格</h3>
+            <p>手绘线条，涂鸦元素，随性设计</p>
+            <ul class="features">
+              <li>手绘线条和涂鸦效果</li>
+              <li>纸张纹理和铅笔痕迹</li>
+              <li>适用：创意、教育类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 工业风格 -->
+        <div class="style-card" data-style="industrial-steel">
+          <div class="card-preview industrial-steel-preview">
+            <div class="preview-bg">
+              <div class="steel-plate"></div>
+              <div class="rivet-element">⚫</div>
+              <div class="steam-mini"></div>
+            </div>
+            <div class="preview-form industrial-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🏭 工业风格</h3>
+            <p>钢铁质感，机械元素，工业设计</p>
+            <ul class="features">
+              <li>钢铁质感和机械元素</li>
+              <li>工业管道和蒸汽效果</li>
+              <li>适用：工业、制造类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 梦幻童话风格 -->
+        <div class="style-card" data-style="fairy-tale">
+          <div class="card-preview fairy-tale-preview">
+            <div class="preview-bg">
+              <div class="magic-star">✨</div>
+              <div class="fairy-icon">🧚</div>
+              <div class="rainbow-mini"></div>
+            </div>
+            <div class="preview-form fairy-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🧚 梦幻童话</h3>
+            <p>魔法效果，童话元素，梦幻色彩</p>
+            <ul class="features">
+              <li>魔法星星和童话元素</li>
+              <li>彩虹色彩和梦幻效果</li>
+              <li>适用：儿童、娱乐类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 月夜神秘风格 -->
+        <div class="style-card" data-style="moonlit-mystery">
+          <div class="card-preview moonlit-mystery-preview">
+            <div class="preview-bg">
+              <div class="moon-mini">🌕</div>
+              <div class="mist-mini"></div>
+              <div class="rune-mini">◯</div>
+              <div class="particle-mini">✨</div>
+            </div>
+            <div class="preview-form mystery-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌙 深色极简风格</h3>
+            <p>深色主题配合霓虹边框效果</p>
+            <ul class="features">
+              <li>深灰/黑色背景</li>
+              <li>蓝绿霓虹色边框</li>
+              <li>极简主义设计</li>
+              <li>适用：游戏、娱乐类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 流体艺术风格 -->
+        <div class="style-card" data-style="fluid-art">
+          <div class="card-preview fluid-art-preview">
+            <div class="preview-bg">
+              <div class="fluid-layer-mini"></div>
+              <div class="bubble-mini">💧</div>
+              <div class="ripple-mini"></div>
+              <div class="particle-mini">✨</div>
+            </div>
+            <div class="preview-form fluid-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌊 流体艺术</h3>
+            <p>动态流体背景配合液体交互效果</p>
+            <ul class="features">
+              <li>多层流体动画背景</li>
+              <li>液体输入框和气泡效果</li>
+              <li>适用：创意、艺术类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 樱花飘落风格 -->
+        <div class="style-card" data-style="cherry-blossom">
+          <div class="card-preview cherry-blossom-preview">
+            <div class="preview-bg">
+              <div class="sakura-branch-mini"></div>
+              <div class="falling-petal-mini">🌸</div>
+              <div class="lantern-mini">🏮</div>
+              <div class="zen-element-mini">🌿</div>
+            </div>
+            <div class="preview-form japanese-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌸 樱花飘落</h3>
+            <p>日式美学配合樱花飘落和纸灯笼</p>
+            <ul class="features">
+              <li>樱花分支和飘落花瓣动画</li>
+              <li>日式纸灯笼和竹子元素</li>
+              <li>适用：文化、禅意类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 火焰熔岩风格 -->
+        <div class="style-card" data-style="flame-lava">
+          <div class="card-preview flame-lava-preview">
+            <div class="preview-bg">
+              <div class="flame-particle-mini">🔥</div>
+              <div class="lava-wave-mini"></div>
+              <div class="spark-mini">✨</div>
+              <div class="ember-mini">💥</div>
+            </div>
+            <div class="preview-form flame-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🔥 火焰熔岩</h3>
+            <p>火焰粒子配合熔岩流动和火花效果</p>
+            <ul class="features">
+              <!-- <li>深红到金黄渐变背景</li> -->
+              <li>动态火焰粒子系统</li>
+              <li>熔岩流动波浪效果</li>
+              <!-- <li>火花飞溅交互动画</li> -->
+              <li>适用：游戏、娱乐类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 水晶冰雪风格 -->
+        <div class="style-card" data-style="crystal-ice">
+          <div class="card-preview crystal-ice-preview">
+            <div class="preview-bg">
+              <div class="snowflake-mini">❄️</div>
+              <div class="aurora-mini"></div>
+              <div class="crystal-mini">💎</div>
+              <div class="ice-sparkle-mini">✨</div>
+            </div>
+            <div class="preview-form crystal-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>❄️ 水晶冰雪</h3>
+            <p>极光背景配合雪花飘落和水晶效果</p>
+            <ul class="features">
+              <!-- <li>冰蓝到水晶白渐变</li> -->
+              <li>极光流动背景效果</li>
+              <li>雪花飘落粒子系统</li>
+              <!-- <li>水晶折射光影动画</li> -->
+              <li>适用：高端、科技类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 樱花和风风格 -->
+        <div class="style-card" data-style="sakura-zen">
+          <div class="card-preview sakura-zen-preview">
+            <div class="preview-bg">
+              <div class="sakura-mini">🌸</div>
+              <div class="bamboo-mini">🎋</div>
+              <div class="butterfly-mini">🦋</div>
+              <div class="lantern-mini">🏮</div>
+            </div>
+            <div class="preview-form zen-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌸 樱花和风</h3>
+            <p>日式美学配合樱花飘落和水墨画风</p>
+            <ul class="features">
+              <!-- <li>温暖米色到樱花粉渐变</li> -->
+              <li>樱花花瓣飘落动画</li>
+              <!-- <li>水墨画风背景效果</li> -->
+              <li>蝴蝶飞舞和竹林装饰</li>
+              <li>适用：文化、艺术类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 赛博朋克霓虹风格 -->
+        <div class="style-card" data-style="cyberpunk-neon">
+          <div class="card-preview cyberpunk-neon-preview">
+            <div class="preview-bg">
+              <div class="matrix-mini">0</div>
+              <div class="neon-grid-mini"></div>
+              <div class="glitch-mini">⚡</div>
+              <div class="cyber-mini">🤖</div>
+            </div>
+            <div class="preview-form cyber-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🤖 赛博朋克霓虹</h3>
+            <p>未来科技配合霓虹灯光和数字雨效果</p>
+            <ul class="features">
+              <!-- <li>暗黑背景配霓虹边框</li> -->
+              <li>数字雨Matrix效果</li>
+              <!-- <li>故障艺术动画</li> -->
+              <li>霓虹灯管闪烁效果</li>
+              <li>适用：科技、游戏类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 星际探索风格 -->
+        <div class="style-card" data-style="stellar-exploration">
+          <div class="card-preview stellar-exploration-preview">
+            <div class="preview-bg">
+              <div class="galaxy-mini">🌌</div>
+              <div class="planet-mini">🪐</div>
+              <div class="meteor-mini">☄️</div>
+              <div class="star-mini">⭐</div>
+            </div>
+            <div class="preview-form stellar-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌌 星际探索</h3>
+            <p>深空探索主题配合星系旋转和流星效果</p>
+            <ul class="features">
+              <li>深紫到黑色星空背景</li>
+              <li>星系旋转和行星轨道</li>
+              <li>流星划过和太空尘埃</li>
+              <li>适用：科技、探索、教育类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 戏剧舞台风格 -->
+        <div class="style-card" data-style="theatrical-stage">
+          <div class="card-preview theatrical-stage-preview">
+            <div class="preview-bg">
+              <div class="curtain-mini">🎭</div>
+              <div class="spotlight-mini">💡</div>
+              <div class="stage-mini">🎪</div>
+              <div class="ornament-mini">🎨</div>
+            </div>
+            <div class="preview-form theater-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌸 温馨粉色风格</h3>
+            <p>柔和粉色配合花瓣飘落动画</p>
+            <ul class="features">
+              <li>粉色到橙色温暖渐变</li>
+              <li>花瓣飘落动画效果</li>
+              <li>温馨可爱的设计风格</li>
+              <li>适用：社交、生活类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 电路板科技风格 -->
+        <div class="style-card" data-style="circuit-tech">
+          <div class="card-preview circuit-tech-preview">
+            <div class="preview-bg">
+              <div class="circuit-mini">⚡</div>
+              <div class="chip-mini">🔲</div>
+              <div class="led-mini">💡</div>
+              <div class="data-mini">●</div>
+            </div>
+            <div class="preview-form tech-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>⚡ 电路板科技</h3>
+            <p>电路板图案背景配合电子元件动画</p>
+            <ul class="features">
+              <li>深绿色电路板背景</li>
+              <li>电路线条流光和LED闪烁</li>
+              <li>电子脉冲和数据流动画</li>
+              <li>适用：科技、电子、工程类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 书法墨韵风格 -->
+        <div class="style-card" data-style="calligraphy-ink">
+          <div class="card-preview calligraphy-ink-preview">
+            <div class="preview-bg">
+              <div class="ink-mini">🖋️</div>
+              <div class="brush-mini">一</div>
+              <div class="seal-mini">印</div>
+              <div class="char-mini">雅</div>
+            </div>
+            <div class="preview-form ink-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🖋️ 书法墨韵</h3>
+            <p>中国传统书法和水墨画风格</p>
+            <ul class="features">
+              <li>水墨渐变背景</li>
+              <li>墨滴扩散和毛笔书写</li>
+              <li>水墨流动和印章装饰</li>
+              <li>适用：文化、艺术、传统类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 现代渐变风格 -->
+        <div class="style-card" data-style="modern-gradient">
+          <div class="card-preview modern-gradient-preview">
+            <div class="preview-bg">
+              <div class="floating-bubble"></div>
+              <div class="floating-bubble"></div>
+              <div class="floating-bubble"></div>
+            </div>
+            <div class="preview-form">
+              <div class="form-title">登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🌈 现代渐变风格</h3>
+            <p>科技感十足的渐变背景配合浮动动画</p>
+            <ul class="features">
+              <li>青蓝到紫色渐变背景</li>
+              <li>浮动气泡动画效果</li>
+              <li>玻璃拟态设计风格</li>
+              <li>适用：科技、创新类应用</li>
+            </ul>
+            <div class="card-actions">
+              <button class="download-btn" data-style="modern-gradient">
+                <span class="download-icon">📦</span>
+                <span class="download-text">下载文件包</span>
+                <div class="download-progress">
+                  <div class="progress-bar"></div>
+                  <span class="progress-text">0%</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D 科幻风格 -->
+        <div class="style-card" data-style="threejs-scifi">
+          <div class="card-preview threejs-scifi-preview">
+            <div class="preview-bg">
+              <div class="star-mini">⭐</div>
+              <div class="planet-mini">🪐</div>
+              <div class="rocket-mini">🚀</div>
+              <div class="galaxy-mini">🌌</div>
+              <div class="threejs-logo">3D</div>
+            </div>
+            <div class="preview-form scifi-form">
+              <div class="form-title">星际登录</div>
+              <div class="form-input"></div>
+              <div class="form-input"></div>
+              <div class="form-button"></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🚀 3D 科幻空间</h3>
+            <p>基于 Three.js 的沉浸式 3D 科幻登录体验</p>
+            <ul class="features">
+              <li>真实 3D 星空和粒子系统</li>
+              <li>动态几何体和光照效果</li>
+              <li>鼠标交互和全息界面</li>
+              <li>适用：科技、游戏、未来类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Windows 98 复古风格 -->
+        <div class="style-card" data-style="windows98-retro">
+          <div class="card-preview windows98-retro-preview">
+            <div class="preview-bg">
+              <div class="win98-desktop">
+                <div class="desktop-icon-mini">💻</div>
+                <div class="desktop-icon-mini">🗑️</div>
+              </div>
+              <div class="win98-taskbar">
+                <div class="start-btn-mini">开始</div>
+                <div class="time-display">12:34</div>
+              </div>
+            </div>
+            <div class="preview-form win98-form">
+              <div class="form-title win98-title">
+                <span class="win98-icon">🔐</span>
+                <span>登录到 Windows</span>
+              </div>
+              <div class="form-input win98-input"></div>
+              <div class="form-input win98-input"></div>
+              <div class="form-button win98-button">确定</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🖥️ Windows 98 复古风格</h3>
+            <p>经典Windows 98界面配合怀旧桌面效果</p>
+            <ul class="features">
+              <li>经典Win98桌面和任务栏</li>
+              <li>3D按钮和窗口边框</li>
+              <li>可拖拽窗口和音效反馈</li>
+              <li>适用：怀旧、复古、经典类应用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 网络朋克病毒感染风格 -->
+        <div class="style-card" data-style="cyber-virus-infection">
+          <div class="card-preview cyber-virus-preview">
+            <div class="preview-bg">
+              <div class="virus-matrix-bg">
+                <div class="matrix-char">コ</div>
+                <div class="matrix-char">ド</div>
+                <div class="matrix-char">🦠</div>
+                <div class="matrix-char">ハ</div>
+                <div class="matrix-char">ッ</div>
+              </div>
+              <div class="virus-particles-mini">
+                <div class="virus-particle-mini"></div>
+                <div class="virus-particle-mini"></div>
+                <div class="virus-particle-mini"></div>
+              </div>
+              <div class="glitch-scanlines-mini"></div>
+            </div>
+            <div class="preview-form virus-terminal-form">
+              <div class="form-title virus-title">
+                <span class="virus-icon">🦠</span>
+                <span class="glitch-text-mini">VIRUS_LOGIN.EXE</span>
+              </div>
+              <div class="terminal-lines-mini">
+                <div class="terminal-line-mini">>>> 初始化病毒载体...</div>
+                <div class="terminal-line-mini">>>> 等待身份验证...</div>
+              </div>
+              <div class="form-input virus-input"></div>
+              <div class="form-input virus-input"></div>
+              <div class="form-button virus-button">执行感染</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>🦠 网络朋克病毒感染风格</h3>
+            <p>极端网络朋克主题配合病毒传播和故障艺术</p>
+            <ul class="features">
+              <li>矩阵代码雨和病毒粒子系统</li>
+              <li>故障艺术和系统损坏效果</li>
+              <li>黑客终端和病毒感染动画</li>
+              <li>适用：极客、黑客应用</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>
+          © 2025 LoginLab Project. 精美移动端登录页面集合 - 现已支持39种风格
+        </p>
+      </footer>
+    </main>
+
+    <!-- 魔法传送门返回顶部 -->
+    <div class="magic-portal" id="magicPortal">
+      <div class="portal-ring">
+        <div class="portal-inner">
+          <div class="portal-core">🌟</div>
+        </div>
+      </div>
+      <div class="portal-particles">
+        <div class="particle">✨</div>
+        <div class="particle">⭐</div>
+        <div class="particle">💫</div>
+        <div class="particle">🌟</div>
+        <div class="particle">✨</div>
+        <div class="particle">⭐</div>
+      </div>
+      <div class="portal-tooltip">魔法传送到顶部</div>
+    </div>
+
+    <script src="src/js/analytics.js"></script>
+    <script src="src/js/download-manager.js"></script>
+    <script src="src/js/style-selector.js"></script>
+    <script src="src/js/project-intro.js"></script>
+    <script src="src/js/resource-fallback.js"></script>
+    <script>
+      // 粒子背景（轻量，仅十几个）：
+      (function initParticles() {
+        const wrap = document.getElementById("particlesBg");
+        if (!wrap) return;
+        const W = window.innerWidth,
+          H = window.innerHeight;
+        const count = Math.max(10, Math.min(18, Math.floor((W * H) / 120000))); // 自适应数量
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement("div");
+          p.className = "particle";
+          const size = 3 + Math.random() * 3;
+          p.style.width = size + "px";
+          p.style.height = size + "px";
+          p.style.left = Math.random() * 100 + "vw";
+          p.style.top = Math.random() * 100 + "vh";
+          const dur = 18 + Math.random() * 16;
+          p.style.animationDuration = dur + "s";
+          p.style.animationDelay = -Math.random() * dur + "s";
+          wrap.appendChild(p);
+        }
+        window.addEventListener(
+          "resize",
+          () => {
+            /* 轻量，不做重建以控成本 */
+          },
+          { passive: true }
+        );
+      })();
+
+      // 轻量页面加载层结束：等待一帧后隐藏，保留原JS逻辑不变
+      window.addEventListener("load", () => {
+        requestAnimationFrame(() => {
+          const loader = document.getElementById("pageLoader");
+          if (loader) loader.classList.add("hide");
+        });
+      });
+    </script>
+  </body>
+</html>

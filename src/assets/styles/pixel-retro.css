@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(45deg, #2c1810, #4a2c17);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #1a1a1a;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 0px #000;
+}
+
+.back-button:hover {
+    background: #00ff00;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.3);
+}
+
+.back-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* 像素背景动画 */
+.pixel-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, #ff6b35 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, #f7931e 2px, transparent 2px),
+        radial-gradient(circle at 50% 50%, #ffcd3c 1px, transparent 1px);
+    background-size: 40px 40px, 60px 60px, 30px 30px;
+    animation: pixelMove 20s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes pixelMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-40px, -40px); }
+}
+
+/* 像素粒子效果 */
+.pixel-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00ff00;
+    animation: pixelFloat 3s linear infinite;
+}
+
+.pixel-particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.pixel-particle:nth-child(2) {
+    left: 30%;
+    animation-delay: 0.5s;
+    background: #ffcd3c;
+}
+
+.pixel-particle:nth-child(3) {
+    left: 50%;
+    animation-delay: 1s;
+    background: #ff6b35;
+}
+
+.pixel-particle:nth-child(4) {
+    left: 70%;
+    animation-delay: 1.5s;
+    background: #f7931e;
+}
+
+.pixel-particle:nth-child(5) {
+    left: 90%;
+    animation-delay: 2s;
+}
+
+@keyframes pixelFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 游戏机风格边框 */
+.game-border {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px dashed #666;
+    pointer-events: none;
+    animation: borderPulse 2s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+/* 表单容器 */
+.form-container {
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+/* 8位风格卡片 */
+.pixel-card {
+    background: #1a1a1a;
+    border: 4px solid #00ff00;
+    padding: 30px;
+    position: relative;
+    box-shadow: 
+        0 0 0 2px #000,
+        0 0 0 4px #00ff00,
+        0 0 20px rgba(0, 255, 0, 0.5);
+    animation: containerGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes containerGlow {
+    0% { box-shadow: 0 0 0 2px #000, 0 0 0 4px #00ff00, 0 0 20px rgba(0, 255, 0, 0.5); }
+    100% { box-shadow: 0 0 0 2px #000, 0 0 0 4px #00ff00, 0 0 30px rgba(0, 255, 0, 0.8); }
+}
+
+/* 像素装饰角 */
+.pixel-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00ff00;
+}
+
+.pixel-corner.top-left { top: -2px; left: -2px; }
+.pixel-corner.top-right { top: -2px; right: -2px; }
+.pixel-corner.bottom-left { bottom: -2px; left: -2px; }
+.pixel-corner.bottom-right { bottom: -2px; right: -2px; }
+
+.form-title {
+    text-align: center;
+    color: #00ff00;
+    font-size: 16px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0px #000;
+    animation: titleBlink 1.5s infinite;
+}
+
+@keyframes titleBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.7; }
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    color: #ffcd3c;
+    font-size: 10px;
+    margin-bottom: 8px;
+    text-shadow: 1px 1px 0px #000;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    border: 2px solid #666;
+    color: #00ff00;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    background: #111;
+}
+
+.form-input::placeholder {
+    color: #666;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+}
+
+.pixel-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    border: 3px solid #000;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 1px 1px 0px #000;
+    transition: all 0.3s ease;
+}
+
+.pixel-button:hover {
+    background: linear-gradient(45deg, #f7931e, #ffcd3c);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pixel-button:active {
+    transform: translateY(0);
+}
+
+.pixel-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.pixel-button:hover::before {
+    left: 100%;
+}
+
+.form-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link-button {
+    color: #00ff00;
+    text-decoration: none;
+    font-size: 8px;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.link-button:hover {
+    color: #ffcd3c;
+    text-shadow: 1px 1px 0px #000;
+}
+
+/* 8位音效视觉反馈 */
+.sound-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ff00;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: soundWave 1s ease-out infinite;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes soundWave {
+    0% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .pixel-card {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .form-title {
+        font-size: 14px;
+    }
+    
+    .form-input {
+        padding: 10px;
+        font-size: 9px;
+    }
+    
+    .pixel-button {
+        padding: 12px;
+        font-size: 9px;
+    }
+    
+    .back-button {
+        padding: 8px 12px;
+        font-size: 7px;
+    }
+}

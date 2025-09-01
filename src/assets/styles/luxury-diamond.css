@@ -1,0 +1,533 @@
+/* 奢华钻石风格 - Luxury Diamond Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #d4af37;
+    border-radius: 25px;
+    color: #d4af37;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.back-button:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: #ffd700;
+    color: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 背景渐变 - 黑金奢华 */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #0a0a0a 100%);
+    overflow: hidden;
+}
+
+.background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+}
+
+/* 钻石动画 */
+.diamond {
+    position: absolute;
+    font-size: 30px;
+    animation: sparkle 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+}
+
+.diamond1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.diamond2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 1s;
+    font-size: 25px;
+}
+
+.diamond3 {
+    bottom: 25%;
+    left: 25%;
+    animation-delay: 2s;
+    font-size: 20px;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* 闪光效果 */
+.sparkle {
+    position: absolute;
+    font-size: 15px;
+    animation: twinkle 2s linear infinite;
+}
+
+.sparkle1 { top: 10%; left: 30%; animation-delay: 0s; }
+.sparkle2 { top: 40%; right: 30%; animation-delay: 0.5s; }
+.sparkle3 { bottom: 30%; left: 40%; animation-delay: 1s; }
+.sparkle4 { bottom: 10%; right: 25%; animation-delay: 1.5s; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* 金线装饰 */
+.gold-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    height: 1px;
+    width: 200px;
+    animation: slide 5s linear infinite;
+}
+
+.line1 {
+    top: 30%;
+    animation-delay: 0s;
+}
+
+.line2 {
+    bottom: 30%;
+    animation-delay: 2.5s;
+}
+
+@keyframes slide {
+    0% { left: -200px; }
+    100% { left: 100%; }
+}
+
+/* 登录容器样式 */
+.login-container,
+.register-container,
+.forgot-container {
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(20px);
+    border: 2px solid #d4af37;
+    border-radius: 0;
+    padding: 50px 40px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.3),
+                inset 0 0 30px rgba(212, 175, 55, 0.05);
+    position: relative;
+    z-index: 10;
+    display: block;
+    animation: luxuryFadeIn 0.8s ease-out;
+}
+
+.login-container.hidden,
+.register-container.hidden,
+.forgot-container.hidden {
+    display: none;
+}
+
+.login-container.active,
+.register-container.active,
+.forgot-container.active {
+    display: block;
+}
+
+@keyframes luxuryFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 奢华徽章 */
+.luxury-badge {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #d4af37, #f4e5c2, #d4af37);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+}
+
+/* 表单标题 */
+.form-title {
+    text-align: center;
+    color: #d4af37;
+    font-size: 32px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 35px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* 表单组 */
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #444;
+    background: transparent;
+    outline: none;
+    transition: all 0.3s;
+    color: #fff;
+}
+
+.form-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 14px;
+    color: #888;
+    pointer-events: none;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #d4af37, #f4e5c2, #d4af37);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.form-group input:focus ~ .input-line,
+.form-group input:not(:placeholder-shown) ~ .input-line {
+    transform: scaleX(1);
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+    transform: translateY(-25px);
+    font-size: 10px;
+    color: #d4af37;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.send-code-btn {
+    padding: 10px 20px;
+    background: transparent;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    cursor: pointer;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: all 0.3s;
+}
+
+.send-code-btn:hover {
+    background: #d4af37;
+    color: #000;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+}
+
+.send-code-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #888;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.remember-me input {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #d4af37;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.remember-me input:checked ~ .checkmark {
+    background: #d4af37;
+}
+
+.remember-me input:checked ~ .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 10px;
+}
+
+.forgot-password {
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: #f4e5c2;
+}
+
+/* 提交按钮 */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    background: #d4af37;
+    color: #000;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+.btn-shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.submit-btn:hover .btn-shimmer {
+    left: 100%;
+}
+
+/* 分隔线 */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    gap: 15px;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.divider span {
+    color: #d4af37;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* 社交登录 */
+.social-login {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #444;
+    color: #888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.gold-btn {
+    border-color: #d4af37;
+    color: #d4af37;
+}
+
+.silver-btn {
+    border-color: #c0c0c0;
+    color: #c0c0c0;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+}
+
+.gold-btn:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+.silver-btn:hover {
+    background: #c0c0c0;
+    color: #000;
+}
+
+/* 切换表单 */
+.switch-form {
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.switch-form a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.switch-form a:hover {
+    color: #f4e5c2;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .login-container,
+    .register-container,
+    .forgot-container {
+        padding: 40px 30px;
+        width: 95%;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .luxury-badge {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 极光风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/aurora-borealis.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 极光背景 -->
+    <div class="aurora-bg"></div>
+    <div class="aurora-wave"></div>
+    <div class="stars"></div>
+
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="aurora-card">
+            <div class="aurora-border"></div>
+
+            <h1 class="form-title">🌌 AURORA LOGIN</h1>
+
+            <form class="login-form">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" placeholder="Enter your username" required>
+                    <div class="input-aurora"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Enter your password" required>
+                    <div class="input-aurora"></div>
+                </div>
+
+                <button type="submit" class="form-button aurora-button">
+                    Enter the Aurora
+                </button>
+            </form>
+
+            <div class="form-links">
+                <a href="#" class="link-button" data-action="register">Create Account</a>
+                <a href="#" class="link-button" data-action="forgot">Forgot Password</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="register-container form-container" id="registerForm" style="display: none;">
+        <div class="aurora-card">
+            <div class="aurora-border"></div>
+
+            <h1 class="form-title">🌌 CREATE ACCOUNT</h1>
+
+            <form class="register-form">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" placeholder="Choose a username" required>
+                    <div class="input-aurora"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" placeholder="Enter your email" required>
+                    <div class="input-aurora"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Create a password" required>
+                    <div class="input-aurora"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" placeholder="Confirm your password" required>
+                    <div class="input-aurora"></div>
+                </div>
+
+                <button type="submit" class="form-button aurora-button">
+                    Join the Aurora
+                </button>
+            </form>
+
+            <div class="form-links">
+                <a href="#" class="link-button" data-action="login">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="forgot-container form-container" id="forgotForm" style="display: none;">
+        <div class="aurora-card">
+            <div class="aurora-border"></div>
+
+            <h1 class="form-title">🌌 RESET PASSWORD</h1>
+
+            <form class="forgot-form">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" placeholder="Enter your email" required>
+                    <div class="input-aurora"></div>
+                </div>
+
+                <button type="submit" class="form-button aurora-button">
+                    Send Reset Link
+                </button>
+            </form>
+
+            <div class="form-links">
+                <a href="#" class="link-button" data-action="login">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/aurora-borealis.js"></script>
+</body>
+</html>

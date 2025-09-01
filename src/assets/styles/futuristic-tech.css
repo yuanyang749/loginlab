@@ -1,0 +1,444 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+    color: #00d4ff;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(0, 212, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00d4ff;
+    border-radius: 25px;
+    color: #00d4ff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.back-button:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+/* 未来科技背景 */
+.futuristic-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tech-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+.hologram-effect {
+    position: absolute;
+    background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+    animation: holoScan 8s ease-in-out infinite;
+}
+
+.holo-1 {
+    width: 3px;
+    height: 100vh;
+    left: 25%;
+    animation-delay: 0s;
+}
+
+.holo-2 {
+    width: 100vw;
+    height: 3px;
+    top: 35%;
+    animation-delay: 4s;
+}
+
+.data-stream {
+    position: absolute;
+    width: 2px;
+    height: 100vh;
+    background: linear-gradient(180deg, transparent, #00d4ff, transparent);
+    animation: dataFlow 6s ease-in-out infinite;
+}
+
+.stream-1 {
+    left: 60%;
+    animation-delay: 0s;
+}
+
+.stream-2 {
+    right: 30%;
+    animation-delay: 3s;
+}
+
+.tech-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00d4ff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00d4ff;
+    animation: techParticleFloat 8s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 70%; left: 80%; animation-delay: 2s; }
+.particle:nth-child(3) { top: 40%; left: 60%; animation-delay: 4s; }
+.particle:nth-child(4) { top: 80%; left: 30%; animation-delay: 6s; }
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+@keyframes holoScan {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+}
+
+@keyframes dataFlow {
+    0%, 100% { opacity: 0.5; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-20px); }
+}
+
+@keyframes techParticleFloat {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+}
+
+/* 表单容器 */
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    transition: all 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.tech-card {
+    background: rgba(0, 212, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 2px solid #00d4ff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 
+        0 0 30px rgba(0, 212, 255, 0.3),
+        inset 0 1px 0 rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    transition: all 0.8s ease;
+}
+
+.tech-card:hover::before {
+    left: 100%;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 0 40px rgba(0, 212, 255, 0.5),
+        inset 0 1px 0 rgba(0, 212, 255, 0.3);
+    border-color: #00ffff;
+}
+
+.tech-card h2 {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #00d4ff;
+    text-shadow: 0 0 10px #00d4ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 32px;
+    color: #00ffff;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 16px 12px;
+    border: none;
+    background: rgba(0, 212, 255, 0.05);
+    font-size: 16px;
+    color: #00d4ff;
+    outline: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.form-group input:focus {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 5px #00d4ff;
+}
+
+.form-group label {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    color: rgba(0, 212, 255, 0.7);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -8px;
+    left: 8px;
+    font-size: 12px;
+    color: #00d4ff;
+    background: rgba(12, 12, 12, 0.8);
+    padding: 0 4px;
+    border-radius: 4px;
+    text-shadow: 0 0 5px #00d4ff;
+}
+
+.tech-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #00d4ff, #00ffff, #0080ff) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus ~ .tech-border {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 16px 20px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    color: #00ffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.verify-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 5px #00ffff;
+}
+
+/* 科技按钮 */
+.tech-btn {
+    width: 100%;
+    padding: 16px;
+    margin: 32px 0 24px 0;
+    background: linear-gradient(45deg, #00d4ff, #0080ff);
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.tech-btn:hover {
+    background: linear-gradient(45deg, #00ffff, #00d4ff);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+.tech-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.5s ease;
+}
+
+.tech-btn:hover .tech-glow {
+    left: 100%;
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    font-size: 14px;
+}
+
+.additional-links a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.additional-links a:hover {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.divider {
+    margin: 0 12px;
+    color: rgba(0, 212, 255, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 16px;
+    }
+    
+    .tech-card {
+        padding: 24px;
+    }
+    
+    .tech-card h2 {
+        font-size: 24px;
+    }
+    
+    .back-button {
+        top: 16px;
+        left: 16px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .hologram-effect, .data-stream {
+        display: none;
+    }
+}
+
+/* 加载动画 */
+@keyframes techFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.tech-card {
+    animation: techFadeIn 1s ease-out;
+}

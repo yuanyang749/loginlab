@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', monospace;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Orbitron', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(0, 255, 146, 0.2);
+    border-color: #00ff92;
+    color: #00ff92;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 255, 146, 0.3);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* 极光背景动画 */
+.aurora-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at top, rgba(0, 255, 146, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at left, rgba(0, 191, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at right, rgba(255, 20, 147, 0.3) 0%, transparent 50%);
+    animation: auroraMove 15s ease-in-out infinite;
+}
+
+@keyframes auroraMove {
+    0%, 100% { 
+        transform: rotate(0deg) scale(1);
+        filter: hue-rotate(0deg);
+    }
+    25% { 
+        transform: rotate(1deg) scale(1.1);
+        filter: hue-rotate(90deg);
+    }
+    50% { 
+        transform: rotate(-1deg) scale(1.05);
+        filter: hue-rotate(180deg);
+    }
+    75% { 
+        transform: rotate(0.5deg) scale(1.1);
+        filter: hue-rotate(270deg);
+    }
+}
+
+/* 极光波浪效果 */
+.aurora-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(0, 255, 146, 0.1) 50%,
+        rgba(138, 43, 226, 0.1) 70%,
+        transparent 90%
+    );
+    animation: waveFlow 20s linear infinite;
+}
+
+@keyframes waveFlow {
+    0% { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(100%) skewX(-15deg); }
+}
+
+/* 星空效果 */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: starTwinkle 10s linear infinite;
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 表单容器 */
+.form-container {
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+}
+
+/* 极光卡片 */
+.aurora-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: containerFloat 6s ease-in-out infinite;
+}
+
+@keyframes containerFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* 极光边框效果 */
+.aurora-border {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 255, 146, 0.3),
+        rgba(138, 43, 226, 0.3),
+        rgba(0, 191, 255, 0.3),
+        rgba(255, 20, 147, 0.3),
+        rgba(0, 255, 146, 0.3)
+    );
+    border-radius: 21px;
+    z-index: -1;
+    animation: borderGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes borderGlow {
+    0% {
+        opacity: 0.3;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 255, 146, 0.3),
+            rgba(138, 43, 226, 0.3),
+            rgba(0, 191, 255, 0.3),
+            rgba(255, 20, 147, 0.3),
+            rgba(0, 255, 146, 0.3)
+        );
+    }
+    100% {
+        opacity: 0.6;
+        background: linear-gradient(
+            90deg,
+            rgba(138, 43, 226, 0.4),
+            rgba(0, 191, 255, 0.4),
+            rgba(255, 20, 147, 0.4),
+            rgba(0, 255, 146, 0.4),
+            rgba(138, 43, 226, 0.4)
+        );
+    }
+}
+
+.form-title {
+    text-align: center;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(0, 255, 146, 0.8);
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% { 
+        text-shadow: 0 0 20px rgba(0, 255, 146, 0.8);
+        color: #fff;
+    }
+    100% { 
+        text-shadow: 0 0 30px rgba(138, 43, 226, 1);
+        color: #e0e0ff;
+    }
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Orbitron', monospace;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.form-input:focus {
+    border-color: #00ff92;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 146, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+/* 输入框极光效果 */
+.input-aurora {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 146, 0.2),
+        rgba(138, 43, 226, 0.2),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.form-input:focus + .input-aurora {
+    opacity: 1;
+    animation: inputAurora 2s ease-in-out infinite;
+}
+
+@keyframes inputAurora {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.aurora-button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #00ff92, #8a2be2);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Orbitron', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 146, 0.3);
+}
+
+.aurora-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 255, 146, 0.5);
+    background: linear-gradient(135deg, #8a2be2, #00bfff);
+}
+
+.aurora-button:active {
+    transform: translateY(0);
+}
+
+/* 按钮极光流动效果 */
+.aurora-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.aurora-button:hover::before {
+    left: 100%;
+}
+
+.form-links {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.link-button {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.link-button:hover {
+    color: #00ff92;
+    text-shadow: 0 0 10px rgba(0, 255, 146, 0.8);
+}
+
+.link-button::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #00ff92, #8a2be2);
+    transition: width 0.3s ease;
+}
+
+.link-button:hover::after {
+    width: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .aurora-card {
+        padding: 30px 25px;
+        margin: 20px;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .form-input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .aurora-button {
+        padding: 15px;
+        font-size: 14px;
+    }
+    
+    .back-button {
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,1236 @@
+/* 3D 科幻风格登录页面样式 */
+
+/* CSS 变量定义 */
+:root {
+    --primary-cyan: #00ffff;
+    --primary-blue: #0080ff;
+    --primary-purple: #8000ff;
+    --neon-green: #00ff80;
+    --dark-bg: #0a0a0f;
+    --card-bg: rgba(10, 20, 40, 0.3);
+    --glass-border: rgba(0, 255, 255, 0.3);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --energy-glow: rgba(0, 255, 255, 0.5);
+}
+
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+/* 背景图片容器 */
+#background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(1px);
+    transform: scale(1.1);
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(10, 10, 15, 0.7) 0%,
+        rgba(26, 26, 46, 0.6) 50%,
+        rgba(10, 10, 15, 0.8) 100%
+    );
+    backdrop-filter: blur(0.5px);
+}
+
+/* 3D 粒子效果容器 */
+#scene-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#threejs-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+/* 图片加载状态 */
+.image-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    text-align: center;
+    color: var(--primary-cyan);
+    background: rgba(10, 20, 40, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease-out;
+}
+
+.image-loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.image-loading .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 255, 255, 0.3);
+    border-top: 3px solid var(--primary-cyan);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+.image-loading p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* WebGL 错误提示 */
+.webgl-error {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0f, #1a1a2e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.error-content {
+    text-align: left;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.error-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+}
+
+.error-content h2 {
+    color: var(--primary-cyan);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.error-content p {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.error-details {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border-left: 3px solid var(--primary-cyan);
+}
+
+.error-details p {
+    color: var(--primary-cyan);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.error-details ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.error-details li {
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.error-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.back-btn, .retry-btn {
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.back-btn {
+    background: linear-gradient(45deg, var(--primary-cyan), var(--primary-blue));
+    color: white;
+}
+
+.retry-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+}
+
+.back-btn:hover, .retry-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px var(--energy-glow);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--primary-cyan);
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: var(--primary-cyan);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+}
+
+.back-button:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px var(--energy-glow);
+    transform: translateX(-5px);
+}
+
+.back-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover .back-icon {
+    transform: translateX(-3px);
+}
+
+/* 视差滚动效果 */
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+
+.parallax-layer-1 {
+    transform: translateZ(-100px) scale(2);
+}
+
+.parallax-layer-2 {
+    transform: translateZ(-200px) scale(3);
+}
+
+/* 表单容器 */
+.form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 90%;
+    max-width: 400px;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+/* 全息卡片 */
+.hologram-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px 30px;
+    backdrop-filter: blur(15px);
+    box-shadow:
+        0 8px 32px rgba(0, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+.hologram-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 255, 255, 0.1), 
+        transparent);
+    animation: hologramScan 3s infinite;
+}
+
+@keyframes hologramScan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 卡片头部 */
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.hologram-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.card-header h2 {
+    color: var(--primary-cyan);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px var(--energy-glow);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* 扫描线 */
+.scan-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--primary-cyan), 
+        transparent);
+    animation: scanMove 2s ease-in-out infinite;
+}
+
+@keyframes scanMove {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* 表单组 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    color: var(--text-primary);
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-bottom-color: var(--primary-cyan);
+}
+
+.form-group label {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -5px;
+    font-size: 12px;
+    color: var(--primary-cyan);
+    text-shadow: 0 0 5px var(--energy-glow);
+}
+
+/* 全息边框 */
+.hologram-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-cyan), var(--neon-green));
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--energy-glow);
+}
+
+.form-group input:focus ~ .hologram-border {
+    width: 100%;
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* 全息复选框 */
+.hologram-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.hologram-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-cyan);
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hologram-checkbox input:checked ~ .checkmark {
+    background: var(--primary-cyan);
+    box-shadow: 0 0 15px var(--energy-glow);
+}
+
+.hologram-checkbox input:checked ~ .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dark-bg);
+    font-weight: bold;
+}
+
+.checkbox-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* 全息链接 */
+.hologram-link {
+    color: var(--primary-cyan);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.hologram-link:hover {
+    text-shadow: 0 0 10px var(--energy-glow);
+}
+
+.hologram-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary-cyan);
+    transition: width 0.3s ease;
+}
+
+.hologram-link:hover::after {
+    width: 100%;
+}
+
+/* 登录按钮 */
+.login-btn {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.btn-text {
+    display: block;
+    padding: 16px;
+    background: linear-gradient(45deg, var(--primary-cyan), var(--primary-blue));
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.login-btn:hover .btn-text {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--energy-glow);
+}
+
+/* 按钮能量效果 */
+.btn-energy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(0, 255, 255, 0.3), 
+        transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.login-btn:hover .btn-energy {
+    transform: translateX(100%);
+}
+
+/* 按钮粒子效果 */
+.btn-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.btn-particles::before,
+.btn-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    animation: particleFloat 2s infinite;
+}
+
+.btn-particles::before {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.btn-particles::after {
+    top: 60%;
+    right: 30%;
+    animation-delay: 1s;
+}
+
+@keyframes particleFloat {
+    0%, 100% { 
+        opacity: 0; 
+        transform: translateY(0) scale(0.5); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateY(-20px) scale(1); 
+    }
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.divider {
+    color: var(--text-secondary);
+    margin: 0 15px;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 12px 16px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--primary-cyan);
+    border-radius: 25px;
+    color: var(--primary-cyan);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+.verify-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px var(--energy-glow);
+}
+
+/* 隐藏类 - 使用 !important 确保优先级 */
+.hidden {
+    display: none !important;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(0, 255, 255, 0.3);
+    border-top: 3px solid var(--primary-cyan);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-content p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .form-container {
+        width: 95%;
+        max-width: 350px;
+    }
+
+    .hologram-card {
+        padding: 30px 20px;
+    }
+
+    .card-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .hologram-icon {
+        font-size: 2.5rem;
+    }
+
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .back-button {
+        top: 15px;
+        left: 15px;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .verification-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .verify-btn {
+        width: 100%;
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        width: 98%;
+        top: 45%;
+    }
+
+    .hologram-card {
+        padding: 25px 15px;
+    }
+
+    .card-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    .form-group input {
+        font-size: 16px; /* 防止 iOS 缩放 */
+    }
+
+    .btn-text {
+        font-size: 15px;
+        padding: 14px;
+    }
+
+    .back-text {
+        display: none;
+    }
+
+    .back-button {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+/* 高分辨率屏幕优化 */
+@media (min-width: 1200px) {
+    .form-container {
+        max-width: 450px;
+    }
+
+    .hologram-card {
+        padding: 50px 40px;
+    }
+
+    .card-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .hologram-icon {
+        font-size: 3.5rem;
+    }
+}
+
+/* 动画性能优化 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .hologram-card::before,
+    .scan-line,
+    .hologram-icon,
+    .btn-particles::before,
+    .btn-particles::after {
+        animation: none !important;
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --card-bg: rgba(5, 10, 20, 0.4);
+        --dark-bg: #000005;
+    }
+}
+
+/* 景深模糊效果 */
+.depth-blur {
+    filter: blur(2px);
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* 视差层动画 */
+@keyframes parallaxFloat {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-10px) translateX(5px); }
+    50% { transform: translateY(-5px) translateX(-3px); }
+    75% { transform: translateY(-15px) translateX(8px); }
+}
+
+.parallax-element {
+    animation: parallaxFloat 20s ease-in-out infinite;
+}
+
+/* 增强的加载动画 */
+@keyframes enhancedSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.loading-spinner {
+    animation: enhancedSpin 2s ease-in-out infinite;
+}
+
+/* 背景图片淡入效果 */
+.background-image {
+    animation: backgroundFadeIn 2s ease-out;
+}
+
+@keyframes backgroundFadeIn {
+    0% { opacity: 0; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 降级背景动画 */
+.fallback-animated {
+    animation: fallbackGradientShift 15s ease-in-out infinite;
+}
+
+@keyframes fallbackGradientShift {
+    0%, 100% {
+        filter: hue-rotate(0deg) brightness(1);
+    }
+    25% {
+        filter: hue-rotate(30deg) brightness(1.1);
+    }
+    50% {
+        filter: hue-rotate(60deg) brightness(0.9);
+    }
+    75% {
+        filter: hue-rotate(30deg) brightness(1.1);
+    }
+}
+
+/* 科幻背景层 */
+.sci-fi-bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.layer-1 {
+    background: radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.4) 0%, transparent 60%);
+    animation: layerFloat1 20s ease-in-out infinite;
+}
+
+.layer-2 {
+    background: radial-gradient(ellipse at 80% 70%, rgba(30, 144, 255, 0.3) 0%, transparent 60%);
+    animation: layerFloat2 25s ease-in-out infinite reverse;
+}
+
+.layer-3 {
+    background: radial-gradient(ellipse at 50% 50%, rgba(255, 20, 147, 0.2) 0%, transparent 70%);
+    animation: layerFloat3 30s ease-in-out infinite;
+}
+
+@keyframes layerFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-20px, -30px) scale(1.1); }
+    66% { transform: translate(30px, 20px) scale(0.9); }
+}
+
+@keyframes layerFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-40px, 40px) scale(1.2); }
+}
+
+@keyframes layerFloat3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(25px, -25px) scale(1.05); }
+    75% { transform: translate(-35px, 35px) scale(0.95); }
+}
+
+/* 降级背景星星 */
+.sci-fi-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.fallback-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.fallback-star:nth-child(3n) {
+    background: rgba(0, 255, 255, 0.6);
+}
+
+.fallback-star:nth-child(5n) {
+    background: rgba(138, 43, 226, 0.7);
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* 高级交互效果 */
+
+/* 按钮能量效果 */
+.energy-active {
+    box-shadow: 0 0 30px var(--primary-cyan) !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.button-energy-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.energy-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary-cyan);
+    border-radius: 50%;
+    animation: energyOrbit 2s linear infinite;
+    animation-delay: var(--delay);
+}
+
+.energy-particle:nth-child(odd) {
+    background: var(--accent-purple);
+}
+
+@keyframes energyOrbit {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg) translateX(30px) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(360deg) translateX(30px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+/* 能量爆发效果 */
+.energy-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--primary-cyan) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: energyBurst 1s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes energyBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+/* 表单切换闪光效果 */
+.form-transition-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.3) 0%, transparent 70%);
+    z-index: 9999;
+    pointer-events: none;
+    animation: transitionFlash 0.5s ease-out forwards;
+}
+
+@keyframes transitionFlash {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* 输入粒子效果 */
+.typing-particle {
+    position: fixed;
+    color: var(--primary-cyan);
+    font-size: 14px;
+    font-family: 'Orbitron', monospace;
+    pointer-events: none;
+    z-index: 1000;
+    animation: typingParticleFloat 1s ease-out forwards;
+}
+
+@keyframes typingParticleFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.5);
+    }
+}
+
+/* 输入框聚焦时的增强效果 */
+.form-group input:focus {
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.5),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* 按钮悬停增强效果 */
+.login-btn:hover {
+    animation: buttonPulse 1s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+}
+
+/* 音效模拟指示器 */
+.sound-indicator {
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 10px currentColor;
+    animation: soundFloat 1s ease-out forwards;
+}
+
+@keyframes soundFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-20px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.8);
+    }
+}
+
+/* 不同音效类型的特殊效果 */
+.sound-hover {
+    animation: soundHover 1s ease-out forwards;
+}
+
+.sound-click {
+    animation: soundClick 1s ease-out forwards;
+}
+
+.sound-focus {
+    animation: soundFocus 1s ease-out forwards;
+}
+
+.sound-type {
+    animation: soundType 0.5s ease-out forwards;
+}
+
+.sound-transition {
+    animation: soundTransition 1.5s ease-out forwards;
+}
+
+@keyframes soundHover {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(-30px) rotate(180deg); }
+}
+
+@keyframes soundClick {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+@keyframes soundFocus {
+    0% { opacity: 1; transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+    100% { opacity: 0; transform: translateX(0) translateY(-30px); }
+}
+
+@keyframes soundType {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes soundTransition {
+    0% { opacity: 1; transform: scale(1) rotate(0deg); }
+    33% { transform: scale(1.2) rotate(120deg); }
+    66% { transform: scale(0.8) rotate(240deg); }
+    100% { opacity: 0; transform: scale(1.5) rotate(360deg); }
+}
+
+/* 增强的全息效果 */
+.hologram-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+        transparent 30%,
+        rgba(0, 255, 255, 0.1) 50%,
+        transparent 70%);
+    border-radius: 20px;
+    z-index: -1;
+    animation: hologramScan 3s linear infinite;
+}
+
+@keyframes hologramScan {
+    0% { background-position: -100% -100%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .sound-indicator {
+        font-size: 14px;
+        right: 10px;
+    }
+
+    .energy-particle {
+        width: 3px;
+        height: 3px;
+    }
+
+    .button-energy-particles {
+        display: none; /* 移动端隐藏复杂动画 */
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-cyan: #ffffff;
+        --text-primary: #ffffff;
+        --glass-border: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .hologram-card {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+    }
+
+    .back-button,
+    #scene-container,
+    #background-container,
+    .loading-indicator,
+    .image-loading {
+        display: none;
+    }
+}

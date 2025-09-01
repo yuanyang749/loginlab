@@ -1,0 +1,482 @@
+/* 赛博朋克霓虹风格样式 - 重新设计版本 */
+:root {
+    --neon-cyan: #00FFFF;
+    --neon-pink: #FF00FF;
+    --neon-green: #00FF00;
+    --neon-purple: #8A2BE2;
+    --cyber-dark: #0D1117;
+    --cyber-card: #1C2128;
+    --cyber-input: #21262D;
+    --text-primary: #F0F6FC;
+    --text-secondary: #7D8590;
+    --neon-glow: rgba(0, 255, 255, 0.6);
+    --pink-glow: rgba(255, 0, 255, 0.6);
+    --green-glow: rgba(0, 255, 0, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Courier New", "Monaco", "Menlo", monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--cyber-dark);
+    color: var(--text-primary);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 10px 15px;
+    border-radius: 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.back-button:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px var(--neon-glow);
+    transform: translateX(-5px);
+}
+
+.back-icon {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 背景动画 */
+.cyber-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.neon-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.neon-particles::before,
+.neon-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon-cyan);
+    animation: particleFloat 8s ease-in-out infinite;
+}
+
+.neon-particles::before {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.neon-particles::after {
+    top: 60%;
+    right: 15%;
+    background: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+    animation-delay: 4s;
+}
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 1; }
+}
+
+.data-stream {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.03) 50%,
+        transparent 100%
+    );
+    animation: dataFlow 15s linear infinite;
+}
+
+@keyframes dataFlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 主容器 */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 20px;
+    z-index: 10;
+}
+
+.cyber-card {
+    background: var(--cyber-card);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 8px;
+    padding: 40px 30px;
+    box-shadow: 
+        0 0 30px var(--neon-glow),
+        inset 0 0 20px rgba(0, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-green), var(--neon-cyan));
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* 卡片头部 */
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cyber-logo {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: logoSpin 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px var(--neon-cyan));
+}
+
+@keyframes logoSpin {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+}
+
+.card-header h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px var(--neon-glow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    color: var(--neon-pink);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px var(--pink-glow);
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 12px;
+    background: var(--cyber-input);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+
+.form-group input:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-glow);
+    background: rgba(33, 38, 45, 0.8);
+}
+
+.form-group input::placeholder {
+    color: transparent;
+}
+
+.form-group label {
+    position: absolute;
+    left: 12px;
+    top: 15px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    background: var(--cyber-input);
+    padding: 0 4px;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -14px;
+    font-size: 12px;
+    color: var(--neon-cyan);
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--neon-glow);
+    background: var(--cyber-card);
+}
+
+.neon-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.form-group input:focus ~ .neon-line {
+    width: 100%;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.verification-group .form-group {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+.verify-btn {
+    padding: 15px 16px;
+    background: linear-gradient(135deg, var(--cyber-input), var(--neon-purple));
+    border: 2px solid var(--neon-purple);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    min-width: 90px;
+    height: 51px;
+}
+
+.verify-btn:hover {
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+    transform: translateY(-2px);
+}
+
+/* 登录按钮 */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--cyber-input), var(--neon-cyan));
+    border: 2px solid var(--neon-cyan);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: inherit;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
+    box-shadow: 0 0 30px var(--neon-glow);
+    transform: translateY(-2px);
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover .btn-glow {
+    left: 100%;
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cyber-link {
+    color: var(--neon-cyan);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 3px var(--neon-glow);
+}
+
+.cyber-link:hover {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--pink-glow);
+}
+
+.divider {
+    color: var(--neon-green);
+    margin: 0 15px;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--green-glow);
+}
+
+/* 隐藏和显示动画 */
+.hidden {
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .cyber-card {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+
+    .back-button {
+        top: 15px;
+        left: 15px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .cyber-logo {
+        font-size: 2.5rem;
+    }
+
+    .verification-group {
+        flex-direction: row;
+        gap: 8px;
+        align-items: flex-end;
+    }
+
+    .verification-group .form-group {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .verify-btn {
+        flex-shrink: 0;
+        padding: 15px 10px;
+        font-size: 11px;
+        white-space: nowrap;
+        min-width: 75px;
+        letter-spacing: 0px;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 360px) {
+    .verification-group {
+        gap: 6px;
+    }
+
+    .verify-btn {
+        padding: 15px 8px;
+        font-size: 10px;
+        min-width: 65px;
+    }
+
+    .form-group input {
+        font-size: 14px;
+        padding: 15px 10px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        left: 10px;
+    }
+}

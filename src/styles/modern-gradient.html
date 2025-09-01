@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 现代渐变风格登录</title>
+    <link rel="stylesheet" href="../assets/styles/modern-gradient.css">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="back-button" onclick="window.location.href='/index.html'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        返回选择
+    </div>
+
+    <!-- 动态背景 -->
+    <div class="background">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    
+    <!-- 登录表单 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="glass-card">
+            <h2>🌈 欢迎登录</h2>
+            <p class="subtitle">现代渐变风格</p>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" required>
+                    <label for="username">用户名</label>
+                    <div class="input-highlight"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" required>
+                    <label for="password">密码</label>
+                    <div class="input-highlight"></div>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>登录</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="toForgotPassword">忘记密码？</a>
+                    <span class="divider">|</span>
+                    <a href="#" id="toRegister">注册新用户</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="glass-card">
+            <h2>🌈 用户注册</h2>
+            <p class="subtitle">创建您的账户</p>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">用户名</label>
+                    <div class="input-highlight"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">手机号码</label>
+                    <div class="input-highlight"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">验证码</label>
+                    <div class="input-highlight"></div>
+                    <button type="button" class="verify-btn" id="regSendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">密码</label>
+                    <div class="input-highlight"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">确认密码</label>
+                    <div class="input-highlight"></div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>注册</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLogin">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="glass-card">
+            <h2>🌈 重置密码</h2>
+            <p class="subtitle">找回您的账户</p>
+            <form>
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">手机号码</label>
+                    <div class="input-highlight"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="verificationCode">验证码</label>
+                    <div class="input-highlight"></div>
+                    <button type="button" class="verify-btn" id="sendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">新密码</label>
+                    <div class="input-highlight"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">确认新密码</label>
+                    <div class="input-highlight"></div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>重置密码</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/modern-gradient.js"></script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+/* 月夜神秘风格 - Moonlit Mystery Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2d1b69 0%, #11052c 50%, #0a0612 100%);
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(181, 139, 255, 0.3);
+    border-radius: 25px;
+    color: #b58bff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(181, 139, 255, 0.2);
+}
+
+.back-button:hover {
+    background: rgba(181, 139, 255, 0.2);
+    border-color: #b58bff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(181, 139, 255, 0.4);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* 容器 */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 背景动画 */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* 月亮 */
+.moon {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f5f5f5 0%, #e0e0e0 70%, #c0c0c0 100%);
+    box-shadow: 
+        0 0 40px rgba(245, 245, 245, 0.8),
+        0 0 80px rgba(245, 245, 245, 0.6),
+        0 0 120px rgba(245, 245, 245, 0.4);
+    animation: moonPulse 6s ease-in-out infinite;
+}
+
+.moon-surface {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: 
+        radial-gradient(15px 15px at 25% 25%, rgba(180, 180, 180, 0.4) 0%, transparent 50%),
+        radial-gradient(10px 10px at 75% 40%, rgba(160, 160, 160, 0.3) 0%, transparent 50%),
+        radial-gradient(8px 8px at 60% 70%, rgba(190, 190, 190, 0.3) 0%, transparent 50%);
+}
+
+.moon-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245, 245, 245, 0.1) 0%, transparent 70%);
+    animation: moonGlow 4s ease-in-out infinite;
+}
+
+@keyframes moonPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes moonGlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 雾气层 */
+.mist-layer {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(181, 139, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: mistFloat 15s linear infinite;
+}
+
+.mist-1 {
+    top: -50%;
+    left: -100%;
+    animation-duration: 20s;
+    animation-delay: 0s;
+}
+
+.mist-2 {
+    top: -30%;
+    right: -80%;
+    animation-duration: 25s;
+    animation-delay: -8s;
+    background: radial-gradient(ellipse, rgba(139, 69, 197, 0.1) 0%, transparent 70%);
+}
+
+.mist-3 {
+    bottom: -40%;
+    left: -50%;
+    animation-duration: 18s;
+    animation-delay: -15s;
+    background: radial-gradient(ellipse, rgba(75, 0, 130, 0.08) 0%, transparent 70%);
+}
+
+@keyframes mistFloat {
+    0% { transform: translateX(-10%) rotate(0deg); }
+    100% { transform: translateX(10%) rotate(360deg); }
+}
+
+/* 神秘符文 */
+.rune {
+    position: absolute;
+    font-size: 24px;
+    color: rgba(181, 139, 255, 0.6);
+    text-shadow: 0 0 10px rgba(181, 139, 255, 0.8);
+    animation: runeGlow 3s ease-in-out infinite;
+}
+
+.rune-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.rune-2 {
+    top: 60%;
+    left: 8%;
+    animation-delay: 1s;
+}
+
+.rune-3 {
+    top: 25%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.rune-4 {
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+@keyframes runeGlow {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: scale(1) rotate(0deg);
+        text-shadow: 0 0 10px rgba(181, 139, 255, 0.6);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.1) rotate(5deg);
+        text-shadow: 0 0 20px rgba(181, 139, 255, 1);
+    }
+}
+
+/* 粒子容器 */
+.particle-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(245, 245, 245, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(245, 245, 245, 0.8);
+    animation: particleFloat 8s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% { 
+        opacity: 0; 
+        transform: translateY(100vh) scale(0); 
+    }
+    10% { 
+        opacity: 1; 
+        transform: translateY(90vh) scale(1); 
+    }
+    90% { 
+        opacity: 1; 
+        transform: translateY(-10vh) scale(1); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-20vh) scale(0); 
+    }
+}
+
+/* 表单容器 */
+.form-container {
+    position: relative;
+    z-index: 10;
+    background: rgba(20, 10, 40, 0.85);
+    border: 1px solid rgba(181, 139, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(181, 139, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: formFloat 6s ease-in-out infinite;
+}
+
+@keyframes formFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 表单标题 */
+.form-title {
+    text-align: center;
+    color: #f0f0f0;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.moon-icon {
+    font-size: 32px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    animation: iconGlow 3s ease-in-out infinite;
+}
+
+@keyframes iconGlow {
+    0%, 100% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); }
+    50% { text-shadow: 0 0 25px rgba(255, 255, 255, 1); }
+}
+
+.form-subtitle {
+    text-align: center;
+    color: rgba(181, 139, 255, 0.8);
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* 表单组 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 16px;
+    color: #f0f0f0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(181, 139, 255, 0.3);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-bottom-color: #b58bff;
+}
+
+.form-group input:focus ~ .input-glow {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.form-group label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    color: rgba(181, 139, 255, 0.6);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+    top: -5px;
+    font-size: 12px;
+    color: #b58bff;
+    text-shadow: 0 0 5px rgba(181, 139, 255, 0.5);
+}
+
+.input-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #b58bff, #8b45c5);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(181, 139, 255, 0.5);
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verification-btn {
+    padding: 12px 16px;
+    background: rgba(181, 139, 255, 0.2);
+    border: 1px solid rgba(181, 139, 255, 0.4);
+    border-radius: 8px;
+    color: #b58bff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.verification-btn:hover {
+    background: rgba(181, 139, 255, 0.3);
+    border-color: #b58bff;
+    box-shadow: 0 0 15px rgba(181, 139, 255, 0.3);
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    color: rgba(181, 139, 255, 0.8);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.remember-me input {
+    display: none;
+}
+
+.checkmark {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(181, 139, 255, 0.4);
+    border-radius: 3px;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.remember-me input:checked ~ .checkmark {
+    background: #b58bff;
+    border-color: #b58bff;
+    box-shadow: 0 0 10px rgba(181, 139, 255, 0.5);
+}
+
+.remember-me input:checked ~ .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    color: white;
+    font-size: 12px;
+}
+
+.forgot-password {
+    color: rgba(181, 139, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #b58bff;
+    text-shadow: 0 0 5px rgba(181, 139, 255, 0.5);
+}
+
+/* 提交按钮 */
+.submit-btn {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #b58bff 0%, #8b45c5 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 15px rgba(181, 139, 255, 0.4),
+        0 0 0 1px rgba(181, 139, 255, 0.2);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(181, 139, 255, 0.6),
+        0 0 0 1px rgba(181, 139, 255, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+}
+
+.submit-btn:hover .btn-glow {
+    left: 100%;
+}
+
+/* 表单底部 */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer p {
+    color: rgba(181, 139, 255, 0.6);
+    font-size: 14px;
+}
+
+.form-footer a {
+    color: #b58bff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.form-footer a:hover {
+    text-shadow: 0 0 5px rgba(181, 139, 255, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        margin: 20px;
+        padding: 30px 25px;
+    }
+    
+    .moon {
+        width: 80px;
+        height: 80px;
+        top: 10%;
+        right: 10%;
+    }
+    
+    .rune {
+        font-size: 18px;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .verification-group {
+        gap: 8px;
+    }
+
+    .verification-group .form-group {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .verification-btn {
+        flex-shrink: 0;
+        padding: 12px 10px;
+        font-size: 11px;
+        min-width: 75px;
+    }
+}
+
+/* 动画性能优化 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

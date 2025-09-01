@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 科幻登录 - Beautiful Login</title>
+    <link rel="stylesheet" href="/src/assets/styles/threejs-scifi.css">
+    <!-- Three.js CDN - 使用可用的 unpkg 源 -->
+    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+</head>
+<body>
+    <!-- WebGL 不支持提示 -->
+    <div id="webgl-error" class="webgl-error hidden">
+        <div class="error-content">
+            <div class="error-icon">⚠️</div>
+            <h2>WebGL 不支持</h2>
+            <p>您的设备不支持 WebGL，无法显示 3D 效果</p>
+            <p>请使用支持 WebGL 的现代浏览器或更换设备</p>
+            <a href="onclick="window.location.href='/index.html'"" class="back-btn">返回主页</a>
+        </div>
+    </div>
+
+    <!-- 背景图片容器 -->
+    <div id="background-container">
+        <div id="background-image" class="background-image"></div>
+        <div id="background-overlay" class="background-overlay"></div>
+    </div>
+
+    <!-- 3D 粒子效果容器 -->
+    <div id="scene-container">
+        <canvas id="threejs-canvas"></canvas>
+    </div>
+
+    <!-- 图片加载状态 -->
+    <div id="image-loading" class="image-loading">
+        <div class="loading-spinner"></div>
+        <p>正在加载星际背景...</p>
+    </div>
+
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="window.location.href='/index.html'">
+        <span class="back-icon">←</span>
+        <span class="back-text">返回</span>
+    </button>
+
+    <!-- 登录表单容器 -->
+    <div class="login-container form-container" id="loginForm">
+        <div class="hologram-card">
+            <div class="card-header">
+                <div class="hologram-icon">🚀</div>
+                <h2>星际登录系统</h2>
+                <p class="subtitle">STELLAR ACCESS PORTAL</p>
+                <div class="scan-line"></div>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" required>
+                    <label for="username">用户名</label>
+                    <div class="hologram-border"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" required>
+                    <label for="password">密码</label>
+                    <div class="hologram-border"></div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="hologram-checkbox">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">记住我</span>
+                    </label>
+                    <a href="#" class="hologram-link" id="forgotPassword">忘记密码？</a>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">启动连接</span>
+                    <div class="btn-energy"></div>
+                    <div class="btn-particles"></div>
+                </button>
+                
+                <div class="additional-links">
+                    <a href="#" id="showRegister" class="hologram-link">创建新账户</a>
+                    <span class="divider">|</span>
+                    <a href="#" class="hologram-link">访客模式</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="login-container form-container hidden" id="registerForm">
+        <div class="hologram-card">
+            <div class="card-header">
+                <div class="hologram-icon">🌌</div>
+                <h2>星际注册系统</h2>
+                <p class="subtitle">STELLAR REGISTRATION</p>
+                <div class="scan-line"></div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="regUsername" required>
+                    <label for="regUsername">用户名</label>
+                    <div class="hologram-border"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="regPhone">手机号码</label>
+                    <div class="hologram-border"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="regVerificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="regVerificationCode">验证码</label>
+                    <div class="hologram-border"></div>
+                    <button type="button" class="verify-btn" id="regSendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required>
+                    <label for="regPassword">密码</label>
+                    <div class="hologram-border"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regConfirmPassword" required>
+                    <label for="regConfirmPassword">确认密码</label>
+                    <div class="hologram-border"></div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">创建账户</span>
+                    <div class="btn-energy"></div>
+                    <div class="btn-particles"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLogin" class="hologram-link">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 忘记密码表单 -->
+    <div class="login-container form-container hidden" id="forgotPasswordForm">
+        <div class="hologram-card">
+            <div class="card-header">
+                <div class="hologram-icon">🔐</div>
+                <h2>密码重置系统</h2>
+                <p class="subtitle">PASSWORD RECOVERY</p>
+                <div class="scan-line"></div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="tel" id="resetPhone" pattern="[0-9]{11}" maxlength="11" required>
+                    <label for="resetPhone">手机号码</label>
+                    <div class="hologram-border"></div>
+                </div>
+                <div class="form-group verification-group">
+                    <input type="text" id="verificationCode" pattern="[0-9]{6}" maxlength="6" required>
+                    <label for="verificationCode">验证码</label>
+                    <div class="hologram-border"></div>
+                    <button type="button" class="verify-btn" id="sendCodeBtn">获取验证码</button>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="newPassword" required>
+                    <label for="newPassword">新密码</label>
+                    <div class="hologram-border"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmNewPassword" required>
+                    <label for="confirmNewPassword">确认新密码</label>
+                    <div class="hologram-border"></div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">重置密码</span>
+                    <div class="btn-energy"></div>
+                    <div class="btn-particles"></div>
+                </button>
+                <div class="additional-links">
+                    <a href="#" id="backToLoginFromReset" class="hologram-link">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 加载指示器 -->
+    <div id="loading-indicator" class="loading-indicator">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>正在初始化星际系统...</p>
+        </div>
+    </div>
+
+    <script src="/src/js/threejs-scifi.js" defer></script>
+</body>
+</html>

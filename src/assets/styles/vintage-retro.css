@@ -1,0 +1,439 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 25%, #cd853f 50%, #daa520 75%, #f4a460 100%);
+    color: #2f1b14;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #8b4513;
+    border: 2px solid #654321;
+    border-radius: 25px;
+    color: #f5deb3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+    background: #a0522d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+}
+
+/* 复古背景 */
+.vintage-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.vintage-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.1) 2px, transparent 2px);
+    background-size: 50px 50px;
+    animation: patternMove 20s linear infinite;
+}
+
+.old-paper-texture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(205, 133, 63, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px, 40px 40px, 20px 20px;
+    opacity: 0.6;
+}
+
+.vintage-ornament {
+    position: absolute;
+    font-size: 30px;
+    color: rgba(139, 69, 19, 0.3);
+    animation: ornamentFloat 8s ease-in-out infinite;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ornament-1 { top: 15%; left: 10%; animation-delay: 0s; }
+.ornament-2 { top: 70%; right: 15%; animation-delay: 2s; }
+.ornament-3 { bottom: 20%; left: 20%; animation-delay: 4s; }
+.ornament-4 { top: 40%; right: 25%; animation-delay: 6s; }
+
+.film-grain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.1"/></svg>');
+    animation: grainMove 0.5s steps(8) infinite;
+}
+
+@keyframes patternMove {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(50px) translateY(50px); }
+}
+
+@keyframes ornamentFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-15px) rotate(5deg); opacity: 0.6; }
+}
+
+@keyframes grainMove {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -5%); }
+    30% { transform: translate(3%, -3%); }
+    50% { transform: translate(-2%, 4%); }
+    70% { transform: translate(4%, -2%); }
+    90% { transform: translate(-3%, 3%); }
+}
+
+/* 表单容器 */
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    transition: all 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.vintage-card {
+    background: #f5deb3;
+    border: 3px solid #8b4513;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 
+        0 8px 32px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(139, 69, 19, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 80% 80%, rgba(160, 82, 45, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.vintage-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.vintage-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 40px rgba(139, 69, 19, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.vintage-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.vintage-card h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #8b4513;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+    letter-spacing: 1px;
+}
+
+.vintage-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8b4513, transparent);
+    margin: 0 auto 12px auto;
+    position: relative;
+}
+
+.vintage-line::before,
+.vintage-line::after {
+    content: '❦';
+    position: absolute;
+    top: -8px;
+    font-size: 16px;
+    color: #8b4513;
+}
+
+.vintage-line::before { left: -20px; }
+.vintage-line::after { right: -20px; }
+
+.subtitle {
+    color: #a0522d;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* 表单样式 */
+.form-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 16px 12px 8px 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    color: #2f1b14;
+    outline: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', serif;
+    border: 2px solid rgba(139, 69, 19, 0.2);
+}
+
+.form-group input:focus {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #8b4513;
+    box-shadow: 0 0 15px rgba(139, 69, 19, 0.2);
+}
+
+.form-group label {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    color: #8b4513;
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', serif;
+    font-weight: 500;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: 4px;
+    font-size: 12px;
+    color: #654321;
+    font-weight: bold;
+}
+
+.vintage-underline {
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: linear-gradient(90deg, #8b4513, #a0522d, #8b4513);
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+.form-group input:focus ~ .vintage-underline {
+    transform: scaleX(1);
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #cd853f, #b8860b);
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    color: #2f1b14;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.verify-btn:hover {
+    background: linear-gradient(145deg, #daa520, #cd853f);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+/* 复古按钮 */
+.vintage-btn {
+    width: 100%;
+    padding: 16px;
+    margin: 32px 0 24px 0;
+    background: linear-gradient(145deg, #8b4513, #654321);
+    color: #f5deb3;
+    border: 2px solid #654321;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Times New Roman', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.vintage-btn:hover {
+    background: linear-gradient(145deg, #a0522d, #8b4513);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+}
+
+.vintage-shadow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
+    transition: all 0.3s ease;
+}
+
+.vintage-btn:hover .vintage-shadow {
+    height: 8px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.3), transparent);
+}
+
+/* 附加链接 */
+.additional-links {
+    text-align: center;
+    font-size: 14px;
+}
+
+.additional-links a {
+    color: #8b4513;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+.additional-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #8b4513;
+    transition: all 0.3s ease;
+}
+
+.additional-links a:hover::after {
+    width: 100%;
+}
+
+.additional-links a:hover {
+    color: #654321;
+}
+
+.divider {
+    margin: 0 12px;
+    color: #a0522d;
+    font-weight: bold;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 16px;
+    }
+    
+    .vintage-card {
+        padding: 24px;
+    }
+    
+    .vintage-card h2 {
+        font-size: 24px;
+    }
+    
+    .back-button {
+        top: 16px;
+        left: 16px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .vintage-ornament {
+        display: none;
+    }
+}
+
+/* 加载动画 */
+@keyframes vintageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+        filter: sepia(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: sepia(20%);
+    }
+}
+
+.vintage-card {
+    animation: vintageFadeIn 1s ease-out;
+    filter: sepia(20%);
+}

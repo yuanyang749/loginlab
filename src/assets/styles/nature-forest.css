@@ -1,0 +1,555 @@
+/* 自然森林风格 - Nature Forest Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(86, 171, 47, 0.3);
+    border-radius: 25px;
+    color: #56ab2f;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(86, 171, 47, 0.2);
+}
+
+.back-button:hover {
+    background: rgba(86, 171, 47, 0.1);
+    border-color: #56ab2f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(86, 171, 47, 0.3);
+}
+
+.back-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 背景渐变 - 森林色调 */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #134e5e 0%, #71b280 50%, #27ae60 100%);
+    overflow: hidden;
+}
+
+/* 树木装饰 */
+.tree {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.tree::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 40px;
+    background: #795548;
+}
+
+.tree1 {
+    left: 10%;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 120px solid rgba(46, 125, 50, 0.8);
+}
+
+.tree2 {
+    right: 15%;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 100px solid rgba(76, 175, 80, 0.8);
+}
+
+/* 树叶飘落动画 */
+.leaf {
+    position: absolute;
+    font-size: 24px;
+    animation: falling 10s linear infinite;
+}
+
+.leaf1 {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+}
+
+.leaf2 {
+    left: 30%;
+    animation-delay: 2s;
+    animation-duration: 10s;
+}
+
+.leaf3 {
+    left: 50%;
+    animation-delay: 4s;
+    animation-duration: 9s;
+}
+
+.leaf4 {
+    left: 70%;
+    animation-delay: 1s;
+    animation-duration: 11s;
+}
+
+.leaf5 {
+    left: 90%;
+    animation-delay: 3s;
+    animation-duration: 7s;
+}
+
+@keyframes falling {
+    0% {
+        top: -50px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translateX(20px) rotate(90deg);
+    }
+    50% {
+        transform: translateX(-15px) rotate(180deg);
+    }
+    75% {
+        transform: translateX(25px) rotate(270deg);
+    }
+    100% {
+        top: 100vh;
+        transform: translateX(0) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+/* 蝴蝶动画 */
+.butterfly {
+    position: absolute;
+    font-size: 28px;
+    animation: flutter 15s ease-in-out infinite;
+}
+
+.butterfly1 {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.butterfly2 {
+    top: 40%;
+    right: 25%;
+    animation-delay: 7s;
+}
+
+@keyframes flutter {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(100px, -50px) rotate(10deg);
+    }
+    50% {
+        transform: translate(150px, 20px) rotate(-10deg);
+    }
+    75% {
+        transform: translate(50px, -30px) rotate(5deg);
+    }
+}
+
+/* 登录容器样式 */
+.login-container,
+.register-container,
+.forgot-container {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
+    display: block;
+    animation: growIn 0.6s ease-out;
+    border: 2px solid rgba(76, 175, 80, 0.2);
+}
+
+.login-container.hidden,
+.register-container.hidden,
+.forgot-container.hidden {
+    display: none;
+}
+
+.login-container.active,
+.register-container.active,
+.forgot-container.active {
+    display: block;
+}
+
+@keyframes growIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 表单标题 */
+.form-title {
+    text-align: center;
+    color: #27ae60;
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.forest-icon {
+    font-size: 36px;
+    animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* 表单组 */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    outline: none;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.form-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 16px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.input-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #27ae60, #71b280);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.form-group input:focus ~ .input-line,
+.form-group input:not(:placeholder-shown) ~ .input-line {
+    transform: scaleX(1);
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+    transform: translateY(-25px);
+    font-size: 12px;
+    color: #27ae60;
+}
+
+/* 验证码组 */
+.verification-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+.send-code-btn {
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #27ae60, #71b280);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.3s;
+}
+
+.send-code-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
+}
+
+.send-code-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* 表单选项 */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+}
+
+.remember-me input {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #27ae60;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.remember-me input:checked ~ .checkmark {
+    background: linear-gradient(135deg, #27ae60, #71b280);
+}
+
+.remember-me input:checked ~ .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+.forgot-password {
+    color: #27ae60;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: #71b280;
+    text-decoration: underline;
+}
+
+/* 提交按钮 */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #27ae60, #71b280);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.4);
+}
+
+.btn-leaves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="30">🍃</text></svg>') no-repeat center;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+    transition: all 0.5s;
+}
+
+.submit-btn:hover .btn-leaves {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+}
+
+/* 分隔线 */
+.divider {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #27ae60, transparent);
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    color: #27ae60;
+    padding: 0 15px;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 20px;
+}
+
+/* 社交登录 */
+.social-login {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 10px;
+    background: white;
+    border: 2px solid #27ae60;
+    border-radius: 12px;
+    color: #27ae60;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.social-btn:hover {
+    background: linear-gradient(135deg, #27ae60, #71b280);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+/* 切换表单 */
+.switch-form {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.switch-form a {
+    color: #27ae60;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.switch-form a:hover {
+    color: #71b280;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .login-container,
+    .register-container,
+    .forgot-container {
+        padding: 30px 25px;
+        width: 95%;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+    
+    .tree {
+        transform: scale(0.7);
+    }
+    
+    .leaf {
+        font-size: 18px;
+    }
+    
+    .butterfly {
+        display: none;
+    }
+}
