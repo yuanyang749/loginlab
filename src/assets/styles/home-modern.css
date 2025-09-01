@@ -214,10 +214,12 @@ body {
 }
 
 .intro-tagline {
-  color: var(--text-secondary);
+  color: #00ffff;
   font-size: 0.95rem;
   margin: 0;
   opacity: 0.9;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .intro-content {
