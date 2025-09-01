@@ -7,6 +7,8 @@
  * @requires animejs@4.1.3
  */
 
+/* global anime */
+
 class LoginLabLoader {
   constructor(options = {}) {
     // 默认配置
@@ -110,7 +112,8 @@ class LoginLabLoader {
 
     // 检查Anime.js v4的核心方法是否存在
     try {
-      const { createTimeline, animate } = anime;
+      const animeLib = window.anime || anime;
+      const { createTimeline, animate } = animeLib;
 
       // 更宽松的检查，只要核心方法存在即可
       if (
@@ -237,7 +240,8 @@ class LoginLabLoader {
    */
   startBackgroundAnimation() {
     try {
-      const { animate, stagger } = anime;
+      const animeLib = window.anime || anime;
+      const { animate, stagger } = animeLib;
 
       // 背景圆圈旋转动画
       animate(".loader-circle-1", {
@@ -278,39 +282,140 @@ class LoginLabLoader {
   }
 
   /**
-   * 模拟加载进度
+   * 基于真实资源加载的进度跟踪
    */
   simulateLoading() {
-    let currentStep = 0;
-
-    const executeStep = () => {
-      if (currentStep >= this.config.progressSteps.length) {
-        setTimeout(() => {
-          if (this.config.autoHide) {
-            this.hide();
-          }
-        }, this.config.delays.hideAfterComplete);
-        return;
-      }
-
-      const step = this.config.progressSteps[currentStep];
-      this.updateProgress(step.progress);
-
-      // 触发进度回调
-      if (this.config.onProgress) {
-        this.config.onProgress(step.progress, step.text);
-      }
-
+    // 如果页面已经加载完成，直接隐藏
+    if (document.readyState === "complete") {
+      this.log("页面已加载完成，快速隐藏加载器");
       setTimeout(() => {
-        currentStep++;
-        executeStep();
-      }, step.delay);
+        this.updateProgress(100);
+        if (this.config.autoHide) {
+          this.hide();
+        }
+      }, 800); // 给文字动画一些时间
+      return;
+    }
+
+    // 跟踪真实的加载状态
+    this.trackRealLoadingProgress();
+  }
+
+  /**
+   * 跟踪真实的页面加载进度
+   */
+  trackRealLoadingProgress() {
+    let progress = 0;
+    const maxLoadTime = 5000; // 最大加载时间5秒
+
+    // 1. DOM内容加载完成
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        progress = Math.max(progress, 30);
+        this.updateProgress(progress);
+        this.log("DOM内容加载完成");
+      });
+    } else {
+      progress = 30;
+      this.updateProgress(progress);
+    }
+
+    // 2. 跟踪图片和其他资源加载
+    this.trackResourceLoading((resourceProgress) => {
+      progress = Math.max(progress, 30 + resourceProgress * 0.6); // 30-90%
+      this.updateProgress(progress);
+    });
+
+    // 3. 页面完全加载完成
+    const handleLoad = () => {
+      progress = 100;
+      this.updateProgress(progress);
+      this.log("页面完全加载完成");
+
+      if (this.config.autoHide) {
+        setTimeout(() => this.hide(), this.config.delays.hideAfterComplete);
+      }
     };
 
-    // 延迟开始，让文字动画先播放
-    setTimeout(executeStep, this.config.delays.progressStart);
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad, { once: true });
+    }
 
-    this.log("进度模拟已启动");
+    // 4. 超时保护 - 确保加载器不会无限显示
+    setTimeout(() => {
+      if (progress < 100) {
+        this.log("加载超时，强制完成");
+        progress = 100;
+        this.updateProgress(progress);
+        if (this.config.autoHide) {
+          this.hide();
+        }
+      }
+    }, maxLoadTime);
+
+    this.log("真实加载进度跟踪已启动");
+  }
+
+  /**
+   * 跟踪资源加载进度
+   */
+  trackResourceLoading(onProgress) {
+    const images = document.querySelectorAll("img");
+    const scripts = document.querySelectorAll("script[src]");
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+
+    const totalResources = images.length + scripts.length + stylesheets.length;
+    let loadedResources = 0;
+
+    if (totalResources === 0) {
+      onProgress(1);
+      return;
+    }
+
+    const updateResourceProgress = () => {
+      loadedResources++;
+      const resourceProgress = loadedResources / totalResources;
+      onProgress(resourceProgress);
+      this.log(
+        `资源加载进度: ${loadedResources}/${totalResources} (${Math.round(
+          resourceProgress * 100
+        )}%)`
+      );
+    };
+
+    // 跟踪图片加载
+    images.forEach((img) => {
+      if (img.complete) {
+        updateResourceProgress();
+      } else {
+        img.addEventListener("load", updateResourceProgress, { once: true });
+        img.addEventListener("error", updateResourceProgress, { once: true });
+      }
+    });
+
+    // 跟踪脚本加载（已加载的脚本）
+    scripts.forEach((script) => {
+      if (script.readyState === "loaded" || script.readyState === "complete") {
+        updateResourceProgress();
+      } else {
+        script.addEventListener("load", updateResourceProgress, { once: true });
+        script.addEventListener("error", updateResourceProgress, {
+          once: true,
+        });
+      }
+    });
+
+    // 跟踪样式表加载
+    stylesheets.forEach((link) => {
+      if (link.sheet) {
+        updateResourceProgress();
+      } else {
+        link.addEventListener("load", updateResourceProgress, { once: true });
+        link.addEventListener("error", updateResourceProgress, { once: true });
+      }
+    });
   }
 
   /**
@@ -355,31 +460,37 @@ class LoginLabLoader {
     }
 
     try {
-      const { animate } = anime;
+      const animeLib =
+        window.anime || (typeof anime !== "undefined" ? anime : null);
+      if (animeLib) {
+        const { animate } = animeLib;
 
-      animate(this.config.container, {
-        opacity: [1, 0],
-        scale: [1, 1.1],
-        duration: this.config.duration.hideAnimation,
-        ease: "inExpo",
-        onComplete: () => {
-          if (this.elements.loader) {
-            this.elements.loader.style.display = "none";
-          }
+        animate(this.config.container, {
+          opacity: [1, 0],
+          scale: [1, 1.1],
+          duration: this.config.duration.hideAnimation,
+          ease: "inExpo",
+          onComplete: () => {
+            if (this.elements.loader) {
+              this.elements.loader.style.display = "none";
+            }
 
-          // 触发隐藏完成回调
-          if (this.config.onHide) {
-            this.config.onHide();
-          }
+            // 触发隐藏完成回调
+            if (this.config.onHide) {
+              this.config.onHide();
+            }
 
-          // 触发完成回调
-          if (this.config.onComplete) {
-            this.config.onComplete();
-          }
+            // 触发完成回调
+            if (this.config.onComplete) {
+              this.config.onComplete();
+            }
 
-          this.log("加载器已隐藏");
-        },
-      });
+            this.log("加载器已隐藏");
+          },
+        });
+      } else {
+        this.fallbackHide();
+      }
     } catch (error) {
       this.error("隐藏动画执行失败:", error);
       this.fallbackHide();
