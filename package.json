@@ -1,7 +1,7 @@
 {
   "name": "loginlab",
   "version": "1.0.0",
-  "description": "Beautiful Login - 精美移动端登录页面集合",
+  "description": "LoginLab - AI驱动的登录页实验室",
   "main": "index.html",
   "scripts": {
     "dev": "npx http-server -p 8000 -o"
@@ -30,5 +30,5 @@
     "type": "git",
     "url": "https://github.com/yuanyang749/loginlab.git"
   },
-  "homepage": "https://loginlab.vercel.app"
+  "homepage": "https://loginlab.520ai.xin"
 }

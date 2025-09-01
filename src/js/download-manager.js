@@ -435,7 +435,7 @@ class DownloadManager {
 本风格来自 LoginLab 项目：https://github.com/yuanyang749/loginlab
 
 ---
-© 2025 Beautiful Login Project. 精美移动端登录页面集合
+© 2025 LoginLab Project. AI驱动的登录页实验室
 `;
   }
 

@@ -186,10 +186,10 @@ function bindStyleCardEvents() {
         // 记录浏览统计
         try {
           if (window.analyticsService) {
-            window.analyticsService.trackEvent('view', style);
+            window.analyticsService.trackEvent("view", style);
           }
         } catch (error) {
-          console.warn('⚠️ Failed to track view event:', error);
+          console.warn("⚠️ Failed to track view event:", error);
         }
 
         // 添加点击动画
@@ -468,11 +468,11 @@ function createMagicExplosion(event) {
 
 // 自动为所有风格卡片添加下载按钮
 function addMissingDownloadButtons() {
-  const styleCards = document.querySelectorAll('.style-card');
+  const styleCards = document.querySelectorAll(".style-card");
 
-  styleCards.forEach(card => {
-    const cardInfo = card.querySelector('.card-info');
-    const existingActions = card.querySelector('.card-actions');
+  styleCards.forEach((card) => {
+    const cardInfo = card.querySelector(".card-info");
+    const existingActions = card.querySelector(".card-actions");
 
     // 如果已经有下载按钮，跳过
     if (existingActions) {
@@ -486,8 +486,8 @@ function addMissingDownloadButtons() {
     }
 
     // 创建下载按钮HTML
-    const actionsDiv = document.createElement('div');
-    actionsDiv.className = 'card-actions';
+    const actionsDiv = document.createElement("div");
+    actionsDiv.className = "card-actions";
     actionsDiv.innerHTML = `
       <button class="download-btn" data-style="${styleId}">
         <span class="download-icon">📦</span>
@@ -505,77 +505,86 @@ function addMissingDownloadButtons() {
     }
   });
 
-  console.log('✅ 已为所有风格卡片自动添加下载按钮');
+  console.log("✅ 已为所有风格卡片自动添加下载按钮");
 }
 
 // 绑定下载按钮事件
 function bindDownloadEvents() {
-  const downloadButtons = document.querySelectorAll('.download-btn');
+  const downloadButtons = document.querySelectorAll(".download-btn");
 
-  downloadButtons.forEach(button => {
-    button.addEventListener('click', async (e) => {
+  downloadButtons.forEach((button) => {
+    button.addEventListener("click", async (e) => {
       e.stopPropagation(); // 阻止事件冒泡到卡片点击事件
 
       const styleId = button.dataset.style;
       if (!styleId) {
-        console.error('未找到风格ID');
+        console.error("未找到风格ID");
         return;
       }
 
       // 检查是否正在下载
       if (window.downloadManager.isCurrentlyDownloading()) {
-        showNotification('已有下载任务正在进行中，请稍后再试', 'warning');
+        showNotification("已有下载任务正在进行中，请稍后再试", "warning");
         return;
       }
 
       try {
         // 设置下载状态
-        setDownloadState(button, 'downloading');
+        setDownloadState(button, "downloading");
 
         // 开始下载
-        const result = await window.downloadManager.downloadStyle(styleId, (progress) => {
-          updateDownloadProgress(button, progress);
-        });
+        const result = await window.downloadManager.downloadStyle(
+          styleId,
+          (progress) => {
+            updateDownloadProgress(button, progress);
+          }
+        );
 
         // 下载成功
-        setDownloadState(button, 'success');
-        showNotification(`✅ ${result.fileName} 下载成功！文件大小：${window.downloadManager.formatFileSize(result.fileSize)}`, 'success');
+        setDownloadState(button, "success");
+        showNotification(
+          `✅ ${
+            result.fileName
+          } 下载成功！文件大小：${window.downloadManager.formatFileSize(
+            result.fileSize
+          )}`,
+          "success"
+        );
 
         // 记录下载统计
         try {
           if (window.analyticsService) {
-            await window.analyticsService.trackEvent('download', styleId, {
+            await window.analyticsService.trackEvent("download", styleId, {
               // file_size: result.fileSize,
               // file_name: result.fileName
             });
           }
         } catch (error) {
-          console.warn('⚠️ Failed to track download event:', error);
+          console.warn("⚠️ Failed to track download event:", error);
         }
 
         // 3秒后恢复正常状态
         setTimeout(() => {
-          setDownloadState(button, 'normal');
+          setDownloadState(button, "normal");
         }, 3000);
-
       } catch (error) {
-        console.error('下载失败:', error);
-        setDownloadState(button, 'error');
-        showNotification(`❌ 下载失败：${error.message}`, 'error');
+        console.error("下载失败:", error);
+        setDownloadState(button, "error");
+        showNotification(`❌ 下载失败：${error.message}`, "error");
 
         // 3秒后恢复正常状态
         setTimeout(() => {
-          setDownloadState(button, 'normal');
+          setDownloadState(button, "normal");
         }, 3000);
       }
     });
 
     // 阻止下载按钮的悬停效果影响卡片
-    button.addEventListener('mouseenter', (e) => {
+    button.addEventListener("mouseenter", (e) => {
       e.stopPropagation();
     });
 
-    button.addEventListener('mouseleave', (e) => {
+    button.addEventListener("mouseleave", (e) => {
       e.stopPropagation();
     });
   });
@@ -584,26 +593,26 @@ function bindDownloadEvents() {
 // 设置下载按钮状态
 function setDownloadState(button, state) {
   // 清除所有状态类
-  button.classList.remove('downloading', 'success', 'error');
+  button.classList.remove("downloading", "success", "error");
 
   switch (state) {
-    case 'downloading':
-      button.classList.add('downloading');
+    case "downloading":
+      button.classList.add("downloading");
       break;
-    case 'success':
-      button.classList.add('success');
-      button.querySelector('.download-text').textContent = '下载成功';
-      button.querySelector('.download-icon').textContent = '✅';
+    case "success":
+      button.classList.add("success");
+      button.querySelector(".download-text").textContent = "下载成功";
+      button.querySelector(".download-icon").textContent = "✅";
       break;
-    case 'error':
-      button.classList.add('error');
-      button.querySelector('.download-text').textContent = '下载失败';
-      button.querySelector('.download-icon').textContent = '❌';
+    case "error":
+      button.classList.add("error");
+      button.querySelector(".download-text").textContent = "下载失败";
+      button.querySelector(".download-icon").textContent = "❌";
       break;
-    case 'normal':
+    case "normal":
     default:
-      button.querySelector('.download-text').textContent = '下载文件包';
-      button.querySelector('.download-icon').textContent = '📦';
+      button.querySelector(".download-text").textContent = "下载文件包";
+      button.querySelector(".download-icon").textContent = "📦";
       updateDownloadProgress(button, 0);
       break;
   }
@@ -611,8 +620,8 @@ function setDownloadState(button, state) {
 
 // 更新下载进度
 function updateDownloadProgress(button, progress) {
-  const progressBar = button.querySelector('.progress-bar');
-  const progressText = button.querySelector('.progress-text');
+  const progressBar = button.querySelector(".progress-bar");
+  const progressText = button.querySelector(".progress-text");
 
   if (progressBar) {
     progressBar.style.width = `${progress}%`;
@@ -624,9 +633,9 @@ function updateDownloadProgress(button, progress) {
 }
 
 // 显示通知
-function showNotification(message, type = 'info') {
+function showNotification(message, type = "info") {
   // 创建通知元素
-  const notification = document.createElement('div');
+  const notification = document.createElement("div");
   notification.className = `notification notification-${type}`;
   notification.innerHTML = `
     <div class="notification-content">
@@ -640,7 +649,15 @@ function showNotification(message, type = 'info') {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : type === 'warning' ? '#ff9800' : '#2196f3'};
+    background: ${
+      type === "success"
+        ? "#4caf50"
+        : type === "error"
+        ? "#f44336"
+        : type === "warning"
+        ? "#ff9800"
+        : "#2196f3"
+    };
     color: white;
     padding: 16px 20px;
     border-radius: 8px;
@@ -656,8 +673,8 @@ function showNotification(message, type = 'info') {
   document.body.appendChild(notification);
 
   // 绑定关闭事件
-  const closeBtn = notification.querySelector('.notification-close');
-  closeBtn.addEventListener('click', () => {
+  const closeBtn = notification.querySelector(".notification-close");
+  closeBtn.addEventListener("click", () => {
     removeNotification(notification);
   });
 
@@ -670,7 +687,7 @@ function showNotification(message, type = 'info') {
 // 移除通知
 function removeNotification(notification) {
   if (notification && notification.parentNode) {
-    notification.style.animation = 'slideOutRight 0.3s ease-out';
+    notification.style.animation = "slideOutRight 0.3s ease-out";
     setTimeout(() => {
       if (notification.parentNode) {
         notification.parentNode.removeChild(notification);
@@ -681,7 +698,7 @@ function removeNotification(notification) {
 
 // 页面加载完成提示
 window.addEventListener("load", () => {
-  console.log("🎨 Beautiful Login - 风格选择页面加载完成");
+  console.log("🎨 LoginLab - 风格选择页面加载完成");
   console.log("🎬 新特性：基于滚动位置的懒加载动画已启用");
   console.log("📦 新功能：支持下载每个风格的完整文件包");
   console.log(
