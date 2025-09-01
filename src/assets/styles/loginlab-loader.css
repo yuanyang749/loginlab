@@ -1,0 +1,313 @@
+/**
+ * LoginLab华丽加载动画样式
+ * 配合loginlab-loader.js插件使用
+ * 
+ * @version 1.0.0
+ * @author LoginLab Team
+ */
+
+/* LoginLab华丽加载动画样式 */
+.loginlab-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0a1220 0%, #0b1220 40%, #0b1220 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.loginlab-loader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-container {
+  position: relative;
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+}
+
+/* 背景装饰效果 */
+.loader-bg-effects {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  pointer-events: none;
+}
+
+.loader-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.loader-circle-1 {
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgba(46, 160, 255, 0.2);
+  top: 50px;
+  left: 50px;
+}
+
+.loader-circle-2 {
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(46, 160, 255, 0.15);
+  top: 100px;
+  left: 100px;
+}
+
+.loader-circle-3 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(46, 160, 255, 0.1);
+  top: 150px;
+  left: 150px;
+}
+
+/* 主标题样式 */
+.loader-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  position: relative;
+}
+
+.text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 0.2em 0.1em;
+  overflow: hidden;
+}
+
+.letters {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+
+.letter {
+  display: inline-block;
+  line-height: 1em;
+  transform-origin: 50% 50%;
+}
+
+/* 装饰线条 */
+.line {
+  position: absolute;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  opacity: 0;
+  transform-origin: 0 50%;
+}
+
+.line-top {
+  top: 0;
+}
+
+.line-bottom {
+  bottom: 0;
+}
+
+/* 副标题样式 */
+.loader-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 2rem 0;
+  letter-spacing: 0.1em;
+}
+
+.subtitle-letters {
+  display: inline-block;
+}
+
+.subtitle-letter {
+  display: inline-block;
+  opacity: 0;
+}
+
+/* 进度条样式 */
+.loader-progress {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2ea0ff, rgba(46, 160, 255, 0.8));
+  border-radius: 1px;
+  width: 0%;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(46, 160, 255, 0.3);
+}
+
+.progress-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+  text-align: center;
+  width: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .loader-title {
+    font-size: 3rem;
+  }
+  
+  .loader-subtitle {
+    font-size: 1rem;
+  }
+  
+  .loader-bg-effects {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .loader-circle-1 {
+    width: 250px;
+    height: 250px;
+    top: 25px;
+    left: 25px;
+  }
+  
+  .loader-circle-2 {
+    width: 180px;
+    height: 180px;
+    top: 60px;
+    left: 60px;
+  }
+  
+  .loader-circle-3 {
+    width: 100px;
+    height: 100px;
+    top: 100px;
+    left: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loader-title {
+    font-size: 2.5rem;
+  }
+  
+  .loader-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .loader-container {
+    width: 95%;
+  }
+  
+  .loader-bg-effects {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .loader-circle-1 {
+    width: 200px;
+    height: 200px;
+    top: 25px;
+    left: 25px;
+  }
+  
+  .loader-circle-2 {
+    width: 140px;
+    height: 140px;
+    top: 55px;
+    left: 55px;
+  }
+  
+  .loader-circle-3 {
+    width: 80px;
+    height: 80px;
+    top: 85px;
+    left: 85px;
+  }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .loginlab-loader {
+    background: #000000;
+  }
+  
+  .loader-title {
+    color: #ffffff;
+  }
+  
+  .loader-subtitle {
+    color: #ffffff;
+  }
+  
+  .progress-text {
+    color: #ffffff;
+  }
+  
+  .loader-circle-1,
+  .loader-circle-2,
+  .loader-circle-3 {
+    border-color: #ffffff;
+    opacity: 0.5;
+  }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  .loginlab-loader {
+    transition: none;
+  }
+  
+  .progress-fill {
+    transition: none;
+  }
+  
+  /* 在减少动画模式下，圆圈不旋转 */
+  .loader-circle {
+    animation: none !important;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .loginlab-loader {
+    background: linear-gradient(180deg, #000000 0%, #0a0a0a 40%, #0a0a0a 100%);
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .loginlab-loader {
+    display: none !important;
+  }
+}

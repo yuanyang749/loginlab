@@ -53,10 +53,15 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="stylesheet" href="src/assets/styles/style-selector.css" />
     <link rel="stylesheet" href="src/assets/styles/home-modern.css" />
+    <link rel="stylesheet" href="src/assets/styles/loginlab-loader.css" />
     <!-- JSZip库用于生成ZIP文件 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <!-- Supabase客户端库用于数据统计 -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Anime.js v4 用于华丽加载动画 -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@4.1.3/lib/anime.iife.min.js"></script>
+    <!-- LoginLab加载动画插件 -->
+    <script src="src/js/loginlab-loader.js"></script>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -95,6 +100,8 @@
         }
       }
     </script>
+
+
   </head>
   <body>
     <!-- 背景动效层：光斑 / 网格 / 粒子（不阻挡内容） -->
@@ -102,8 +109,42 @@
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="particles" id="particlesBg" aria-hidden="true"></div>
 
-    <!-- 轻量加载层 -->
-    <div id="pageLoader"><div class="loader"></div></div>
+    <!-- LoginLab华丽加载动画层 -->
+    <div id="loginlabLoader" class="loginlab-loader">
+      <div class="loader-container">
+        <!-- 背景装饰元素 -->
+        <div class="loader-bg-effects">
+          <div class="loader-circle loader-circle-1"></div>
+          <div class="loader-circle loader-circle-2"></div>
+          <div class="loader-circle loader-circle-3"></div>
+          <div class="loader-particles"></div>
+        </div>
+
+        <!-- 主要文字动画 -->
+        <div class="loader-text-container">
+          <h1 class="loader-title">
+            <span class="text-wrapper">
+              <span class="line line-top"></span>
+              <span class="letters">LoginLab</span>
+              <span class="line line-bottom"></span>
+            </span>
+          </h1>
+          <p class="loader-subtitle">
+            <span class="subtitle-letters">AI驱动的登录页实验室</span>
+          </p>
+        </div>
+
+        <!-- 进度指示器 -->
+        <div class="loader-progress">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <div class="progress-text">
+            <span class="progress-percentage">0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <header>
       <nav class="topbar" role="navigation" aria-label="主导航">
@@ -1405,11 +1446,13 @@
         );
       })();
 
-      // 轻量页面加载层结束：等待一帧后隐藏，保留原JS逻辑不变
-      window.addEventListener("load", () => {
-        requestAnimationFrame(() => {
-          const loader = document.getElementById("pageLoader");
-          if (loader) loader.classList.add("hide");
+      // 初始化LoginLab华丽加载动画
+      document.addEventListener('DOMContentLoaded', () => {
+        new LoginLabLoader({
+          onComplete: () => {
+            console.log('LoginLab加载动画完成！');
+          },
+          debug: false // 设置为true可查看调试信息
         });
       });
     </script>
