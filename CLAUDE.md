@@ -13,25 +13,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Style Gallery**: Centralized style selector with preview thumbnails
 - **File-based Deployment**: Direct file serving compatible with any web server
 
-## 📁 Project Structure
-
-```
-├── index.html              # Main landing page with style selector
-├── analytics.html          # Statistics and analytics dashboard
-├── src/
-│   ├── assets/styles/      # All CSS files (39 styles + selector)
-│   ├── js/                 # JavaScript files (39 styles + utilities)
-│   └── styles/            # Individual style HTML templates (37 files)
-└── discuss/               # Planning and architecture documents
-```
-
 ## 🚀 Development Commands
 
 ### Local Development
 
+- **Start server**: `npm run dev` (uses http-server on port 8000)
 - **Preview**: Open `index.html` directly in browser
 - **Auto-reload**: Use VS Code Live Server or similar
 - **No build process**: Pure HTML/CSS/JS development
+
+### Testing
+
+- **E2E Testing**: `npx playwright test` (if tests are added)
+- **Manual testing**: Open individual style pages in browser
+- **Mobile testing**: Use browser dev tools mobile emulation
 
 ### Deployment (Vercel)
 
@@ -49,59 +44,49 @@ Each style follows the pattern:
 - `src/assets/styles/{style-name}.css` - All styles and animations
 - `src/js/{style-name}.js` - Style-specific JavaScript
 
-### Core Utilities
+### Core Architecture Patterns
 
-- **common.js**: Login form validation and state management
-- **style-selector.js**: Gallery navigation and preview logic
-- **download-manager.js**: ZIP file generation for style downloads
-- **analytics.js**: Supabase integration for usage statistics
+**LoginSystem Class** (`src/js/common.js`):
+- Encapsulates common login functionality
+- Handles form switching (login ↔ register ↔ forgot password)
+- Provides form validation and submission handling
+- Manages verification code functionality
+
+**Style Selector** (`src/js/style-selector.js`):
+- Initializes scroll-triggered animations for style cards
+- Handles style card click events and navigation
+- Manages download functionality via JSZip
+- Implements interactive effects and magic portal
+
+**Individual Style JavaScript** (`src/js/{style-name}.js`):
+- Follows consistent initialization pattern: `DOMContentLoaded` event
+- Implements style-specific animations and interactions
+- Integrates with the common LoginSystem class
+- Adds unique visual effects and interactions
 
 ## 🔧 Technology Stack
 
 ### Frontend
 
-- **HTML5**: Semantic markup and modern elements
-- **CSS3**: Advanced animations, gradients, and transformations
-- **JavaScript ES6+**: Modern syntax with modules and classes
+- **HTML5**: Semantic markup with proper accessibility (ARIA labels)
+- **CSS3**: Advanced animations, CSS Grid, Flexbox, custom properties
+- **JavaScript ES6+**: Classes, modules, arrow functions, async/await
 
 ### External Dependencies
 
-- **JSZip**: Client-side ZIP file generation
-- **Supabase JS**: Real-time analytics and statistics
-- **CDN Hosting**: External libraries through CDNs
+- **JSZip**: Client-side ZIP file generation for style downloads
+- **Supabase JS**: Real-time analytics and usage statistics
+- **Anime.js**: Advanced animation library for loading effects
+- **CDN Hosting**: External libraries loaded via CDN for performance
 
 ## 📊 Analytics & Data
 
 ### Supabase Integration
 
-- Project analytics tracked in real-time
-- Style download statistics
-- Usage pattern analysis
-- Connection to `analytics.html` dashboard
-
-### Performance Metrics
-
-- Mobile-first responsive design
-- Animation performance optimization
-- Lazy loading for better UX
-
-## 🎨 Design System
-
-### Style Categories
-
-1. **Modern & Minimalist** (8 styles)
-2. **Nature & Organic** (6 styles)
-3. **Tech & Sci-Fi** (7 styles)
-4. **Artistic & Creative** (8 styles)
-5. **Retro & Vintage** (5 styles)
-6. **Luxury & Premium** (5 styles)
-
-### Animation Patterns
-
-- CSS keyframes and transitions
-- JavaScript particle systems
-- Interactive form elements
-- Background effects and overlays
+- Project analytics tracked in real-time via `analytics.js`
+- Style download statistics and user behavior tracking
+- Connection to `analytics.html` dashboard for visualization
+- Anonymous usage data for improvement insights
 
 ## 🔄 Development Workflow
 
@@ -111,43 +96,130 @@ Each style follows the pattern:
 - `develop`: Development (preview deploy)
 - Feature branches: `feature/{style-name}`
 
-### Code Style
+### Code Patterns
 
-- Semantic HTML with proper accessibility
-- BEM-like CSS naming convention
-- ES6 modules and modern JS patterns
-- Consistent file naming across components
+**HTML Structure**:
+- Semantic HTML5 with proper ARIA labels
+- Consistent meta tags and viewport settings
+- Mobile-first responsive design
+- Form validation attributes
 
-## 🚀 Quick Start
+**CSS Architecture**:
+- BEM-like naming convention (e.g., `.login-form__input`)
+- CSS custom properties for theming
+- Performance-optimized animations (transform, opacity)
+- Mobile-first media queries
 
-1. **Clone**: `git clone` the repository
-2. **View**: Open `index.html` in browser
-3. **Develop**: Edit HTML/CSS/JS files directly
-4. **Deploy**: Push to appropriate branch
+**JavaScript Patterns**:
+- ES6 Class-based architecture
+- Event delegation for performance
+- Consistent error handling
+- Async/await for API calls
+
+## 🎨 Creating New Styles
+
+### File Structure Pattern
+
+When adding a new style, create three files:
+1. `src/styles/{style-name}.html` - Login page template
+2. `src/assets/styles/{style-name}.css` - Styles and animations
+3. `src/js/{style-name}.js` - Style-specific interactions
+
+### HTML Template Requirements
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{Style Name} - LoginLab</title>
+    <link rel="stylesheet" href="../assets/styles/{style-name}.css">
+</head>
+<body>
+    <!-- Include back button, login form, register form, forgot password form -->
+    <script src="../js/common.js"></script>
+    <script src="../js/{style-name}.js"></script>
+</body>
+</html>
+```
+
+### JavaScript Initialization Pattern
+
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize page animations
+    initPageAnimations();
+    
+    // Initialize interactive effects
+    initInteractiveEffects();
+    
+    // Initialize style-specific effects
+    initStyleSpecificEffects();
+});
+
+function initPageAnimations() {
+    // Page load animations
+}
+
+function initInteractiveEffects() {
+    // User interaction handlers
+}
+
+function initStyleSpecificEffects() {
+    // Unique visual effects for this style
+}
+```
+
+### CSS Performance Guidelines
+
+- Use `transform` and `opacity` for animations
+- Avoid `box-shadow` and `filter` in animations
+- Use `will-change` sparingly
+- Prefer CSS animations over JavaScript for performance
 
 ## 📱 Mobile Optimization
 
-- Touch-friendly interface
-- Responsive design patterns
+- Touch-friendly interface (minimum 44px tap targets)
+- Responsive design with mobile-first approach
+- Optimized animations for mobile devices
+- Proper viewport meta tags for mobile browsers
+
+## 🔍 Code Quality Standards
+
+### HTML Requirements
+- Valid HTML5 markup
+- Proper semantic structure
+- Complete accessibility attributes
+- Mobile-optimized viewport settings
+
+### CSS Requirements
+- Consistent naming convention
 - Performance-optimized animations
-- Mobile form input enhancements
+- Mobile-first responsive design
+- Cross-browser compatibility
 
-## 🔍 Code Patterns to Follow
+### JavaScript Requirements
+- ES6+ syntax and features
+- Proper error handling
+- Event delegation for performance
+- Consistent code structure across styles
 
-When adding new styles:
+## 🎯 Testing Guidelines
 
-1. Create consistent file structure
-2. Follow existing CSS animation patterns
-3. Use semantic HTML structure
-4. Implement mobile-responsive design
-5. Include preview in style selector
+### Manual Testing Checklist
+- [ ] All forms work correctly (login, register, forgot password)
+- [ ] Form validation works as expected
+- [ ] Mobile responsiveness on different screen sizes
+- [ ] Animation performance is smooth
+- [ ] All interactive elements work properly
+- [ ] Cross-browser compatibility
 
-## 🎯 Testing
-
-- Manual browser testing
-- Mobile device testing
-- Form validation testing
-- Animation performance testing
+### Performance Testing
+- [ ] Page load time under 3 seconds
+- [ ] Animation frame rate above 30fps
+- [ ] Mobile performance on 3G networks
+- [ ] Memory usage optimization
 
 ---
 
